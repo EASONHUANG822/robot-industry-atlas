@@ -1,0 +1,215 @@
+{
+  "Metadata": {
+    "title": "Shenzhen Robot Valley | Shenzhen Robot Valley Showroom",
+    "description": "Learn about the Shenzhen Robot Valley showroom experience, industry ecosystem, and visit application."
+  },
+  "Header": {
+    "brand": "Shenzhen Robot Valley",
+    "overview": "Home",
+    "map": "Robot Valley",
+    "directory": "Industry Map",
+    "about": "Details"
+  },
+  "LanguageSwitcher": {
+    "zh": "中文",
+    "en": "English"
+  },
+  "Landing": {
+    "eyebrow": "Shenzhen Robot Valley",
+    "title": "Shenzhen Robot Valley",
+    "description": "Anchored at Nanshan Zhigu Industrial Park, Shenzhen Robot Valley is an open showcase for robotics exhibitions, technology experiences, industry exchange, and innovation collaboration in Shenzhen.",
+    "learnMore": "Explore Robot Valley",
+    "exploreAtlas": "Explore Robot Valley",
+    "applyToVisit": "Apply to Visit",
+    "robotValleyStats": {
+      "showroomArea": "Robot Valley Showroom Area",
+      "companies": "Companies in Robot Valley"
+    },
+    "metricsLabel": "Nanshan area indicators within the broader Robot Valley ecosystem",
+    "metrics": {
+      "companies": "Nanshan Companies",
+      "makers": "Robot Makers",
+      "components": "Core Components",
+      "aiSoftware": "AI / Software",
+      "manufacturing": "Intelligent Manufacturing"
+    },
+    "showroom": {
+      "eyebrow": "Robot Valley Showroom",
+      "title": "Visit the Shenzhen Robot Valley Showroom",
+      "description": "The showroom presents embodied intelligence, service robots, industrial automation, core components, and interactive demos so visitors can understand Shenzhen Robot Valley through real scenes and technology showcases.",
+      "apply": "Apply for a Visit",
+      "imageLabel": "Showroom preview",
+      "imageDescription": "A clean placeholder for showroom photography, demo scenes, or partner robot highlights."
+    },
+    "detail": {
+      "eyebrow": "Robot Valley Introduction",
+      "title": "A robotics showcase and innovation platform centered on Nanshan Zhigu Industrial Park",
+      "description": "Shenzhen Robot Valley focuses on frontier robotics showcases, application-scenario experiences, industry resource connection, and innovation exchange. Visitors can explore robot bodies, intelligent manufacturing, AI algorithms, core components, and service robot applications while seeing Shenzhen's robotics ecosystem in context.",
+      "addressLabel": "Showroom Address",
+      "areaLabel": "Showroom Area",
+      "cards": {
+        "showroom": {
+          "title": "Immersive Showroom",
+          "text": "Physical robots, interactive demos, and scenario-based displays show the full path from robotics R&D to real-world application."
+        },
+        "ecosystem": {
+          "title": "Industry Ecosystem",
+          "text": "The platform connects Nanshan research institutions, robotics companies, application scenarios, and industry services."
+        },
+        "visit": {
+          "title": "Built for Visitors",
+          "text": "Designed for government parks, enterprise clients, investors, research teams, and industry partners to visit and connect."
+        }
+      }
+    },
+    "whyEyebrow": "Why Shenzhen Robot Valley",
+    "whyTitle": "A concentrated robotics innovation hub for R&D, companies, and real-world applications",
+    "whyDescription": "Robot Valley brings together Nanshan's university research, leading robotics companies, application scenarios, capital networks, and Greater Bay Area supply chain resources. The map remains available as supporting context for understanding the Nanshan enterprise ecosystem.",
+    "whyItems": {
+      "innovation": "Xili, Liuxiandong, Science Park, and nearby innovation zones form a dense technology network.",
+      "cluster": "Robot makers, AI software, core component, and intelligent manufacturing companies continue to cluster in Nanshan.",
+      "bayArea": "Greater Bay Area supply chains, capital, and application scenarios help robotics companies collaborate across the region."
+    },
+    "datasetEyebrow": "Supporting dataset",
+    "datasetTitle": "Also Discover Nanshan Enterprises",
+    "datasetDescription": "The following company cards show Nanshan area robotics enterprises as secondary ecosystem context for Shenzhen Robot Valley.",
+    "openInteractiveMap": "Open Robot Valley Map"
+  },
+  "LandingMap": {
+    "title": "Robot Valley map preview",
+    "subtitle": "Robot Valley showroom plus {count} Nanshan area robotics enterprises",
+    "openFullMap": "Open Full Map",
+    "selectedCompany": "Nanshan Area Enterprise",
+    "viewProfile": "View profile",
+    "showroomEyebrow": "Robot Valley Showroom",
+    "showroomName": "Shenzhen Robot Valley Showroom",
+    "showroomDescription": "A visit destination for robotics showcases, interactive demos, ecosystem briefings, and Nanshan innovation resources.",
+    "applyToVisit": "Apply to Visit",
+    "robotValleyMarkerLabel": "Shenzhen Robot Valley",
+    "loading": "Loading AMap...",
+    "missingKey": "Add NEXT_PUBLIC_AMAP_KEY to render the homepage map.",
+    "error": "AMap could not be loaded. Check the key, security code, and network access.",
+    "fallback": "The Robot Valley information and Nanshan company directory remain available below."
+  },
+  "Map": {
+    "loading": "Loading AMap...",
+    "missingKey": "Add NEXT_PUBLIC_AMAP_KEY to render the interactive AMap layer.",
+    "error": "AMap could not be loaded. Check the key, security code, and network access.",
+    "fallback": "The filters, list, and detail pages still work without a configured map key.",
+    "empty": "No matching Nanshan area robotics enterprises found",
+    "nanshanEmpty": "No matching Nanshan area robotics enterprises found",
+    "home": "Home",
+    "companyList": "Nanshan Area Enterprises",
+    "currentCompanies": "Visible Nanshan Enterprises",
+    "cityFallbackNote": "City-level coordinate, not exact address",
+    "geocodeStatus": "Geocode status",
+    "currentViewAll": "Nanshan Area Enterprises",
+    "currentViewCategory": "Nanshan Area · {category}",
+    "allCategories": "All Categories",
+    "applyToVisit": "Apply to Visit",
+    "robotValleyMarkerLabel": "Shenzhen Robot Valley",
+    "robotValleyPopupLabel": "Robot Valley Showroom",
+    "robotValleyName": "Shenzhen Robot Valley Showroom",
+    "robotValleyDescription": "The always-visible anchor point for the Robot Valley visit experience.",
+    "filterGroups": {
+      "all": "All",
+      "makers": "Robot Makers",
+      "manufacturing": "Intelligent Manufacturing",
+      "components": "Core Components",
+      "systems": "Systems & Software",
+      "ai": "AI & Algorithms",
+      "other": "Other"
+    }
+  },
+  "CategoryLegend": {
+    "title": "Nanshan Enterprise Legend"
+  },
+  "Sidebar": {
+    "eyebrow": "Robot Valley Map",
+    "title": "Nanshan Area Enterprises",
+    "subtitle": "Explore Nanshan area robotics enterprises as supporting ecosystem data around Shenzhen Robot Valley.",
+    "search": "Search",
+    "searchPlaceholder": "Company, address, product...",
+    "category": "Category",
+    "province": "Area",
+    "all": "Nanshan District",
+    "resultCount": "{count} Nanshan area enterprises shown",
+    "coordinatesUnavailable": "Coordinates unavailable"
+  },
+  "VisitApplication": {
+    "button": "Apply to Visit",
+    "eyebrow": "Showroom Visit",
+    "title": "Apply to Visit Shenzhen Robot Valley",
+    "close": "Close application form",
+    "required": "*",
+    "fields": {
+      "name": "Name",
+      "organization": "Company / Organization",
+      "email": "Contact Email",
+      "phone": "Phone Number",
+      "date": "Preferred Visit Date",
+      "visitors": "Number of Visitors",
+      "message": "Message"
+    },
+    "cancel": "Cancel",
+    "submit": "Submit Application",
+    "successTitle": "Thank you!",
+    "successMessage": "Your visit request has been received. We will contact you soon.",
+    "done": "Done"
+  },
+  "ApplyPage": {
+    "eyebrow": "Visit Application",
+    "title": "Apply to Visit Shenzhen Robot Valley",
+    "description": "Please submit your visit request below. Our team will review your preferred date, visitor count, and organization information, then contact you soon.",
+    "addressLabel": "Showroom Address",
+    "areaLabel": "Showroom Area"
+  },
+  "ApplicationForm": {
+    "required": "*",
+    "fields": {
+      "name": "Name",
+      "organization": "Company / Organization",
+      "email": "Contact Email",
+      "phone": "Phone Number",
+      "preferredVisitDate": "Preferred Visit Date",
+      "visitorCount": "Number of Visitors",
+      "message": "Message"
+    },
+    "submit": "Submit Application",
+    "submitting": "Submitting...",
+    "successTitle": "Application submitted",
+    "successMessage": "Your visit request has been received. We will contact you soon.",
+    "errorTitle": "Submission failed",
+    "errors": {
+      "generic": "Submission failed. Please try again later.",
+      "network": "Network request failed. Please check your connection and try again."
+    }
+  },
+  "CompanyDetails": {
+    "backToMap": "Back to Robot Valley Map",
+    "products": "Products & solutions",
+    "visitWebsite": "Visit website",
+    "detailPage": "Detail page",
+    "founded": "Founded",
+    "area": "Area: Nanshan, Shenzhen",
+    "location": "City / province",
+    "foundedYear": "Founded year",
+    "employees": "Employees",
+    "statusOrFunding": "Status / funding",
+    "funding": "Funding",
+    "fundingDate": "Funding date",
+    "fundingRound": "Round",
+    "fundingAmount": "Amount",
+    "investors": "Investors",
+    "team": "Team",
+    "cnyWan": "CNY 10k",
+    "unknown": "N/A"
+  },
+  "CompanyPage": {
+    "backToMap": "Back to Robot Valley Map",
+    "sameProvince": "Related companies",
+    "sameProvinceEmpty": "No other related companies yet.",
+    "titleSuffix": "Shenzhen Robot Valley",
+    "notFoundTitle": "Company | Shenzhen Robot Valley"
+  }
+}

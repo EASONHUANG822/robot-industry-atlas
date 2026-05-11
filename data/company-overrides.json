@@ -1,0 +1,16 @@
+{
+  "_example": {
+    "nameEn": "Example Robotics Co., Ltd.",
+    "descriptionEn": "Replace this with a reviewed English company description.",
+    "taglineEn": "Reviewed English one-line summary.",
+    "productsEn": [
+      "Industrial Robots",
+      "Robotics Systems & Software"
+    ],
+    "employeeRange": "200-499",
+    "longitude": 113.9304,
+    "latitude": 22.5333,
+    "geocodeStatus": "exact",
+    "geocodeQuery": "manual coordinate override"
+  }
+}

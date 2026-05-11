@@ -1,0 +1,215 @@
+{
+  "Metadata": {
+    "title": "深圳机器人谷｜深圳机器人谷展厅",
+    "description": "了解深圳机器人谷的展厅体验、产业生态与参观申请。"
+  },
+  "Header": {
+    "brand": "深圳机器人谷",
+    "overview": "首页",
+    "map": "机器人谷",
+    "directory": "产业地图",
+    "about": "详细介绍"
+  },
+  "LanguageSwitcher": {
+    "zh": "中文",
+    "en": "English"
+  },
+  "Landing": {
+    "eyebrow": "深圳机器人谷",
+    "title": "深圳机器人谷",
+    "description": "深圳机器人谷依托南山智谷产业园，面向机器人展示、技术体验、产业交流与创新合作，打造深圳机器人产业的开放展示窗口。",
+    "learnMore": "了解机器人谷",
+    "exploreAtlas": "了解机器人谷",
+    "applyToVisit": "申请参观",
+    "robotValleyStats": {
+      "showroomArea": "机器人谷展厅面积",
+      "companies": "机器人谷企业"
+    },
+    "metricsLabel": "以下为机器人谷生态中的南山片区企业指标",
+    "metrics": {
+      "companies": "南山企业",
+      "makers": "机器人本体",
+      "components": "核心零部件",
+      "aiSoftware": "AI / 软件",
+      "manufacturing": "智能制造"
+    },
+    "showroom": {
+      "eyebrow": "机器人谷展厅",
+      "title": "参观深圳机器人谷展厅",
+      "description": "展厅集中呈现具身智能、服务机器人、工业自动化、核心零部件与互动演示，帮助访客直观理解深圳机器人谷的技术场景与产业协同。",
+      "apply": "申请参观",
+      "imageLabel": "展厅预览",
+      "imageDescription": "此处可放置展厅实景、互动演示或合作机器人展示图片。"
+    },
+    "detail": {
+      "eyebrow": "机器人谷介绍",
+      "title": "以南山智谷产业园为核心的机器人展示与创新平台",
+      "description": "深圳机器人谷聚焦机器人前沿技术展示、应用场景体验、产业资源链接和创新成果交流。访客可以在展厅中了解机器人本体、智能制造、AI 算法、核心零部件和多类服务机器人应用，感受深圳机器人产业的真实发展脉络。",
+      "addressLabel": "展厅地址",
+      "areaLabel": "展厅面积",
+      "cards": {
+        "showroom": {
+          "title": "沉浸式展厅体验",
+          "text": "通过机器人实物、交互演示和场景化展示，呈现机器人技术从研发到应用的完整路径。"
+        },
+        "ecosystem": {
+          "title": "产业生态连接",
+          "text": "链接南山科研机构、机器人企业、应用场景和产业服务资源，形成面向合作与展示的创新窗口。"
+        },
+        "visit": {
+          "title": "面向多类访客",
+          "text": "适合政府园区、企业客户、投资机构、科研团队和产业伙伴进行参观交流与项目对接。"
+        }
+      }
+    },
+    "whyEyebrow": "为什么关注深圳机器人谷",
+    "whyTitle": "集聚研发、企业与真实应用场景的机器人创新高地",
+    "whyDescription": "机器人谷汇聚南山高校科研、头部机器人企业、应用场景、资本网络与大湾区供应链资源。企业地图作为辅助内容，帮助理解南山机器人生态分布。",
+    "whyItems": {
+      "innovation": "西丽、留仙洞、科技园等片区形成密集的科技创新网络。",
+      "cluster": "机器人本体、AI 软件、核心零部件与智能制造企业在南山持续集聚。",
+      "bayArea": "依托大湾区供应链、资本与应用场景，机器人企业具备跨区域协同优势。"
+    },
+    "datasetEyebrow": "辅助数据集",
+    "datasetTitle": "继续了解南山机器人企业",
+    "datasetDescription": "以下企业卡片展示南山片区机器人相关企业，作为深圳机器人谷生态的补充信息。",
+    "openInteractiveMap": "打开机器人谷地图"
+  },
+  "LandingMap": {
+    "title": "机器人谷地图预览",
+    "subtitle": "机器人谷展厅与 {count} 家南山片区机器人企业",
+    "openFullMap": "打开完整地图",
+    "selectedCompany": "南山片区企业",
+    "viewProfile": "查看档案",
+    "showroomEyebrow": "机器人谷展厅",
+    "showroomName": "深圳机器人谷展厅",
+    "showroomDescription": "面向机器人展示、互动演示、生态介绍与南山创新资源对接的参观目的地。",
+    "applyToVisit": "申请参观",
+    "robotValleyMarkerLabel": "深圳机器人谷",
+    "loading": "正在加载高德地图...",
+    "missingKey": "添加 NEXT_PUBLIC_AMAP_KEY 后即可渲染首页地图。",
+    "error": "高德地图加载失败。请检查 Key、安全密钥和网络访问。",
+    "fallback": "机器人谷信息与南山公司目录仍可在下方查看。"
+  },
+  "Map": {
+    "loading": "正在加载高德地图...",
+    "missingKey": "添加 NEXT_PUBLIC_AMAP_KEY 后即可渲染交互式高德地图图层。",
+    "error": "高德地图加载失败。请检查 Key、安全密钥和网络访问。",
+    "fallback": "即使未配置地图 Key，筛选、列表和详情页仍可使用。",
+    "empty": "暂无符合条件的南山片区机器人企业",
+    "nanshanEmpty": "暂无符合条件的南山片区机器人企业",
+    "home": "返回首页",
+    "companyList": "南山片区企业",
+    "currentCompanies": "当前南山企业",
+    "cityFallbackNote": "城市级坐标，非精确地址",
+    "geocodeStatus": "地理编码状态",
+    "currentViewAll": "南山片区企业",
+    "currentViewCategory": "南山片区 · {category}",
+    "allCategories": "全部分类",
+    "applyToVisit": "申请参观",
+    "robotValleyMarkerLabel": "深圳机器人谷",
+    "robotValleyPopupLabel": "机器人谷展厅",
+    "robotValleyName": "深圳机器人谷展厅",
+    "robotValleyDescription": "地图中始终可见的机器人谷参观体验锚点。",
+    "filterGroups": {
+      "all": "全部",
+      "makers": "机器人本体",
+      "manufacturing": "智能制造",
+      "components": "核心零部件",
+      "systems": "系统与软件",
+      "ai": "AI 与算法",
+      "other": "其他"
+    }
+  },
+  "CategoryLegend": {
+    "title": "南山企业图例"
+  },
+  "Sidebar": {
+    "eyebrow": "机器人谷地图",
+    "title": "南山片区企业",
+    "subtitle": "以深圳机器人谷为核心，展示南山片区机器人企业的生态分布数据。",
+    "search": "搜索",
+    "searchPlaceholder": "公司、地址、产品...",
+    "category": "品类",
+    "province": "区域",
+    "all": "南山区",
+    "resultCount": "显示 {count} 家南山片区企业",
+    "coordinatesUnavailable": "暂无地图坐标"
+  },
+  "VisitApplication": {
+    "button": "申请参观",
+    "eyebrow": "展厅参观",
+    "title": "申请参观深圳机器人谷",
+    "close": "关闭申请表单",
+    "required": "*",
+    "fields": {
+      "name": "姓名",
+      "organization": "公司 / 机构",
+      "email": "联系邮箱",
+      "phone": "联系电话",
+      "date": "期望参观日期",
+      "visitors": "参观人数",
+      "message": "留言"
+    },
+    "cancel": "取消",
+    "submit": "提交申请",
+    "successTitle": "感谢申请！",
+    "successMessage": "我们已收到您的参观申请，将尽快与您联系。",
+    "done": "完成"
+  },
+  "ApplyPage": {
+    "eyebrow": "参观申请",
+    "title": "申请参观深圳机器人谷",
+    "description": "请填写以下信息提交参观申请。工作人员将根据您的期望日期、参观人数与机构信息进行确认，并尽快与您联系。",
+    "addressLabel": "展厅地址",
+    "areaLabel": "展厅面积"
+  },
+  "ApplicationForm": {
+    "required": "*",
+    "fields": {
+      "name": "姓名",
+      "organization": "公司 / 机构",
+      "email": "联系邮箱",
+      "phone": "联系电话",
+      "preferredVisitDate": "期望参观日期",
+      "visitorCount": "参观人数",
+      "message": "留言"
+    },
+    "submit": "提交申请",
+    "submitting": "提交中...",
+    "successTitle": "提交成功",
+    "successMessage": "我们已收到您的参观申请，将尽快与您联系。",
+    "errorTitle": "提交失败",
+    "errors": {
+      "generic": "提交失败，请稍后重试。",
+      "network": "网络连接失败，请检查网络后重试。"
+    }
+  },
+  "CompanyDetails": {
+    "backToMap": "返回机器人谷地图",
+    "products": "产品与解决方案",
+    "visitWebsite": "访问官网",
+    "detailPage": "详情页",
+    "founded": "成立于",
+    "area": "所在区域：深圳南山",
+    "location": "城市 / 省份",
+    "foundedYear": "成立年份",
+    "employees": "员工规模",
+    "statusOrFunding": "状态 / 融资",
+    "funding": "融资信息",
+    "fundingDate": "融资时间",
+    "fundingRound": "轮次",
+    "fundingAmount": "金额",
+    "investors": "投资机构",
+    "team": "团队",
+    "cnyWan": "万人民币",
+    "unknown": "暂无"
+  },
+  "CompanyPage": {
+    "backToMap": "返回机器人谷地图",
+    "sameProvince": "相关公司",
+    "sameProvinceEmpty": "暂无其他相关公司。",
+    "titleSuffix": "深圳机器人谷",
+    "notFoundTitle": "公司 | 深圳机器人谷"
+  }
+}
