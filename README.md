@@ -1,231 +1,131 @@
-# Shenzhen Nanshan Robotics Company Atlas
+# 深圳机器人谷 / Shenzhen Robot Valley
 
-A bilingual company directory and map focused on robotics-related companies located in Nanshan District, Shenzhen. The project uses Excel company data, address geocoding, category-based markers, Next.js App Router, TypeScript, Tailwind CSS, next-intl, and the AMap JavaScript API.
+深圳机器人谷产业展示平台，依托南山智谷产业园，面向机器人展示、技术体验与产业交流。
 
-Chinese positioning: 深圳南山机器人公司图谱.
+A bilingual showcase platform for Shenzhen's robotics industry, centered on Nanshan Zhigu Industrial Park.
 
-English positioning: Shenzhen Nanshan Robotics Company Atlas.
+## 技术栈 / Tech Stack
 
-## Routes
+- **框架**: [Next.js 15](https://nextjs.org/) + [React 19](https://react.dev/)
+- **语言**: TypeScript
+- **样式**: [Tailwind CSS 3](https://tailwindcss.com/)
+- **国际化**: [next-intl](https://next-intl.dev/) (中文 / English)
 
-The app uses locale-prefixed routes. Chinese is the default locale. The public map and homepage focus on companies whose city is 深圳 / 深圳市 and whose address contains 南山区.
+## 路由 / Routes
 
-- `/` redirects to `/zh`
-- `/zh` and `/en`
-- `/zh/map` and `/en/map`
-- `/zh/company/[id]` and `/en/company/[id]`
+应用使用 locale 前缀路由，中文为默认语言：
 
-## Local Development
+- `/` → 重定向到 `/zh`
+- `/zh` / `/en` — 首页
+- `/zh/apply` / `/en/apply` — 参观申请
+- `/zh/company/[id]` / `/en/company/[id]` — 企业详情
+
+## 本地开发 / Local Development
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:3000
 npm run build
+npm run start
 ```
 
-## Importing Company Data
+## 导入企业数据 / Importing Company Data
 
-The importer is append-only. It reads the existing generated dataset first, then reads a new Excel workbook and adds only companies whose `工商全称` does not already exist.
-
-Run with the default source lookup:
+导入器为追加模式，读取已有生成数据后，从 Excel 中只添加 `工商全称` 尚不存在的企业。
 
 ```bash
 npm run import:companies
 ```
 
-Default lookup order:
+默认查找顺序：
 
-1. `COMPANY_IMPORT_FILE`
+1. `COMPANY_IMPORT_FILE` 环境变量
 2. `D:/桌面/机器人公司.xlsx`
 3. `data/raw/company-list.xlsx`
 
-You can also pass a workbook path explicitly:
+也可显式传入路径：
 
 ```bash
 npm run import:companies -- "D:/桌面/机器人公司.xlsx"
 ```
 
-The importer reads the first worksheet with a `工商全称` header and writes:
+导入器读取第一个包含 `工商全称` 表头的工作表，写入 `src/data/companies.generated.ts`。以 `工商全称` 去重，已存在的企业不会更新或覆盖。`公司ID` 为空时自动生成。
 
-```text
-src/data/companies.generated.ts
-```
+### Excel 列映射
 
-Duplicate detection uses `工商全称` only. Before comparison, the legal name is normalized by trimming whitespace, collapsing repeated spaces, normalizing full-width/half-width spaces, and normalizing Chinese/English parentheses.
+| Excel 列 | 字段 |
+|----------|------|
+| `公司ID` | `id` |
+| `公司简称` | `nameZh` |
+| `工商全称` | `legalNameZh` |
+| `英文名` | `nameEn` |
+| `官网` | `website` |
+| `一句话简介` | `taglineZh` |
+| `公司简介` | `descriptionZh` |
+| `行业` | `industryZh` |
+| `子行业` | `subIndustryZh`, `productsZh`, `categoryKey` |
+| `省` | `province` |
+| `市` | `city` |
+| `地址` | `addressZh` |
+| `成立时间` | `foundedAt`, `foundedYear` |
+| `运营状态` | `statusZh` |
+| `融资总额（万人民币）` | `financingTotalCnyWan` |
+| `估值（万人民币）` | `valuationCnyWan` |
+| `估值（估算-万人民币）` | `estimatedValuationCnyWan` |
+| `融资时间`, `轮次`, `金额`, `币种`, `等值人民币（万）`, `投资机构` | `latestFunding` |
+| `团队姓名`, `职位` | `team`（可选） |
 
-Append behavior:
+## 地理编码 / Geocoding
 
-- If `工商全称` already exists in the generated dataset, the row is skipped completely.
-- Existing companies are never merged, updated, or overwritten.
-- `英文名`, `官网`, `地址`, funding, team, and all other fields on existing companies remain unchanged.
-- If multiple rows in the new Excel have the same `工商全称`, only the first new row is added; later duplicate rows are skipped.
-- Rows with empty `工商全称` are skipped.
-- If `公司ID` is empty for a new company, the importer creates a stable generated id from `工商全称`.
+地理编码为 Node.js 预部署脚本，浏览器端不做地址编码。
 
-The public generated data intentionally does not include `统一信用代码`, `电话`, or `邮箱`.
-
-After importing new companies, run geocoding so new rows can receive coordinates:
-
-```bash
-npm run geocode:companies
-```
-
-The geocoder skips existing exact coordinates unless `REFRESH_EXACT=1` is set.
-
-## Actual Excel Column Mapping
-
-The import workbook uses these headers:
-
-- `公司ID` -> `id`
-- `公司简称` -> `nameZh`
-- `工商全称` -> `legalNameZh`
-- `英文名` -> `nameEn`
-- `官网` -> `website`
-- `一句话简介` -> `taglineZh`
-- `公司简介` -> `descriptionZh`
-- `行业` -> `industryZh`
-- `子行业` -> `subIndustryZh`, `productsZh`, `categoryKey`
-- `省` -> `province`
-- `市` -> `city`
-- `地址` -> `addressZh`
-- `成立时间` -> `foundedAt`, `foundedYear`
-- `运营状态` -> `statusZh`
-- `融资总额（万人民币）` -> `financingTotalCnyWan`
-- `估值（万人民币）` -> `valuationCnyWan`
-- `估值（估算-万人民币）` -> `estimatedValuationCnyWan`
-- `融资时间`, `轮次`, `金额`, `币种`, `等值人民币（万）`, `投资机构` -> `latestFunding`
-- `团队姓名`, `职位` -> optional `team`
-
-## English Display Logic
-
-Company-specific English names come from the Excel `英文名` column. On English pages, the UI uses:
-
-- `nameEn` first, then `nameZh` as fallback
-- `descriptionEn` from `data/company-overrides.json` when present
-- Otherwise, a safe generated English description based on company name, province/city, and industry/category
-- English province/city labels from `src/data/locationTranslations.ts`
-- English industry/category/status/funding round labels from `src/data/categoryTranslations.ts`
-- English products from manual overrides first, then category/subindustry fallback tags
-
-On Chinese pages, the original Chinese fields remain the primary display.
-
-## Manual Overrides
-
-Add reviewed English content or exact coordinates in:
-
-```text
-data/company-overrides.json
-```
-
-Example:
-
-```json
-{
-  "71075": {
-    "nameEn": "Sevnce Robotics Co., Ltd.",
-    "descriptionEn": "Sevnce Robotics is a special-purpose robotics company based in Chongqing, focusing on inspection and emergency-response robots for petrochemical, power, and hazardous environments.",
-    "productsEn": [
-      "Explosion-Proof Wheeled Inspection Robots",
-      "Quadruped Inspection Robots"
-    ],
-    "employeeRange": "200-499",
-    "longitude": 113.9304,
-    "latitude": 22.5333,
-    "geocodeStatus": "exact"
-  }
-}
-```
-
-Manual coordinates take priority over geocoding results. Re-run `npm run import:companies` after changing English text overrides for new records.
-
-## Geocoding
-
-Geocoding is a Node.js pre-deployment workflow only. The browser never geocodes company addresses.
-
-Create an AMap Web Service key in the AMap developer console, keep it server-only, and add it to `.env.local`:
+在 AMap 开发者控制台创建 Web Service Key，配置 `.env.local`：
 
 ```env
 AMAP_WEB_SERVICE_KEY=your_web_service_key
 ```
 
-Then run:
-
 ```bash
 npm run geocode:companies
 ```
 
-For large datasets, run geocoding slowly so the AMap Web Service API does not reject requests with QPS errors:
+大量数据时建议降低请求频率：
 
 ```bash
 GEOCODE_DELAY_MS=500 npm run geocode:companies
 ```
 
-`GEOCODE_DELAY_MS` controls the delay between AMap requests. The default is `500` milliseconds. If you still see `10021 CUQPS_HAS_EXCEEDED_THE_LIMIT`, increase it, for example:
+脚本读取 `src/data/companies.generated.ts`，缓存结果至 `data/geocode-cache.json`，写入 `src/data/company-coordinates.generated.json`。
 
-```bash
-GEOCODE_DELAY_MS=1000 npm run geocode:companies
-```
+地址编码优先级：`省+市+地址` → `市+地址` → `地址` → `省+市+公司简称` → `市+公司简称`。成功后 `geocodeStatus` 为 `exact`，回落至城市级则为 `cityFallback`。
 
-The script reads `src/data/companies.generated.ts`, caches responses in `data/geocode-cache.json`, and writes:
+脚本支持断点续传，已缓存的成功结果会被复用。已有精确坐标跳过，除非设置 `REFRESH_EXACT=1`。
 
-```text
-src/data/company-coordinates.generated.json
-```
-
-Address geocoding is attempted before city fallback, in this order:
-
-1. `省 + 市 + 地址`
-2. `市 + 地址`
-3. `地址`
-4. `省 + 市 + 公司简称`
-5. `市 + 公司简称`
-
-If address geocoding succeeds, `geocodeStatus` is `exact`. If address queries fail but city-level geocoding succeeds, status is `cityFallback`. If no coordinate is found, status is `missing`.
-
-The geocoding script is resumable:
-
-- Successful coordinate results are written to `data/geocode-cache.json` during the run.
-- If the script stops halfway, run `npm run geocode:companies` again and cached successful results will be reused.
-- Existing generated exact coordinates are skipped unless `REFRESH_EXACT=1` is set.
-- Existing city-level fallback coordinates are skipped unless `REFRESH_CITY_FALLBACK=1` is set.
-- QPS/rate-limit errors are not cached as permanent failures.
-
-To retry only entries that are currently city-level fallbacks:
-
-```bash
-REFRESH_CITY_FALLBACK=1 GEOCODE_DELAY_MS=1000 npm run geocode:companies
-```
-
-For local demos where external geocoding is not allowed, you can generate approximate city/province fallback coordinates without calling AMap:
+本地演示时可不调用外部接口：
 
 ```bash
 LOCAL_GEOCODE_FALLBACK=1 npm run geocode:companies
 ```
 
-## AMap JavaScript API
+## 英文展示逻辑 / English Display Logic
 
-Create `.env.local`:
+英文页面优先使用 `data/company-overrides.json` 中的内容，其次使用 Excel `英文名` 列，最后自动生成英文描述。
 
-```env
-NEXT_PUBLIC_AMAP_KEY=your_amap_js_api_key
-NEXT_PUBLIC_AMAP_SECURITY_CODE=your_amap_security_code
+## 手动覆盖 / Manual Overrides
+
+在 `data/company-overrides.json` 中添加经过审核的英文内容或精确坐标。
+
+## 国际化 / Internationalization
+
+翻译文件位于：
+
 ```
-
-Only `NEXT_PUBLIC_*` values are exposed to the frontend. `AMAP_WEB_SERVICE_KEY` is used only by the Node geocoding script.
-
-The map components are client-only and the app still builds without AMap variables. If a key is missing, the UI shows a localized fallback.
-
-## Internationalization
-
-Translations live in:
-
-```text
 messages/zh.json
 messages/en.json
 ```
 
-When adding UI text, add keys to both files and use `next-intl` from the localized App Router pages/components.
+新增 UI 文本时需同时添加到两个文件。
 
-## Company Categories
+## 企业分类 / Company Categories
 
-Company filtering and marker styling use stable `categoryKey` values, not translated labels. The import script maps `行业` and `子行业` into category keys using helpers in `src/data/categoryTranslations.ts`.
+企业筛选和样式使用稳定的 `categoryKey`，导入脚本通过 `src/data/categoryTranslations.ts` 中的映射将 `行业` 和 `子行业` 转换为分类键值。
