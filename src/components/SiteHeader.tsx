@@ -9,9 +9,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-line bg-white/88 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex min-w-0 items-center gap-3 font-semibold tracking-tight">
-          <span className="grid size-9 shrink-0 place-items-center rounded bg-accent text-sm font-black text-white">
-            RV
-          </span>
+          <img src="/images/brand-logo.png" alt="" className="size-9 shrink-0 rounded object-contain bg-accent" />
           <span className="truncate text-accent">{t("brand")}</span>
         </Link>
         <div className="flex items-center gap-2 text-sm font-medium text-[#4a6fa5]">

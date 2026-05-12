@@ -49,7 +49,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
       </section>
 
       <section id="robot-valley-detail" className="border-t border-line bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 pt-10 pb-6 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("detail.eyebrow")}</p>
             <h2 className="mt-3 text-4xl font-bold leading-tight text-accent">{t("detail.title")}</h2>
@@ -60,7 +60,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
             </dl>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-2 md:grid-cols-3 lg:self-center">
             <DetailCard title={t("detail.cards.showroom.title")} text={t("detail.cards.showroom.text")} />
             <DetailCard title={t("detail.cards.ecosystem.title")} text={t("detail.cards.ecosystem.text")} />
             <DetailCard title={t("detail.cards.visit.title")} text={t("detail.cards.visit.text")} />
@@ -96,18 +96,18 @@ export default async function LandingPage({ params }: LandingPageProps) {
 
 function DetailMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded border border-line bg-panel p-4">
-      <dt className="text-xs font-semibold uppercase tracking-wide text-[#7a9bc7]">{label}</dt>
-      <dd className="mt-2 text-base font-bold text-accent">{value}</dd>
+    <div className="rounded border border-line bg-panel px-2.5 py-1.5">
+      <dt className="text-[10px] font-semibold uppercase tracking-wide text-[#7a9bc7]">{label}</dt>
+      <dd className="text-sm font-bold text-accent">{value}</dd>
     </div>
   );
 }
 
 function DetailCard({ text, title }: { text: string; title: string }) {
   return (
-    <article className="rounded border border-line bg-white p-5 shadow-sm">
+    <article className="rounded border border-line bg-white px-2.5 py-1 shadow-sm">
       <h3 className="text-lg font-bold text-accent">{title}</h3>
-      <p className="mt-3 text-sm leading-6 text-[#4a6fa5]">{text}</p>
+      <p className="mt-0.5 text-sm leading-snug text-[#4a6fa5]">{text}</p>
     </article>
   );
 }
