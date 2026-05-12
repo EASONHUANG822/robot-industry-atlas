@@ -21,9 +21,6 @@ export function SiteHeader() {
           <Link href="/#robot-valley-detail" className="rounded bg-accent px-3 py-2 text-white hover:bg-blue-800">
             {t("map")}
           </Link>
-          <Link href="/map" className="hidden rounded px-3 py-2 hover:bg-blue-50 hover:text-accent md:inline-flex">
-            {t("directory")}
-          </Link>
           <Link href="/#robot-valley-detail" className="hidden rounded px-3 py-2 hover:bg-blue-50 hover:text-accent lg:inline-flex">
             {t("about")}
           </Link>

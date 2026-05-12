@@ -115,7 +115,7 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
             </a>
           ) : null}
           <Link
-            href="/map"
+            href="/"
             className="rounded border border-line bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-slate-50"
           >
             {t("backToMap")}
