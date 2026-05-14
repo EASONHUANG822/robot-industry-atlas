@@ -62,7 +62,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden min-w-0 items-center gap-1 text-sm font-medium text-[#4a6fa5] xl:flex sm:gap-2">
+        <div className="hidden min-w-0 items-center gap-1 text-sm font-medium text-secondary xl:flex sm:gap-2">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -122,7 +122,7 @@ export function SiteHeader() {
                   <Link
                     href={link.href}
                     onClick={closeMenu}
-                    className="block rounded px-3 py-3 text-base font-semibold text-[#4a6fa5] transition-colors hover:bg-blue-50 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    className="block rounded px-3 py-3 text-base font-semibold text-secondary transition-colors hover:bg-blue-50 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
                     {link.label}
                   </Link>

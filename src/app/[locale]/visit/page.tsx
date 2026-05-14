@@ -21,7 +21,7 @@ export default async function VisitPage({ params }: VisitPageProps) {
           <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-5 text-pretty text-base leading-8 text-[#4a6fa5]">{t("description")}</p>
+          <p className="mt-5 text-pretty text-base leading-8 text-secondary">{t("description")}</p>
         </div>
       </section>
 
@@ -61,15 +61,15 @@ export default async function VisitPage({ params }: VisitPageProps) {
 function StepCard({ number, text, title }: { number: string; text: string; title: string }) {
   return (
     <article className="rounded border border-line bg-white p-5 shadow-sm">
-      <p className="text-xs font-black tabular-nums text-[#7a9bc7]">{number}</p>
+      <p className="text-xs font-black tabular-nums text-muted">{number}</p>
       <h2 className="mt-3 text-xl font-bold leading-tight text-accent">{title}</h2>
-      <p className="mt-3 text-sm leading-7 text-[#4a6fa5]">{text}</p>
+      <p className="mt-3 text-sm leading-7 text-secondary">{text}</p>
     </article>
   );
 }
 
 function AudienceItem({ text }: { text: string }) {
   return (
-    <p className="rounded border border-line bg-panel px-3 py-2 text-sm font-semibold text-[#3a5a8a]">{text}</p>
+    <p className="rounded border border-line bg-panel px-3 py-2 text-sm font-semibold text-subtle">{text}</p>
   );
 }

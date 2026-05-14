@@ -2,10 +2,17 @@ import { hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
+import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { SiteHeader } from "@/components/SiteHeader";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -40,8 +47,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className="min-h-screen antialiased">
+    <html lang={locale} className={inter.variable}>
+      <body className="min-h-screen antialiased font-sans">
         <NextIntlClientProvider messages={messages}>
           <SiteHeader />
           {children}

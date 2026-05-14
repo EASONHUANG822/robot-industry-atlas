@@ -9,7 +9,7 @@ export default async function InnovationPage({ params }: Props) {
   const t = await getTranslations("InnovationPage");
 
   return (
-    <main id="main-content" className="bg-[#f7f9fd]">
+    <main id="main-content" className="bg-page">
       {/* Hero */}
       <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
@@ -17,12 +17,12 @@ export default async function InnovationPage({ params }: Props) {
           <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-5 text-pretty text-base leading-8 text-[#4a6fa5]">{t("description")}</p>
+          <p className="mt-5 text-pretty text-base leading-8 text-secondary">{t("description")}</p>
         </div>
       </section>
 
       {/* Image Showcase + Key Metrics */}
-      <section className="relative overflow-hidden bg-[#0a1e3d]">
+      <section className="relative overflow-hidden bg-dark">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: "url('/images/AI生态社区.jpg')" }}
@@ -49,7 +49,7 @@ export default async function InnovationPage({ params }: Props) {
       <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl font-bold text-accent">{t("detailTitle")}</h2>
-          <p className="mt-4 text-base leading-8 text-[#4a6fa5]">{t("detailText")}</p>
+          <p className="mt-4 text-base leading-8 text-secondary">{t("detailText")}</p>
         </div>
       </section>
 
@@ -57,7 +57,7 @@ export default async function InnovationPage({ params }: Props) {
       <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("platforms.title")}</p>
-          <p className="mt-3 max-w-2xl text-pretty text-base leading-8 text-[#4a6fa5]">
+          <p className="mt-3 max-w-2xl text-pretty text-base leading-8 text-secondary">
             {t("platforms.description")}
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -76,7 +76,7 @@ export default async function InnovationPage({ params }: Props) {
                   <h3 className="mt-5 text-lg font-bold text-accent">
                     {t(`platforms.items.${i}.title`)}
                   </h3>
-                  <p className="mt-2 text-sm leading-7 text-[#4a6fa5]">
+                  <p className="mt-2 text-sm leading-7 text-secondary">
                     {t(`platforms.items.${i}.description`)}
                   </p>
                 </div>
@@ -91,7 +91,7 @@ export default async function InnovationPage({ params }: Props) {
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("research.title")}</p>
-            <p className="mt-3 text-pretty text-base leading-8 text-[#4a6fa5]">
+            <p className="mt-3 text-pretty text-base leading-8 text-secondary">
               {t("research.description")}
             </p>
           </div>
@@ -99,7 +99,7 @@ export default async function InnovationPage({ params }: Props) {
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={t(`research.items.${i}.label`)}
-                className="flex items-start gap-5 rounded-xl border border-line bg-[#f7f9fd] p-5"
+                className="flex items-start gap-5 rounded-xl border border-line bg-page p-5"
               >
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent text-xs font-bold text-white">
                   {`0${i + 1}`}
@@ -108,7 +108,7 @@ export default async function InnovationPage({ params }: Props) {
                   <h4 className="text-sm font-bold text-accent">
                     {t(`research.items.${i}.label`)}
                   </h4>
-                  <p className="mt-1 text-sm leading-6 text-[#4a6fa5]">
+                  <p className="mt-1 text-sm leading-6 text-secondary">
                     {t(`research.items.${i}.value`)}
                   </p>
                 </div>

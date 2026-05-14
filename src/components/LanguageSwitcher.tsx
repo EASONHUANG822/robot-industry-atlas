@@ -20,7 +20,7 @@ export function LanguageSwitcher() {
             href={pathname}
             locale={item}
             className={`rounded px-2.5 py-1.5 transition ${
-              active ? "bg-accent text-white" : "text-[#4a6fa5] hover:bg-blue-50 hover:text-accent"
+              active ? "bg-accent text-white" : "text-secondary hover:bg-blue-50 hover:text-accent"
             }`}
           >
             {t(item)}

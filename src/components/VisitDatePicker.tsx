@@ -138,7 +138,7 @@ export function VisitDatePicker({ disabled = false, labels }: VisitDatePickerPro
           })}
         </div>
 
-        <div className="mt-3 min-h-5 text-xs font-medium text-[#4a6fa5]">
+        <div className="mt-3 min-h-5 text-xs font-medium text-secondary">
           {availabilityState === "loading" ? labels.loading : null}
           {availabilityState === "error" ? labels.loadError : null}
           {availabilityState === "ready" ? (

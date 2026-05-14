@@ -54,7 +54,7 @@ export function LandingHero({
         </div>
 
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#f7f9fd] to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-page to-transparent" />
     </section>
   );
 }

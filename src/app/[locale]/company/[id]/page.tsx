@@ -70,12 +70,12 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
                       className="block rounded border border-line p-3 text-sm hover:border-accent hover:bg-blue-50"
                     >
                       <span className="font-semibold text-accent">{localizedItem.name}</span>
-                      <span className="mt-1 block text-xs text-[#7a9bc7]">{localizedItem.category}</span>
+                      <span className="mt-1 block text-xs text-muted">{localizedItem.category}</span>
                     </Link>
                   );
                 })
               ) : (
-                <p className="text-sm leading-6 text-[#7a9bc7]">{t("sameProvinceEmpty")}</p>
+                <p className="text-sm leading-6 text-muted">{t("sameProvinceEmpty")}</p>
               )}
             </div>
           </section>

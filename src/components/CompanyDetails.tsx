@@ -33,14 +33,14 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
             <span>{[localizedCompany.city, localizedCompany.province].filter(Boolean).join(", ")}</span>
           </div>
           <h1 className="text-2xl font-bold text-accent">{primaryName}</h1>
-          {localizedCompany.tagline ? <p className="text-sm font-medium text-[#3a5a8a]">{localizedCompany.tagline}</p> : null}
+          {localizedCompany.tagline ? <p className="text-sm font-medium text-subtle">{localizedCompany.tagline}</p> : null}
           {localizedCompany.description ? (
-            <p className="line-clamp-3 text-sm leading-6 text-[#4a6fa5]">{localizedCompany.description}</p>
+            <p className="line-clamp-3 text-sm leading-6 text-secondary">{localizedCompany.description}</p>
           ) : null}
         </div>
         <div className="flex flex-wrap gap-2">
           {localizedCompany.products.slice(0, 4).map((product) => (
-            <span key={product} className="rounded bg-slate-100 px-2.5 py-1 text-xs font-medium text-[#3a5a8a]">
+            <span key={product} className="rounded bg-slate-100 px-2.5 py-1 text-xs font-medium text-subtle">
               {product}
             </span>
           ))}
@@ -75,12 +75,12 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
             {localizedCompany.category}
           </span>
           {localizedCompany.foundedYear ? (
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-[#3a5a8a]">
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-subtle">
               {t("founded")} {localizedCompany.foundedYear}
             </span>
           ) : null}
           {localizedCompany.status ? (
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-[#3a5a8a]">
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-subtle">
               {localizedCompany.status}
             </span>
           ) : null}
@@ -88,12 +88,12 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
 
         <div className="mt-5 space-y-3">
           <h1 className="text-4xl font-bold tracking-normal text-accent sm:text-5xl">{primaryName}</h1>
-          {showChineseName ? <p className="text-xl font-semibold text-[#7a9bc7]">{company.nameZh}</p> : null}
-          {localizedCompany.legalNameZh ? <p className="text-sm text-[#7a9bc7]">{localizedCompany.legalNameZh}</p> : null}
+          {showChineseName ? <p className="text-xl font-semibold text-muted">{company.nameZh}</p> : null}
+          {localizedCompany.legalNameZh ? <p className="text-sm text-muted">{localizedCompany.legalNameZh}</p> : null}
           <p className="text-sm font-semibold text-accent">{t("area")}</p>
-          {localizedCompany.tagline ? <p className="text-lg font-medium text-[#3a5a8a]">{localizedCompany.tagline}</p> : null}
+          {localizedCompany.tagline ? <p className="text-lg font-medium text-subtle">{localizedCompany.tagline}</p> : null}
           {localizedCompany.description ? (
-            <p className="max-w-4xl text-base leading-8 text-[#4a6fa5]">{localizedCompany.description}</p>
+            <p className="max-w-4xl text-base leading-8 text-secondary">{localizedCompany.description}</p>
           ) : null}
         </div>
 
@@ -128,7 +128,7 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
           <h2 className="text-lg font-bold text-accent">{t("products")}</h2>
           <div className="mt-4 flex flex-wrap gap-2">
             {localizedCompany.products.map((product) => (
-              <span key={product} className="rounded-full bg-slate-100 px-3 py-1.5 text-sm font-medium text-[#3a5a8a]">
+              <span key={product} className="rounded-full bg-slate-100 px-3 py-1.5 text-sm font-medium text-subtle">
                 {product}
               </span>
             ))}
@@ -158,7 +158,7 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
             {localizedCompany.team.map((member) => (
               <div key={`${member.name}-${member.title}`} className="rounded border border-line p-4">
                 <p className="font-semibold text-accent">{member.name}</p>
-                <p className="mt-1 text-sm text-[#7a9bc7]">{member.title}</p>
+                <p className="mt-1 text-sm text-muted">{member.title}</p>
               </div>
             ))}
           </div>
@@ -171,7 +171,7 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded border border-line bg-panel p-4">
-      <dt className="text-xs font-semibold uppercase tracking-wide text-[#7a9bc7]">{label}</dt>
+      <dt className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</dt>
       <dd className="mt-2 text-base font-bold text-accent">{value}</dd>
     </div>
   );

@@ -14,7 +14,7 @@ export default async function PartnersPage({ params }: PartnersPageProps) {
   const t = await getTranslations("PartnersPage");
 
   return (
-    <main id="main-content" className="bg-[#f7f9fd]">
+    <main id="main-content" className="bg-page">
       <section className="border-b border-line bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-8">
           <div>
@@ -22,7 +22,7 @@ export default async function PartnersPage({ params }: PartnersPageProps) {
             <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
               {t("title")}
             </h1>
-            <p className="mt-5 text-pretty text-base leading-8 text-[#4a6fa5]">{t("description")}</p>
+            <p className="mt-5 text-pretty text-base leading-8 text-secondary">{t("description")}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/apply"
@@ -39,10 +39,10 @@ export default async function PartnersPage({ params }: PartnersPageProps) {
             </div>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <SignalCard label={t("signals.reception.label")} value={t("signals.reception.value")} />
-            <SignalCard label={t("signals.enterprise.label")} value={t("signals.enterprise.value")} />
-            <SignalCard label={t("signals.project.label")} value={t("signals.project.value")} />
-            <SignalCard label={t("signals.exchange.label")} value={t("signals.exchange.value")} />
+            <SignalCard index={0} label={t("signals.reception.label")} value={t("signals.reception.value")} />
+            <SignalCard index={1} label={t("signals.enterprise.label")} value={t("signals.enterprise.value")} />
+            <SignalCard index={2} label={t("signals.project.label")} value={t("signals.project.value")} />
+            <SignalCard index={3} label={t("signals.exchange.label")} value={t("signals.exchange.value")} />
           </div>
         </div>
       </section>
@@ -64,7 +64,7 @@ export default async function PartnersPage({ params }: PartnersPageProps) {
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("flowEyebrow")}</p>
             <h2 className="mt-3 text-balance text-3xl font-bold leading-tight text-accent">{t("flowTitle")}</h2>
-            <p className="mt-4 text-pretty text-sm leading-7 text-[#4a6fa5]">{t("flowDescription")}</p>
+            <p className="mt-4 text-pretty text-sm leading-7 text-secondary">{t("flowDescription")}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <StepCard number="01" title={t("flow.brief.title")} text={t("flow.brief.text")} />
@@ -77,7 +77,7 @@ export default async function PartnersPage({ params }: PartnersPageProps) {
       <section className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
         <div className="max-w-2xl">
           <h2 className="text-balance text-3xl font-bold leading-tight text-accent">{t("cta.title")}</h2>
-          <p className="mt-3 text-pretty text-base leading-7 text-[#4a6fa5]">{t("cta.text")}</p>
+          <p className="mt-3 text-pretty text-base leading-7 text-secondary">{t("cta.text")}</p>
         </div>
         <Link
           href="/apply"
@@ -90,10 +90,20 @@ export default async function PartnersPage({ params }: PartnersPageProps) {
   );
 }
 
-function SignalCard({ label, value }: { label: string; value: string }) {
+const signalAccents = [
+  "bg-blue-400",
+  "bg-emerald-400",
+  "bg-amber-400",
+  "bg-violet-400",
+];
+
+function SignalCard({ label, value, index }: { label: string; value: string; index: number }) {
   return (
     <div className="rounded border border-line bg-panel p-4">
-      <p className="text-xs font-semibold uppercase tracking-wide text-[#7a9bc7]">{label}</p>
+      <div className="flex items-center gap-2.5">
+        <span className={`inline-block size-2 shrink-0 rounded-sm ${signalAccents[index % signalAccents.length]}`} aria-hidden="true" />
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</p>
+      </div>
       <p className="mt-2 text-xl font-black leading-tight text-accent">{value}</p>
     </div>
   );
@@ -103,7 +113,7 @@ function ModelCard({ text, title }: { text: string; title: string }) {
   return (
     <article className="rounded border border-line bg-white p-5 shadow-sm">
       <h3 className="text-xl font-bold leading-tight text-accent">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-[#4a6fa5]">{text}</p>
+      <p className="mt-3 text-sm leading-7 text-secondary">{text}</p>
     </article>
   );
 }
@@ -111,9 +121,9 @@ function ModelCard({ text, title }: { text: string; title: string }) {
 function StepCard({ number, text, title }: { number: string; text: string; title: string }) {
   return (
     <article className="rounded border border-line bg-panel p-4">
-      <p className="text-xs font-black tabular-nums text-[#7a9bc7]">{number}</p>
+      <p className="text-xs font-black tabular-nums text-muted">{number}</p>
       <h3 className="mt-3 text-lg font-bold leading-tight text-accent">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-[#4a6fa5]">{text}</p>
+      <p className="mt-3 text-sm leading-7 text-secondary">{text}</p>
     </article>
   );
 }

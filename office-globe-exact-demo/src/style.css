@@ -1,0 +1,207 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+
+.globe-figure {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+}
+
+.globe-mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.canvas-host {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-host > canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  touch-action: none;
+}
+
+#labelsLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.office-label {
+  position: absolute;
+  white-space: nowrap;
+  pointer-events: auto;
+  will-change: left, top;
+  cursor: default;
+}
+
+.office-label:not(.hub-label) {
+  width: 1.2rem;
+  height: 1.2rem;
+  overflow: visible;
+}
+
+.office-label:not(.hub-label) .label-text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+
+.office-label:not(.hub-label) .label-leader {
+  display: none !important;
+}
+
+.office-label:not(.hub-label):hover {
+  z-index: 200 !important;
+  width: 210px;
+  height: auto;
+}
+
+.office-label:not(.hub-label):hover .label-text {
+  opacity: 1;
+  visibility: visible;
+  background: rgba(0, 0, 0, 0.82);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+
+.office-label:not(.hub-label) .label-dot {
+  transition: transform 0.15s ease;
+}
+
+.office-label:not(.hub-label):hover .label-dot {
+  transform: scale(1.35);
+}
+
+.label-leader {
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 99, 8, 0.65), rgba(255, 99, 8, 0));
+  transform-origin: left center;
+  display: none;
+}
+
+.label-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.label-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: 0 0 auto;
+  order: 1;
+}
+
+.label-text {
+  position: absolute;
+  max-width: 220px;
+  padding-left: 1.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.68rem;
+  line-height: 0.92rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #fff;
+  transform: translate(0.5rem, 0);
+  order: 2;
+}
+
+.label-text.top-right {
+  transform: translate(0.5rem, -2rem);
+}
+
+.office-label.align-left .label-text {
+  right: 1.35rem;
+  padding-left: 0;
+  padding-right: 0.4rem;
+  text-align: right;
+  transform: translate(-0.5rem, 0);
+}
+
+.office-label.align-left .label-text.top-right {
+  transform: translate(-0.5rem, -2rem);
+}
+
+.memphis-label .label-dot {
+  order: 2;
+}
+
+.memphis-label .label-text {
+  order: 1;
+}
+
+.label-name {
+  text-wrap: balance;
+}
+
+.label-coordinates {
+  opacity: 0.68;
+}
+
+.office-label:not(.hub-label) .label-coordinates {
+  font-size: 0.62rem;
+}
+
+.hub-label {
+  z-index: 10;
+}
+
+.hub-label .label-dot {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px rgba(255, 99, 8, 0.9),
+    0 0 24px rgba(255, 99, 8, 0.55),
+    0 0 48px rgba(255, 99, 8, 0.25);
+  animation: hub-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hub-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 99, 8, 0.9), 0 0 24px rgba(255, 99, 8, 0.55), 0 0 48px rgba(255, 99, 8, 0.25); }
+  50%      { box-shadow: 0 0 14px rgba(255, 99, 8, 1), 0 0 36px rgba(255, 99, 8, 0.75), 0 0 64px rgba(255, 99, 8, 0.4); }
+}
+
+.hub-label .label-text {
+  max-width: 260px;
+  font-size: 0.95rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hub-label .label-leader {
+  background: linear-gradient(90deg, rgba(255, 99, 8, 0.9), rgba(255, 99, 8, 0));
+}

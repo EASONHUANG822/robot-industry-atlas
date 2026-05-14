@@ -10,7 +10,7 @@ export default async function TermsPage({ params }: Props) {
   const isZh = locale === "zh";
 
   return (
-    <main id="main-content" className="bg-[#f7f9fd]">
+    <main id="main-content" className="bg-page">
       <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
           <h1 className="text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
@@ -19,7 +19,7 @@ export default async function TermsPage({ params }: Props) {
         </div>
       </section>
       <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="prose prose-slate max-w-none text-base leading-8 text-[#4a6fa5]">
+        <div className="prose prose-slate max-w-none text-base leading-8 text-secondary">
           <p>
             {isZh
               ? "本页面内容正在完善中。如有疑问，请联系 contact@robotvalley.cn。"

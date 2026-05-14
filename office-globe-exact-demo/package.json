@@ -1,0 +1,17 @@
+{
+  "name": "office-globe-robot-cities-demo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "latest",
+    "vite": "latest",
+    "three": "0.172.0"
+  },
+  "devDependencies": {}
+}

@@ -16,7 +16,7 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
   const t = await getTranslations("ShowroomPage");
 
   return (
-    <main id="main-content" className="bg-[#f7f9fd]">
+    <main id="main-content" className="bg-page">
       <section className="border-b border-line bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
           <div>
@@ -24,7 +24,7 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
             <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
               {t("title")}
             </h1>
-            <p className="mt-5 text-pretty text-base leading-8 text-[#4a6fa5]">{t("description")}</p>
+            <p className="mt-5 text-pretty text-base leading-8 text-secondary">{t("description")}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/apply"

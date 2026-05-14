@@ -43,7 +43,11 @@
       "eyebrow": "Robot Valley Showroom",
       "title": "Visit the Shenzhen Robot Valley Showroom",
       "description": "The showroom presents embodied intelligence, service robots, industrial automation, core components, and interactive demos so visitors can understand Shenzhen Robot Valley through real scenes and technology showcases.",
-      "apply": "Apply for a Visit"
+      "apply": "Apply for a Visit",
+      "stats": {
+        "companies": "Companies",
+        "area": "Showroom Area"
+      }
     },
     "detail": {
       "eyebrow": "Robot Valley Introduction",

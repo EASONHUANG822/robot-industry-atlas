@@ -9,7 +9,7 @@ export default async function CollaborationPage({ params }: Props) {
   const t = await getTranslations("CollaborationPage");
 
   return (
-    <main id="main-content" className="bg-[#f7f9fd]">
+    <main id="main-content" className="bg-page">
       {/* Hero */}
       <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@ export default async function CollaborationPage({ params }: Props) {
           <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-5 text-pretty text-base leading-8 text-[#4a6fa5]">{t("description")}</p>
+          <p className="mt-5 text-pretty text-base leading-8 text-secondary">{t("description")}</p>
         </div>
       </section>
 
@@ -49,7 +49,7 @@ export default async function CollaborationPage({ params }: Props) {
       <section className="bg-white px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl font-bold text-accent">{t("detailTitle")}</h2>
-          <p className="mt-4 text-base leading-8 text-[#4a6fa5]">{t("detailText")}</p>
+          <p className="mt-4 text-base leading-8 text-secondary">{t("detailText")}</p>
         </div>
       </section>
 
@@ -57,14 +57,14 @@ export default async function CollaborationPage({ params }: Props) {
       <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("models.title")}</p>
-          <p className="mt-3 max-w-2xl text-pretty text-base leading-8 text-[#4a6fa5]">
+          <p className="mt-3 max-w-2xl text-pretty text-base leading-8 text-secondary">
             {t("models.description")}
           </p>
           <div className="mt-10 space-y-5">
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={t(`models.items.${i}.title`)}
-                className="flex flex-col gap-4 rounded-xl border border-line bg-[#f7f9fd] p-5 sm:flex-row sm:items-start sm:gap-6 sm:p-6"
+                className="flex flex-col gap-4 rounded-xl border border-line bg-page p-5 sm:flex-row sm:items-start sm:gap-6 sm:p-6"
               >
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent text-lg font-bold text-white">
                   {`0${i + 1}`}
@@ -73,7 +73,7 @@ export default async function CollaborationPage({ params }: Props) {
                   <h3 className="text-lg font-bold text-accent">
                     {t(`models.items.${i}.title`)}
                   </h3>
-                  <p className="mt-2 text-sm leading-7 text-[#4a6fa5]">
+                  <p className="mt-2 text-sm leading-7 text-secondary">
                     {t(`models.items.${i}.description`)}
                   </p>
                 </div>
@@ -88,7 +88,7 @@ export default async function CollaborationPage({ params }: Props) {
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("partners.title")}</p>
-            <p className="mt-3 text-pretty text-base leading-8 text-[#4a6fa5]">
+            <p className="mt-3 text-pretty text-base leading-8 text-secondary">
               {t("partners.description")}
             </p>
           </div>
@@ -96,13 +96,13 @@ export default async function CollaborationPage({ params }: Props) {
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={t(`partners.items.${i}.label`)}
-                className="flex flex-col rounded-xl border border-line bg-[#f7f9fd] p-5"
+                className="flex flex-col rounded-xl border border-line bg-page p-5"
               >
                 <span className="text-xs font-black tabular-nums text-[#7a9bc7]">{`0${i + 1}`}</span>
                 <h4 className="mt-2 text-base font-bold text-accent">
                   {t(`partners.items.${i}.label`)}
                 </h4>
-                <p className="mt-1 text-sm leading-6 text-[#4a6fa5]">
+                <p className="mt-1 text-sm leading-6 text-secondary">
                   {t(`partners.items.${i}.value`)}
                 </p>
               </div>

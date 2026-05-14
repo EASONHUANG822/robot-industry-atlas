@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import json; json.load\\(open\\('messages/en.json', encoding='utf-8'\\)\\); print\\('en.json OK'\\)\")",
+      "Bash(python3 -c \"import json; json.load\\(open\\('messages/zh.json', encoding='utf-8'\\)\\); print\\('zh.json OK'\\)\")"
+    ]
+  }
+}

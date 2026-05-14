@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LandingDetailSection } from "@/components/landing/LandingDetailSection";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { LandingShowroomSection } from "@/components/landing/LandingShowroomSection";
+import { robotValley } from "@/data/robotValley";
 import type { AppLocale } from "@/i18n/routing";
 
 type LandingPageProps = {
@@ -45,6 +46,10 @@ export default async function LandingPage({ params }: LandingPageProps) {
         title={t("showroom.title")}
         description={t("showroom.description")}
         applyLabel={t("showroom.apply")}
+        stats={[
+          { label: t("showroom.stats.companies"), value: robotValley.stats.companies[locale] },
+          { label: t("showroom.stats.area"), value: robotValley.stats.showroomArea[locale] },
+        ]}
       />
     </main>
   );

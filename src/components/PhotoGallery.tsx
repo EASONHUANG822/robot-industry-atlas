@@ -86,7 +86,7 @@ export default function PhotoGallery({ t }: { t: CarouselTranslations }) {
     };
   }, [goNext]);
 
-  const onKey = useCallback((e: KeyboardEvent) => {
+  const onKey = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") goPrev();
     if (e.key === "ArrowRight") goNext();
   }, [goPrev, goNext]);
@@ -97,7 +97,7 @@ export default function PhotoGallery({ t }: { t: CarouselTranslations }) {
   const translateX = -(current * (100 / slidesPerView));
 
   return (
-    <section className="bg-[#0a1e3d] py-14" onKeyDown={onKey as never}>
+    <section className="bg-dark py-14" onKeyDown={onKey}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex items-center justify-between">
           <h2 className="text-3xl font-bold text-white">{t.title}</h2>

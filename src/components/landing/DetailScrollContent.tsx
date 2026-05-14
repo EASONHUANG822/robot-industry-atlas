@@ -254,7 +254,7 @@ function IntroContent({
         <h2 className="mt-4 text-balance text-4xl font-black leading-tight text-accent sm:text-5xl">
           {title}
         </h2>
-        <p className="mt-5 text-pretty text-base leading-8 text-[#4a6fa5]">{description}</p>
+        <p className="mt-5 text-pretty text-base leading-8 text-secondary">{description}</p>
       </div>
       <dl className="mt-8 grid gap-3 sm:grid-cols-2">
         <DetailMetric label={addressLabel} value={robotValley.address[locale]} />
@@ -298,7 +298,7 @@ function EditorialCard({ tag, title, description, linkLabel, href }: DetailCardC
           </div>
         </div>
       </div>
-      <p className="mt-10 max-w-xl text-pretty text-base leading-8 text-[#4a6fa5]">
+      <p className="mt-10 max-w-xl text-pretty text-base leading-8 text-secondary">
         {description}
       </p>
       {href && (
