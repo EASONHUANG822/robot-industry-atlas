@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@swc/core": "^1.15.33",
-    "@swc/core-win32-x64-msvc": "^1.15.33",
     "next": "^15.2.4",
     "next-intl": "^4.9.1",
     "react": "^19.0.0",
