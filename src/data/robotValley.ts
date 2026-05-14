@@ -4,8 +4,8 @@ export const robotValley = {
   id: "shenzhen-robot-valley",
   coordinates: [113.95, 22.54] as LngLatTuple,
   address: {
-    en: "Nanshan Zhigu Industrial Park, Nanshan District, Shenzhen",
-    zh: "南山智谷产业园",
+    en: "Nanshan Zhigu building, Nanshan District, Shenzhen",
+    zh: "南山智谷大厦",
   },
   stats: {
     companies: {

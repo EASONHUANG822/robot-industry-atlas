@@ -1,6 +1,6 @@
 # 深圳机器人谷 / Shenzhen Robot Valley
 
-深圳机器人谷产业展示平台，依托南山智谷产业园，面向机器人展示、技术体验与产业交流。
+深圳机器人谷产业展示平台，依托南山智谷大厦，面向机器人展示、技术体验与产业交流。
 
 A bilingual showcase platform for Shenzhen's robotics industry, centered on Nanshan Zhigu Industrial Park.
 

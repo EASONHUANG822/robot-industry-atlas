@@ -8,7 +8,7 @@ import {
   mapCategoryKeyFromText,
   translateFundingRound,
 } from "../src/data/categoryTranslations";
-import type { CompanyCategoryKey, FundingInfo, GeocodeStatus, RobotCompany, TeamMember } from "../src/data/companies";
+import type { CompanyCategoryKey, FundingInfo, RobotCompany, TeamMember } from "../src/data/companies";
 
 type RawRow = Record<string, unknown>;
 

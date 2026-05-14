@@ -5,23 +5,30 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "test": "tsc --noEmit",
     "import:companies": "tsx scripts/import-companies.ts",
     "geocode:companies": "tsx scripts/geocode-companies.ts",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@swc/core": "^1.15.33",
+    "@swc/core-win32-x64-msvc": "^1.15.33",
     "next": "^15.2.4",
     "next-intl": "^4.9.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "three": "^0.172.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.172.0",
     "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.21.0",

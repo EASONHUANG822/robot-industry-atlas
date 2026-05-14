@@ -16,6 +16,18 @@ type AirtableCreateResponse = {
   };
 };
 
+type AirtableListResponse = {
+  records?: Array<{
+    id?: string;
+    fields?: Record<string, unknown>;
+  }>;
+  offset?: string;
+  error?: {
+    message?: string;
+    type?: string;
+  };
+};
+
 const AIRTABLE_FIELD_MAP = {
   name: "Name",
   organization: "organization",
@@ -30,6 +42,11 @@ const AIRTABLE_SYSTEM_FIELD_MAP = {
   status: "Status",
   submittedAt: "Submitted At",
 } as const;
+
+const MAX_DONE_APPLICATIONS_PER_VISIT_DATE = 4;
+const VISIT_DATE_TIME_ZONE = "Asia/Shanghai";
+const AIRTABLE_NEW_STATUS = "New";
+const AIRTABLE_DONE_STATUS = "Done";
 
 export function validateApplicationPayload(value: unknown) {
   if (!isRecord(value)) {
@@ -76,25 +93,9 @@ export function validateApplicationPayload(value: unknown) {
 }
 
 export async function createAirtableApplication(payload: ApplicationPayload) {
-  const token = process.env.AIRTABLE_TOKEN;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME;
-
-  if (!token || !baseId || !tableName) {
-    return {
-      ok: false as const,
-      status: 500,
-      error:
-        "Missing Airtable server configuration. Check AIRTABLE_TOKEN, AIRTABLE_BASE_ID, and AIRTABLE_TABLE_NAME.",
-    };
-  }
-
-  if (!baseId.startsWith("app")) {
-    return {
-      ok: false as const,
-      status: 500,
-      error: "AIRTABLE_BASE_ID must be an Airtable Base ID that starts with app.",
-    };
+  const configResult = getAirtableConfig();
+  if (!configResult.ok) {
+    return configResult;
   }
 
   const fieldsResult = buildAirtableFields(payload);
@@ -106,11 +107,11 @@ export async function createAirtableApplication(payload: ApplicationPayload) {
     };
   }
 
-  const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
+  const url = buildAirtableTableUrl(configResult.baseId, configResult.tableName);
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${configResult.token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -139,6 +140,122 @@ export async function createAirtableApplication(payload: ApplicationPayload) {
   };
 }
 
+export async function getUnavailableVisitDates() {
+  const configResult = getAirtableConfig();
+  if (!configResult.ok) {
+    return configResult;
+  }
+
+  const dateCounts = new Map<string, number>();
+  let offset: string | undefined;
+
+  do {
+    const url = new URL(buildAirtableTableUrl(configResult.baseId, configResult.tableName));
+    url.searchParams.set(
+      "filterByFormula",
+      `AND({${AIRTABLE_SYSTEM_FIELD_MAP.status}} = "${AIRTABLE_DONE_STATUS}", {${AIRTABLE_FIELD_MAP.preferredVisitDate}})`,
+    );
+    url.searchParams.set("pageSize", "100");
+    url.searchParams.append("fields[]", AIRTABLE_FIELD_MAP.preferredVisitDate);
+    url.searchParams.append("fields[]", AIRTABLE_SYSTEM_FIELD_MAP.status);
+
+    if (offset) {
+      url.searchParams.set("offset", offset);
+    }
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${configResult.token}`,
+      },
+      cache: "no-store",
+    });
+    const responseBody = (await safeReadAirtableResponse(response)) as AirtableListResponse | string | undefined;
+
+    if (!response.ok) {
+      return {
+        ok: false as const,
+        status: normalizeAirtableErrorStatus(response.status),
+        error: getAirtableErrorMessage(response.status, responseBody),
+      };
+    }
+
+    if (typeof responseBody === "object") {
+      for (const record of responseBody?.records || []) {
+        const dateValue = normalizeVisitDateValue(record.fields?.[AIRTABLE_FIELD_MAP.preferredVisitDate]);
+        if (dateValue) {
+          dateCounts.set(dateValue, (dateCounts.get(dateValue) || 0) + 1);
+        }
+      }
+
+      offset = responseBody?.offset;
+    } else {
+      offset = undefined;
+    }
+  } while (offset);
+
+  const unavailableDates = [...dateCounts.entries()]
+    .filter(([, count]) => count >= MAX_DONE_APPLICATIONS_PER_VISIT_DATE)
+    .map(([date]) => date)
+    .sort();
+
+  return {
+    ok: true as const,
+    unavailableDates,
+  };
+}
+
+export async function validatePreferredVisitDateAvailability(preferredVisitDate: string | undefined) {
+  if (!preferredVisitDate) {
+    return { ok: true as const };
+  }
+
+  if (!isIsoDateString(preferredVisitDate)) {
+    return {
+      ok: false as const,
+      status: 400,
+      error: "Preferred visit date must use YYYY-MM-DD format.",
+    };
+  }
+
+  if (preferredVisitDate < getTodayVisitDateString()) {
+    return {
+      ok: false as const,
+      status: 400,
+      error: "Preferred visit date cannot be earlier than today.",
+    };
+  }
+
+  const unavailableResult = await getUnavailableVisitDates();
+  if (!unavailableResult.ok) {
+    return unavailableResult;
+  }
+
+  if (unavailableResult.unavailableDates.includes(preferredVisitDate)) {
+    return {
+      ok: false as const,
+      status: 409,
+      error: "The selected visit date is fully booked. Please choose another date.",
+    };
+  }
+
+  return { ok: true as const };
+}
+
+export function getTodayVisitDateString(now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: VISIT_DATE_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+  const year = parts.find((part) => part.type === "year")?.value;
+  const month = parts.find((part) => part.type === "month")?.value;
+  const day = parts.find((part) => part.type === "day")?.value;
+
+  return `${year}-${month}-${day}`;
+}
+
 function buildAirtableFields(payload: ApplicationPayload) {
   const fields: Record<string, string> = {};
 
@@ -157,13 +274,60 @@ function buildAirtableFields(payload: ApplicationPayload) {
     }
   }
 
-  fields[AIRTABLE_SYSTEM_FIELD_MAP.status] = "New";
+  fields[AIRTABLE_SYSTEM_FIELD_MAP.status] = AIRTABLE_NEW_STATUS;
   fields[AIRTABLE_SYSTEM_FIELD_MAP.submittedAt] = new Date().toISOString();
 
   return {
     ok: true as const,
     fields,
   };
+}
+
+function getAirtableConfig() {
+  const token = process.env.AIRTABLE_TOKEN;
+  const baseId = process.env.AIRTABLE_BASE_ID;
+  const tableName = process.env.AIRTABLE_TABLE_NAME;
+
+  if (!token || !baseId || !tableName) {
+    return {
+      ok: false as const,
+      status: 500,
+      error:
+        "Missing Airtable server configuration. Check AIRTABLE_TOKEN, AIRTABLE_BASE_ID, and AIRTABLE_TABLE_NAME.",
+    };
+  }
+
+  if (!baseId.startsWith("app")) {
+    return {
+      ok: false as const,
+      status: 500,
+      error: "AIRTABLE_BASE_ID must be an Airtable Base ID that starts with app.",
+    };
+  }
+
+  return {
+    ok: true as const,
+    token,
+    baseId,
+    tableName,
+  };
+}
+
+function buildAirtableTableUrl(baseId: string, tableName: string) {
+  return `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
+}
+
+function normalizeVisitDateValue(value: unknown) {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+
+  const match = value.match(/^\d{4}-\d{2}-\d{2}/);
+  return match?.[0];
+}
+
+function isIsoDateString(value: string) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value);
 }
 
 async function safeReadAirtableResponse(response: Response) {

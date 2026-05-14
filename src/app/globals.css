@@ -28,6 +28,341 @@ a {
   text-decoration: none;
 }
 
+.hero-bg-cycle {
+  min-height: calc(100svh - 8rem);
+}
+
+.hero-bg-cycle__layer {
+  position: absolute;
+  inset: -6%;
+  opacity: 0;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.03);
+  animation: hero-bg-cycle 15s linear infinite;
+  will-change: opacity, transform;
+}
+
+.hero-bg-cycle__layer--photo {
+  background-image:
+    linear-gradient(90deg, rgba(6, 16, 29, 0.80) 0%, rgba(6, 16, 29, 0.55) 44%, rgba(6, 16, 29, 0.20) 100%),
+    url("/images/robot-valley-hero.png");
+}
+
+.hero-bg-cycle__layer--bg1 {
+  animation-delay: 5s;
+  background-image:
+    linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
+    url("/images/hero-bg-1.JPG");
+}
+
+.hero-bg-cycle__layer--bg2 {
+  animation-delay: 10s;
+  background-image:
+    linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
+    url("/images/hero-bg-2.JPG");
+}
+
+.hero-bg-cycle__matrix {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(157, 187, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 187, 255, 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  animation: hero-matrix-drift 14s linear infinite;
+}
+
+.hero-rail {
+  background: linear-gradient(90deg, transparent, rgba(143, 180, 255, 0.55), transparent);
+  transform-origin: left center;
+  animation: hero-rail-sweep 5.6s ease-in-out infinite;
+}
+
+.hero-rail--bottom {
+  animation-delay: 1.4s;
+}
+
+.hero-copy-reveal {
+  animation: hero-copy-reveal 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-primary-cta {
+  animation: hero-cta-pulse 4.8s ease-in-out infinite;
+}
+
+.office-globe {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.office-globe--loading {
+  border: 1px solid rgba(157, 187, 255, 0.18);
+  background:
+    linear-gradient(90deg, rgba(6, 16, 29, 0.92), rgba(8, 19, 33, 0.76)),
+    linear-gradient(rgba(157, 187, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 187, 255, 0.08) 1px, transparent 1px);
+  background-size: auto, 42px 42px, 42px 42px;
+}
+
+.office-globe__mask,
+.office-globe__canvas-host {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.office-globe__mask {
+  overflow: visible;
+}
+
+.office-globe__canvas-host > canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+.office-globe__labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.office-globe__label {
+  position: absolute;
+  white-space: nowrap;
+  pointer-events: auto;
+  will-change: left, top;
+  cursor: default;
+}
+
+.office-globe__label:not(.office-globe__label--hub) {
+  width: 1.2rem;
+  height: 1.2rem;
+  overflow: visible;
+}
+
+.office-globe__label:not(.office-globe__label--hub) .office-globe__label-text {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 180ms ease,
+    visibility 180ms ease;
+}
+
+.office-globe__label:not(.office-globe__label--hub) .office-globe__label-leader {
+  display: none !important;
+}
+
+.office-globe__label:not(.office-globe__label--hub):hover {
+  z-index: 200 !important;
+  width: 210px;
+  height: auto;
+}
+
+.office-globe__label:not(.office-globe__label--hub):hover .office-globe__label-text {
+  opacity: 1;
+  visibility: visible;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.82);
+  padding: 0.15rem 0.5rem;
+}
+
+.office-globe__label-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: 0 0 auto;
+  order: 1;
+  transition: transform 150ms ease;
+}
+
+.office-globe__label:not(.office-globe__label--hub):hover .office-globe__label-dot {
+  transform: scale(1.35);
+}
+
+.office-globe__label-leader {
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.78), rgba(59, 130, 246, 0));
+  transform-origin: left center;
+  display: none;
+}
+
+.office-globe__label-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.office-globe__label-text {
+  position: absolute;
+  max-width: 220px;
+  padding-left: 1.5rem;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  font-size: 0.68rem;
+  line-height: 0.92rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transform: translate(0.5rem, 0);
+  order: 2;
+}
+
+.office-globe__label-text--top-right {
+  transform: translate(0.5rem, -2rem);
+}
+
+.office-globe__label--align-left .office-globe__label-text {
+  right: 1.35rem;
+  padding-left: 0;
+  padding-right: 0.4rem;
+  text-align: right;
+  transform: translate(-0.5rem, 0);
+}
+
+.office-globe__label--align-left .office-globe__label-text--top-right {
+  transform: translate(-0.5rem, -2rem);
+}
+
+.office-globe__label-coordinates {
+  opacity: 0.68;
+}
+
+.office-globe__label:not(.office-globe__label--hub) .office-globe__label-coordinates {
+  font-size: 0.62rem;
+}
+
+.office-globe__label--hub {
+  z-index: 10;
+}
+
+.office-globe__label--hub .office-globe__label-dot {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px rgba(59, 130, 246, 0.9),
+    0 0 24px rgba(59, 130, 246, 0.55),
+    0 0 48px rgba(59, 130, 246, 0.25);
+  animation: hub-pulse 2.2s ease-in-out infinite;
+}
+
+.office-globe__label--hub .office-globe__label-text {
+  max-width: 220px;
+  font-size: 0.82rem;
+  line-height: 1.12rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.office-globe__label--hub .office-globe__label-leader {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.9), rgba(59, 130, 246, 0));
+}
+
+@keyframes hub-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 8px rgba(59, 130, 246, 0.9),
+      0 0 24px rgba(59, 130, 246, 0.55),
+      0 0 48px rgba(59, 130, 246, 0.25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 14px rgba(59, 130, 246, 1),
+      0 0 36px rgba(59, 130, 246, 0.75),
+      0 0 64px rgba(59, 130, 246, 0.4);
+  }
+}
+
+@keyframes hero-bg-cycle {
+  0% {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+
+  7%,
+  33% {
+    opacity: 1;
+  }
+
+  42% {
+    opacity: 0;
+    transform: scale(1.09);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.09);
+  }
+}
+
+@keyframes hero-matrix-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 72px 72px, 72px 72px;
+  }
+}
+
+@keyframes hero-rail-sweep {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleX(0.58);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hero-copy-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(127, 176, 255, 0);
+    transform: translateY(0);
+  }
+
+  50% {
+    box-shadow: 0 0 28px rgba(127, 176, 255, 0.38);
+    transform: translateY(-1px);
+  }
+}
+
 .scrollbar-hidden {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -224,4 +559,64 @@ a {
   font-size: 11px;
   font-weight: 600;
   padding: 3px 7px;
+}
+
+@keyframes tech-scanline {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  20%,
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(420%);
+  }
+}
+
+.tech-scanline {
+  animation: tech-scanline 4.8s linear infinite;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-cycle__layer,
+  .hero-bg-cycle__matrix,
+  .hero-rail,
+  .hero-copy-reveal,
+  .hero-primary-cta {
+    animation: none;
+  }
+
+  .hero-bg-cycle__layer--photo {
+    opacity: 1;
+  }
+
+  .tech-scanline {
+    animation: none;
+  }
+
+  .office-globe__label--hub .office-globe__label-dot {
+    animation: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .office-globe {
+    width: min(100%, 420px);
+  }
+
+  .office-globe__label:not(.office-globe__label--hub) .office-globe__label-text {
+    display: none;
+  }
+
+  .office-globe__label--hub .office-globe__label-text {
+    max-width: 180px;
+    font-size: 0.72rem;
+    line-height: 1rem;
+  }
 }

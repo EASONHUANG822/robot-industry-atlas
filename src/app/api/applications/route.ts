@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { createAirtableApplication, validateApplicationPayload } from "@/server/airtableApplications";
+import {
+  createAirtableApplication,
+  validateApplicationPayload,
+  validatePreferredVisitDateAvailability,
+} from "@/server/airtableApplications";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -16,6 +20,11 @@ export async function POST(request: Request) {
   }
 
   try {
+    const availability = await validatePreferredVisitDateAvailability(validation.payload.preferredVisitDate);
+    if (!availability.ok) {
+      return NextResponse.json({ error: availability.error }, { status: availability.status });
+    }
+
     const result = await createAirtableApplication(validation.payload);
     if (!result.ok) {
       return NextResponse.json({ error: result.error }, { status: result.status });
