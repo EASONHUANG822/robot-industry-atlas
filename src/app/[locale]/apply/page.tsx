@@ -15,7 +15,7 @@ export default async function ApplyPage({ params }: ApplyPageProps) {
   const t = await getTranslations("ApplyPage");
 
   return (
-    <main id="main-content" className="bg-slate-50">
+    <main id="main-content" className="bg-page">
       <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
         <div className="flex flex-col justify-center">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("eyebrow")}</p>

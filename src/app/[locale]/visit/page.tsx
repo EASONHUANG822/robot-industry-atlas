@@ -14,7 +14,7 @@ export default async function VisitPage({ params }: VisitPageProps) {
   const t = await getTranslations("VisitPage");
 
   return (
-    <main id="main-content" className="bg-slate-50">
+    <main id="main-content" className="bg-page">
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("eyebrow")}</p>

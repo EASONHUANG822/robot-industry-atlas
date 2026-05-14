@@ -18,7 +18,7 @@ export function LandingShowroomSection({
   title,
 }: LandingShowroomSectionProps) {
   return (
-    <section id="showroom" className="scroll-mt-24 border-t border-line bg-slate-50">
+    <section id="showroom" className="scroll-mt-24 border-t border-line bg-page">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <p className="text-sm font-semibold uppercase tracking-wide text-accent">{eyebrow}</p>
         <h2 className="mt-3 text-balance text-3xl font-bold leading-tight text-accent sm:text-4xl">{title}</h2>
