@@ -47,7 +47,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
     .slice(0, 4);
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <main id="main-content" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <Link href="/" className="inline-flex rounded border border-line bg-white px-3 py-2 text-sm font-semibold text-ink hover:bg-slate-50">
         {t("backToMap")}
       </Link>
