@@ -11,7 +11,10 @@
     "about": "详细介绍",
     "showroom": "展厅介绍",
     "visit": "参观流程",
-    "partners": "合作接待"
+    "partners": "合作接待",
+    "foundation": "产业基础",
+    "innovation": "创新平台",
+    "collaboration": "合作对接"
   },
   "LanguageSwitcher": {
     "zh": "中文",
@@ -237,7 +240,8 @@
     "sameProvince": "相关公司",
     "sameProvinceEmpty": "暂无其他相关公司。",
     "titleSuffix": "深圳机器人谷",
-    "notFoundTitle": "公司 | 深圳机器人谷"
+    "notFoundTitle": "公司 | 深圳机器人谷",
+    "backToShowroom": "返回展厅介绍"
   },
   "ShowroomPage": {
     "eyebrow": "机器人谷展厅",

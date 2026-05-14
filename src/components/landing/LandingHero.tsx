@@ -29,7 +29,8 @@ export function LandingHero({
 
       <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-4 py-16 pb-24 sm:px-6 lg:grid-cols-[1fr_0.76fr] lg:px-8">
         <div className="hero-copy-reveal max-w-3xl">
-          <p className="inline-flex border-l-2 border-[#7fb0ff] pl-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-[#b8ccff]">
+          <p className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-[#b8ccff]">
+            <span className="inline-block h-3 w-0.5 rounded-full bg-[#7fb0ff]" aria-hidden="true" />
             {eyebrow}
           </p>
           <h1 className="mt-5 text-balance text-5xl font-black leading-[0.94] text-white sm:text-7xl">

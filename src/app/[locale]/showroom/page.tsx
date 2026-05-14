@@ -130,7 +130,7 @@ function MasonryCard({
       <div className={tall ? "aspect-[3/4] lg:aspect-[2/3]" : "aspect-[4/5] lg:aspect-[3/4]"}>
         <img
           src={image}
-          alt=""
+          alt={title}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

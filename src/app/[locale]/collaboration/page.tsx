@@ -21,86 +21,90 @@ export default async function CollaborationPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Key Stats */}
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <dl className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-          {[
-            { label: t("stats.universities"), value: t("stats.universitiesValue") },
-            { label: t("stats.roadshows"), value: t("stats.roadshowsValue") },
-            { label: t("stats.financing"), value: t("stats.financingValue") },
-            { label: t("stats.projects"), value: t("stats.projectsValue") },
-          ].map(({ label, value }) => (
-            <div
-              key={label}
-              className="rounded-xl border border-line bg-white p-5 text-center shadow-sm sm:p-6"
-            >
-              <dt className="text-xs font-semibold uppercase tracking-wide text-[#7a9bc7]">{label}</dt>
-              <dd className="mt-2 text-3xl font-black text-accent sm:text-4xl">{value}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      {/* Detail prose */}
-      <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-2xl font-bold text-accent">{t("detailTitle")}</h2>
-          <p className="mt-4 text-base leading-8 text-[#4a6fa5]">{t("detailText")}</p>
-        </div>
-      </section>
-
-      {/* Five Collaboration Models */}
-      <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("models.title")}</p>
-          <p className="mt-3 max-w-2xl text-pretty text-base leading-8 text-[#4a6fa5]">
-            {t("models.description")}
-          </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={t(`models.items.${i}.title`)}
-                className="rounded-xl border border-line bg-[#f7f9fd] p-5 sm:p-6"
-              >
-                <div className="flex size-9 items-center justify-center rounded-lg bg-accent text-xs font-bold text-white">
-                  {`0${i + 1}`}
+      {/* Key Metrics — horizontal stat bar */}
+      <section className="border-y border-line bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10">
+            {[
+              { label: t("stats.universities"), value: t("stats.universitiesValue") },
+              { label: t("stats.roadshows"), value: t("stats.roadshowsValue") },
+              { label: t("stats.financing"), value: t("stats.financingValue") },
+              { label: t("stats.projects"), value: t("stats.projectsValue") },
+            ].map(({ label, value }, i) => (
+              <div key={label} className="flex items-center gap-4">
+                {i > 0 && (
+                  <div className="hidden h-10 w-px bg-line sm:block" aria-hidden="true" />
+                )}
+                <div className="text-center">
+                  <p className="text-2xl font-black text-accent sm:text-3xl">{value}</p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#7a9bc7]">{label}</p>
                 </div>
-                <h3 className="mt-4 text-base font-bold text-accent">
-                  {t(`models.items.${i}.title`)}
-                </h3>
-                <p className="mt-2 text-sm leading-7 text-[#4a6fa5]">
-                  {t(`models.items.${i}.description`)}
-                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Partner Ecosystem */}
-      <section className="bg-accent px-4 py-14 sm:px-6 lg:px-8">
+      {/* Detail prose */}
+      <section className="bg-white px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-2xl font-bold text-accent">{t("detailTitle")}</h2>
+          <p className="mt-4 text-base leading-8 text-[#4a6fa5]">{t("detailText")}</p>
+        </div>
+      </section>
+
+      {/* Five Collaboration Models — numbered flow */}
+      <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("models.title")}</p>
+          <p className="mt-3 max-w-2xl text-pretty text-base leading-8 text-[#4a6fa5]">
+            {t("models.description")}
+          </p>
+          <div className="mt-10 space-y-5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={t(`models.items.${i}.title`)}
+                className="flex flex-col gap-4 rounded-xl border border-line bg-[#f7f9fd] p-5 sm:flex-row sm:items-start sm:gap-6 sm:p-6"
+              >
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent text-lg font-bold text-white">
+                  {`0${i + 1}`}
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-accent">
+                    {t(`models.items.${i}.title`)}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-[#4a6fa5]">
+                    {t(`models.items.${i}.description`)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner Ecosystem — card grid on light background */}
+      <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wide text-white/70">{t("partners.title")}</p>
-            <p className="mx-auto mt-3 max-w-2xl text-pretty text-base leading-8 text-white/80">
+          <div className="mb-10 max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("partners.title")}</p>
+            <p className="mt-3 text-pretty text-base leading-8 text-[#4a6fa5]">
               {t("partners.description")}
             </p>
           </div>
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={t(`partners.items.${i}.label`)}
-                className="flex items-start gap-4 rounded-lg bg-white/10 p-4"
+                className="flex flex-col rounded-xl border border-line bg-[#f7f9fd] p-5"
               >
-                <div className="mt-0.5 size-2 shrink-0 rounded-full bg-white/70" />
-                <div>
-                  <h4 className="text-sm font-bold text-white">
-                    {t(`partners.items.${i}.label`)}
-                  </h4>
-                  <p className="mt-1 text-sm leading-6 text-white/65">
-                    {t(`partners.items.${i}.value`)}
-                  </p>
-                </div>
+                <span className="text-xs font-black tabular-nums text-[#7a9bc7]">{`0${i + 1}`}</span>
+                <h4 className="mt-2 text-base font-bold text-accent">
+                  {t(`partners.items.${i}.label`)}
+                </h4>
+                <p className="mt-1 text-sm leading-6 text-[#4a6fa5]">
+                  {t(`partners.items.${i}.value`)}
+                </p>
               </div>
             ))}
           </div>

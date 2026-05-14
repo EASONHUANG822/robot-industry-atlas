@@ -11,7 +11,10 @@
     "about": "Details",
     "showroom": "Showroom",
     "visit": "Visit Process",
-    "partners": "Partners"
+    "partners": "Partners",
+    "foundation": "Industry Base",
+    "innovation": "Innovation",
+    "collaboration": "Collaboration"
   },
   "LanguageSwitcher": {
     "zh": "中文",
@@ -237,7 +240,8 @@
     "sameProvince": "Related companies",
     "sameProvinceEmpty": "No other related companies yet.",
     "titleSuffix": "Shenzhen Robot Valley",
-    "notFoundTitle": "Company | Shenzhen Robot Valley"
+    "notFoundTitle": "Company | Shenzhen Robot Valley",
+    "backToShowroom": "Back to Showroom"
   },
   "ShowroomPage": {
     "eyebrow": "Robot Valley Showroom",

@@ -37,6 +37,9 @@ export function SiteHeader() {
   const navLinks = [
     { label: t("overview"), href: "/" },
     { label: t("showroom"), href: "/showroom" },
+    { label: t("foundation"), href: "/foundation" },
+    { label: t("innovation"), href: "/innovation" },
+    { label: t("collaboration"), href: "/collaboration" },
     { label: t("visit"), href: "/visit" },
     { label: t("partners"), href: "/partners" },
   ];
