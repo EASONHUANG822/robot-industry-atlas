@@ -159,6 +159,16 @@
         "fri": "Fri",
         "sat": "Sat"
       }
+    },
+    "bookingCalendar": {
+      "selectDate": "Select Date",
+      "selectTime": "Select time",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "pickDate": "Pick a date",
+      "noSlots": "No available slots",
+      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
     }
   },
   "CompanyDetails": {

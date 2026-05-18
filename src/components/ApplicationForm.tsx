@@ -5,7 +5,7 @@ import type { FormEvent, ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import type { ApplicationFieldKey, ApplicationPayload } from "@/config/applicationForm";
 import { useRouter } from "@/i18n/navigation";
-import { VisitDatePicker } from "./VisitDatePicker";
+import { BookingCalendar } from "./BookingCalendar";
 
 type SubmitState = "idle" | "submitting" | "error";
 
@@ -80,25 +80,46 @@ export function ApplicationForm({ successHref = "/payment?success=1" }: Applicat
           <input id="phone" type="tel" name="phone" autoComplete="tel" disabled={isSubmitting} className={inputClassName} />
         </Field>
         <DateField label={t("fields.preferredVisitDate")}>
-          <VisitDatePicker
+          <BookingCalendar
             disabled={isSubmitting}
+            price={100}
             labels={{
               loading: t("datePicker.loading"),
               loadError: t("datePicker.loadError"),
               previousMonth: t("datePicker.previousMonth"),
               nextMonth: t("datePicker.nextMonth"),
+              selectDate: t("bookingCalendar.selectDate"),
+              selectTime: t("bookingCalendar.selectTime"),
               selectedDate: t("datePicker.selectedDate"),
               fullyBooked: t("datePicker.fullyBooked"),
               pastDate: t("datePicker.pastDate"),
               noDateSelected: t("datePicker.noDateSelected"),
+              today: t("bookingCalendar.today"),
+              tomorrow: t("bookingCalendar.tomorrow"),
+              pickDate: t("bookingCalendar.pickDate"),
+              noSlots: t("bookingCalendar.noSlots"),
               weekdays: [
-                t("datePicker.weekdays.sun"),
-                t("datePicker.weekdays.mon"),
-                t("datePicker.weekdays.tue"),
-                t("datePicker.weekdays.wed"),
-                t("datePicker.weekdays.thu"),
-                t("datePicker.weekdays.fri"),
-                t("datePicker.weekdays.sat"),
+                t("bookingCalendar.weekdays.0"),
+                t("bookingCalendar.weekdays.1"),
+                t("bookingCalendar.weekdays.2"),
+                t("bookingCalendar.weekdays.3"),
+                t("bookingCalendar.weekdays.4"),
+                t("bookingCalendar.weekdays.5"),
+                t("bookingCalendar.weekdays.6"),
+              ],
+              months: [
+                t("bookingCalendar.months.0"),
+                t("bookingCalendar.months.1"),
+                t("bookingCalendar.months.2"),
+                t("bookingCalendar.months.3"),
+                t("bookingCalendar.months.4"),
+                t("bookingCalendar.months.5"),
+                t("bookingCalendar.months.6"),
+                t("bookingCalendar.months.7"),
+                t("bookingCalendar.months.8"),
+                t("bookingCalendar.months.9"),
+                t("bookingCalendar.months.10"),
+                t("bookingCalendar.months.11"),
               ],
             }}
           />
