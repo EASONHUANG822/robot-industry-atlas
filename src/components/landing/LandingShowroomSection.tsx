@@ -37,7 +37,7 @@ export function LandingShowroomSection({
 
         <div className="mt-8">
           <Link
-            href="/apply"
+            href="/payment"
             className="inline-flex min-h-12 items-center rounded bg-accent px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             {applyLabel}

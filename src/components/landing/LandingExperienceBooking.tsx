@@ -155,7 +155,7 @@ export function LandingExperienceBooking({
               {ctaLabel}
             </Link>
             <Link
-              href="/apply"
+              href="/payment"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent/[0.45] bg-white/80 px-6 py-3 text-sm font-semibold text-accent transition-all duration-200 hover:-translate-y-px hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0"
             >
               {supportLabel}

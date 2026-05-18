@@ -38,7 +38,7 @@ export function LandingHero({
           <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-[#d8e3f6]">{description}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
-              href="/apply"
+              href="/payment"
               className="hero-primary-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-accent transition-all duration-200 hover:-translate-y-px hover:bg-[#edf3ff] hover:shadow-[0_16px_34px_rgba(127,176,255,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:translate-y-0"
             >
               {applyLabel}

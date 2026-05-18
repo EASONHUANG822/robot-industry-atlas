@@ -27,7 +27,7 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
             <p className="mt-5 text-pretty text-base leading-8 text-secondary">{t("description")}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href="/apply"
+                href="/payment"
                 className="inline-flex min-h-12 items-center justify-center rounded bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 {t("apply")}
@@ -57,7 +57,7 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
                 tag={t("what.tag")}
                 title={t("what.title")}
                 description={t("what.description")}
-                linkHref="/apply"
+                linkHref="/payment"
                 linkLabel={t("what.link")}
                 tall
               />
@@ -78,7 +78,7 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
                 tag={t("audience.tag")}
                 title={t("audience.title")}
                 description={t("audience.description")}
-                linkHref="/partners"
+                linkHref="/foundation"
                 linkLabel={t("audience.link")}
                 tall
               />
@@ -89,7 +89,7 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
                 tag={t("collaboration.tag")}
                 title={t("collaboration.title")}
                 description={t("collaboration.description")}
-                linkHref="/collaboration"
+                linkHref="/foundation"
                 linkLabel={t("collaboration.link")}
               />
             </li>

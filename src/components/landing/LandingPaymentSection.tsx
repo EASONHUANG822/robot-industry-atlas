@@ -43,7 +43,7 @@ export function LandingPaymentSection({
               {ctaLabel}
             </Link>
             <Link
-              href="/apply"
+              href="/payment"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent bg-white px-6 py-3 text-base font-semibold text-accent transition-all hover:bg-glass-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               {supportLabel}

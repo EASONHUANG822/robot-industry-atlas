@@ -47,7 +47,7 @@ export default async function VisitPage({ params }: VisitPageProps) {
           <h2 className="text-2xl font-bold leading-tight">{t("prepare.title")}</h2>
           <p className="mt-3 text-sm leading-7 text-blue-50">{t("prepare.text")}</p>
           <Link
-            href="/apply"
+            href="/payment"
             className="mt-6 inline-flex min-h-12 items-center justify-center rounded bg-white px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             {t("apply")}
