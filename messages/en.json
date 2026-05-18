@@ -6,16 +6,9 @@
   "Header": {
     "brand": "Shenzhen Robot Valley",
     "overview": "Home",
-    "map": "Robot Valley",
-    "directory": "Industry Map",
-    "about": "Details",
     "showroom": "Showroom",
     "visit": "Visit Process",
-    "payment": "Book Experience",
-    "partners": "Partners",
-    "foundation": "Industry Base",
-    "innovation": "Innovation",
-    "collaboration": "Collaboration"
+    "payment": "Book Experience"
   },
   "LanguageSwitcher": {
     "zh": "中文",
@@ -152,67 +145,6 @@
     "datasetDescription": "The following company cards show Nanshan area robotics enterprises as secondary ecosystem context for Shenzhen Robot Valley.",
     "openInteractiveMap": "Open Robot Valley Map"
   },
-  "LandingMap": {
-    "title": "Robot Valley map preview",
-    "subtitle": "Robot Valley showroom plus {count} Nanshan area robotics enterprises",
-    "openFullMap": "Open Full Map",
-    "selectedCompany": "Nanshan Area Enterprise",
-    "viewProfile": "View profile",
-    "showroomEyebrow": "Robot Valley Showroom",
-    "showroomName": "Shenzhen Robot Valley Showroom",
-    "showroomDescription": "A visit destination for robotics showcases, interactive demos, ecosystem briefings, and Nanshan innovation resources.",
-    "applyToVisit": "Apply to Visit",
-    "robotValleyMarkerLabel": "Shenzhen Robot Valley",
-    "loading": "Loading AMap...",
-    "missingKey": "Add NEXT_PUBLIC_AMAP_KEY to render the homepage map.",
-    "error": "AMap could not be loaded. Check the key, security code, and network access.",
-    "fallback": "The Robot Valley information and Nanshan company directory remain available below."
-  },
-  "Map": {
-    "loading": "Loading AMap...",
-    "missingKey": "Add NEXT_PUBLIC_AMAP_KEY to render the interactive AMap layer.",
-    "error": "AMap could not be loaded. Check the key, security code, and network access.",
-    "fallback": "The filters, list, and detail pages still work without a configured map key.",
-    "empty": "No matching Nanshan area robotics enterprises found",
-    "nanshanEmpty": "No matching Nanshan area robotics enterprises found",
-    "home": "Home",
-    "companyList": "Nanshan Area Enterprises",
-    "currentCompanies": "Visible Nanshan Enterprises",
-    "cityFallbackNote": "City-level coordinate, not exact address",
-    "geocodeStatus": "Geocode status",
-    "currentViewAll": "Nanshan Area Enterprises",
-    "currentViewCategory": "Nanshan Area · {category}",
-    "allCategories": "All Categories",
-    "applyToVisit": "Apply to Visit",
-    "robotValleyMarkerLabel": "Shenzhen Robot Valley",
-    "robotValleyPopupLabel": "Robot Valley Showroom",
-    "robotValleyName": "Shenzhen Robot Valley Showroom",
-    "robotValleyDescription": "The always-visible anchor point for the Robot Valley visit experience.",
-    "filterGroups": {
-      "all": "All",
-      "makers": "Robot Makers",
-      "manufacturing": "Intelligent Manufacturing",
-      "components": "Core Components",
-      "systems": "Systems & Software",
-      "ai": "AI & Algorithms",
-      "other": "Other"
-    }
-  },
-  "CategoryLegend": {
-    "title": "Nanshan Enterprise Legend"
-  },
-  "Sidebar": {
-    "eyebrow": "Robot Valley Map",
-    "title": "Nanshan Area Enterprises",
-    "subtitle": "Explore Nanshan area robotics enterprises as supporting ecosystem data around Shenzhen Robot Valley.",
-    "search": "Search",
-    "searchPlaceholder": "Company, address, product...",
-    "category": "Category",
-    "province": "Area",
-    "all": "Nanshan District",
-    "resultCount": "{count} Nanshan area enterprises shown",
-    "coordinatesUnavailable": "Coordinates unavailable"
-  },
   "VisitApplication": {
     "button": "Apply to Visit",
     "eyebrow": "Showroom Visit",
@@ -233,13 +165,6 @@
     "successTitle": "Thank you!",
     "successMessage": "Your visit request has been received. We will contact you soon.",
     "done": "Done"
-  },
-  "ApplyPage": {
-    "eyebrow": "Visit Application",
-    "title": "Apply to Visit Shenzhen Robot Valley",
-    "description": "Please submit your visit request below. Our team will review your preferred date, visitor count, and organization information, then contact you soon.",
-    "addressLabel": "Showroom Address",
-    "areaLabel": "Showroom Area"
   },
   "PaymentPage": {
     "eyebrow": "Trial Experience Booking",
@@ -417,69 +342,6 @@
       "text": "We recommend that visiting teams learn about Shenzhen Robot Valley basics in advance and prepare specific technology directions or collaboration needs, so staff can tailor the visit more effectively."
     }
   },
-  "PartnersPage": {
-    "eyebrow": "Partner Reception",
-    "title": "Professional reception and deep connections for partners",
-    "description": "Shenzhen Robot Valley provides customized reception programs for government parks, enterprise clients, investors, and industry partners, including showroom tours, industry briefings, project roadshows, and technology matchmaking.",
-    "apply": "Apply Now",
-    "visit": "View Visit Process",
-    "signals": {
-      "reception": {
-        "label": "Government Reception",
-        "value": "Park inspections, industry roundtables, policy communication"
-      },
-      "enterprise": {
-        "label": "Enterprise Matchmaking",
-        "value": "Technical exchange, supply chain collaboration, joint R&D"
-      },
-      "project": {
-        "label": "Project Roadshows",
-        "value": "Investment matchmaking, project showcasing, resource matching"
-      },
-      "exchange": {
-        "label": "Industry Exchange",
-        "value": "Summits, forums, technical seminars, international cooperation"
-      }
-    },
-    "modelsEyebrow": "Service Models",
-    "modelsTitle": "Four Reception Models",
-    "models": {
-      "reception": {
-        "title": "Standard Reception",
-        "text": "Showroom tour + industry briefing, ideal for first-time government and enterprise delegations."
-      },
-      "showcase": {
-        "title": "In-depth Showcase",
-        "text": "Customized display + technical demo, for visiting teams with clear collaboration directions."
-      },
-      "matchmaking": {
-        "title": "Precision Matchmaking",
-        "text": "Project roadshow + one-on-one meetings, for enterprises seeking investment or supply chain collaboration."
-      }
-    },
-    "flowEyebrow": "Reception Flow",
-    "flowTitle": "A typical partner reception flow",
-    "flowDescription": "Every step, from requirements communication to follow-up, is carefully designed to ensure quality reception outcomes.",
-    "flow": {
-      "brief": {
-        "title": "Requirements Communication",
-        "text": "Visiting parties submit background and collaboration needs; staff evaluate and design the program."
-      },
-      "plan": {
-        "title": "Program Design",
-        "text": "Customize tour routes, briefing priorities, and participants based on visitor background."
-      },
-      "host": {
-        "title": "On-site Reception",
-        "text": "Showroom tour, technical demonstrations, discussions — accompanied and facilitated throughout."
-      }
-    },
-    "cta": {
-      "title": "Request Partner Reception",
-      "text": "Please submit your reception requirements through the visit application system. Staff will contact you within 2 working days.",
-      "button": "Submit Application"
-    }
-  },
   "FoundationPage": {
     "eyebrow": "Industrial Foundation",
     "title": "A Peak Formed by Industry Clustering",
@@ -553,170 +415,17 @@
       ]
     }
   },
-  "InnovationPage": {
-    "eyebrow": "Innovation Ecosystem",
-    "title": "Continuous Surge of Innovation",
-    "description": "AI communities, provincial innovation centers, and university-industry collaboration continue to drive technological breakthroughs within the corridor.",
-    "detailTitle": "Continuous Technology Breakthroughs",
-    "detailText": "Ecological platforms such as Model Camp, the Greater Bay Area's first AI community, and the Guangdong Embodied AI Robotics Innovation Center are rooted here.",
-    "stats": {
-      "platforms": "Innovation Platforms",
-      "platformsValue": "12+",
-      "aiCommunity": "AI Enterprises",
-      "aiCommunityValue": "50+",
-      "university": "Partner Universities",
-      "universityValue": "20+",
-      "annualEvents": "Annual Innovation Events",
-      "annualEventsValue": "100+"
-    },
-    "platforms": {
-      "title": "Key Innovation Platforms",
-      "description": "Multiple national and provincial innovation platforms are rooted in Shenzhen Robot Valley, providing enterprises with technology R&D, testing, validation, and commercialization support.",
-      "items": [
-        {
-          "title": "Model Camp AI Community",
-          "description": "The Greater Bay Area's first AI-themed industry community, gathering startups in embodied intelligence, foundation models, and robotics with access to computing power, scenarios, and capital."
-        },
-        {
-          "title": "Guangdong Embodied AI Robotics Innovation Center",
-          "description": "A provincial innovation platform focused on core embodied intelligence technologies, driving the R&D and industrialization of humanoid robot systems and key components."
-        },
-        {
-          "title": "Xili Lake International Science and Education City",
-          "description": "Home to research institutes from Tsinghua, Peking University, HIT and more, forming a complete innovation chain from fundamental research to applied development."
-        }
-      ]
-    },
-    "research": {
-      "title": "Frontier Technology Directions",
-      "description": "The innovation strength of Shenzhen Robot Valley is concentrated in these key areas, continuously driving generational advances in robotics technology.",
-      "items": [
-        {
-          "label": "Embodied Intelligence",
-          "value": "Multimodal perception, autonomous decision-making, dexterous manipulation"
-        },
-        {
-          "label": "Humanoid Robots",
-          "value": "Bipedal locomotion, whole-body control, human-robot interaction"
-        },
-        {
-          "label": "AI Foundation Models",
-          "value": "Robot foundation models, task planning, scene understanding"
-        },
-        {
-          "label": "Core Components",
-          "value": "High-performance servos, precision reducers, force sensors"
-        },
-        {
-          "label": "Collaborative Robots",
-          "value": "Safe interaction, flexible manufacturing, easy deployment"
-        },
-        {
-          "label": "Swarm Intelligence",
-          "value": "Multi-robot coordination, distributed control, fleet scheduling"
-        }
-      ]
-    }
-  },
-  "CollaborationPage": {
-    "eyebrow": "Synergistic Collaboration",
-    "title": "Industry-Academia-Research-Finance Synergy",
-    "description": "Universities, roadshow platforms, and large-scale financing plans jointly build an efficient collaboration system for showcase, exchange, and project matchmaking.",
-    "detailTitle": "Collaborative Innovation System",
-    "detailText": "The Xili Lake International Science and Education City, X-DAY Xili Lake Roadshow Club, and the 100-billion-yuan financing plan jointly build a highly effective collaboration system.",
-    "stats": {
-      "universities": "Universities & Institutes",
-      "universitiesValue": "20+",
-      "roadshows": "Annual Roadshows",
-      "roadshowsValue": "50+",
-      "financing": "Financing Scale",
-      "financingValue": "100B+",
-      "projects": "Matched Projects",
-      "projectsValue": "300+"
-    },
-    "models": {
-      "title": "Five Collaboration Models",
-      "description": "Shenzhen Robot Valley connects the full chain from technology R&D to market deployment through multi-tier collaboration mechanisms.",
-      "items": [
-        {
-          "title": "Industry-Academia-Research",
-          "description": "Universities and enterprises jointly tackle challenges, conducting targeted R&D aligned with industry needs and accelerating technology transfer from lab to production line."
-        },
-        {
-          "title": "Investment & Financing",
-          "description": "X-DAY Xili Lake Roadshow Club hosts regular pitch events connecting angel investors, VCs, and industrial capital, with a 100-billion-yuan financing plan providing sustained support."
-        },
-        {
-          "title": "Showcase & Exchange",
-          "description": "The Robot Valley showroom and industry summits provide product display and networking platforms, fostering upstream-downstream collaboration."
-        },
-        {
-          "title": "Project Incubation",
-          "description": "Providing startups with office space, technical support, and industry resource connections, lowering barriers to entry and accelerating product commercialization."
-        },
-        {
-          "title": "International Cooperation",
-          "description": "Connecting global robotics industry resources to drive cross-border technology transfer, market expansion, and mutual recognition of standards."
-        }
-      ]
-    },
-    "partners": {
-      "title": "Partner Ecosystem",
-      "description": "Shenzhen Robot Valley has established deep partnerships with the following types of organizations to jointly advance the robotics industry.",
-      "items": [
-        {
-          "label": "Government & Parks",
-          "value": "Policy support, space capacity, project attraction"
-        },
-        {
-          "label": "Universities & Institutes",
-          "value": "Technology R&D, talent cultivation, joint labs"
-        },
-        {
-          "label": "Investment Institutions",
-          "value": "Full-stage coverage: angel, VC, PE, industry funds"
-        },
-        {
-          "label": "Leading Enterprises",
-          "value": "Scenario sharing, supply chain synergy, joint innovation"
-        },
-        {
-          "label": "Industry Associations",
-          "value": "Standard setting, industry networking, policy advocacy"
-        },
-        {
-          "label": "Service Providers",
-          "value": "IP protection, testing & certification, legal advisory"
-        }
-      ]
-    }
-  },
   "Footer": {
     "brand": "Shenzhen Robot Valley",
     "colExplore": "Explore",
     "colVisit": "Visit",
-    "colRobotValley": "Robot Valley",
     "colInfo": "Info",
-    "home": "Home",
-    "robotValley": "Robot Valley",
     "showroom": "Showroom",
-    "applyToVisit": "Apply to Visit",
-    "partners": "Partners",
     "visitPlan": "Visit Process",
     "payment": "Book Experience",
-    "mediaInquiry": "Media Inquiry",
     "contact": "Contact Us",
     "about": "About Us",
     "terms": "Terms of Use",
-    "privacy": "Privacy Policy",
-    "partnersTitle": "Partners",
-    "followUs": "Follow Us"
-  },
-  "ApplySuccessPage": {
-    "eyebrow": "Application Submitted",
-    "title": "Your visit application has been submitted",
-    "description": "Our staff will review your application and contact you within 2 working days. For urgent requests or questions, please reach out by phone or email.",
-    "home": "Back to Home",
-    "showroom": "Back to Showroom"
+    "privacy": "Privacy Policy"
   }
 }
