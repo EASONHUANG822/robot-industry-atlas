@@ -5,6 +5,10 @@ import { Link } from "@/i18n/navigation";
 import { robotValley } from "@/data/robotValley";
 import type { AppLocale } from "@/i18n/routing";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import {
+  DETAIL_SCROLL_STEP_THRESHOLDS,
+  getActiveDetailStepIndex,
+} from "./detailScrollSteps";
 
 type DetailCardContent = {
   tag: string;
@@ -28,23 +32,8 @@ type DetailContentProps = {
 
 type DetailScrollContentProps = DetailContentProps & {
   sectionRef: RefObject<HTMLElement | null>;
+  variant?: "desktop" | "static";
 };
-
-/* ------------------------------------------------------------------ */
-/*  Opacity helpers                                                    */
-/* ------------------------------------------------------------------ */
-
-function fadeIn(from: number, to: number, p: number) {
-  if (p <= from) return 0;
-  if (p >= to) return 1;
-  return (p - from) / (to - from);
-}
-
-function fadeOut(from: number, to: number, p: number) {
-  if (p <= from) return 1;
-  if (p >= to) return 0;
-  return 1 - (p - from) / (to - from);
-}
 
 function useMediaQuery(query: string) {
   return useSyncExternalStore(
@@ -58,24 +47,9 @@ function useMediaQuery(query: string) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Phase helpers for desktop (opacity & pointer-events)               */
-/* ------------------------------------------------------------------ */
-
-function layerOpacity(p: number, phases: { fadeIn?: [number, number]; hold: [number, number]; fadeOut?: [number, number] }) {
-  const { fadeIn: fi, hold, fadeOut: fo } = phases;
-  if (fi && p >= fi[0] && p < fi[1]) return fadeIn(fi[0], fi[1], p);
-  if (p >= hold[0] && p < hold[1]) return 1;
-  if (fo && p >= fo[0] && p < fo[1]) return fadeOut(fo[0], fo[1], p);
-  return 0;
-}
-
-function layerInteractive(opacity: number) {
-  return opacity > 0.5 ? "auto" : "none";
-}
-
 export function DetailScrollContent({
   sectionRef,
+  variant = "desktop",
   ...content
 }: DetailScrollContentProps) {
   const {
@@ -91,7 +65,7 @@ export function DetailScrollContent({
   } = content;
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const shouldAnimate = isDesktop && !prefersReducedMotion;
+  const shouldAnimate = variant === "desktop" && isDesktop && !prefersReducedMotion;
   const progress = useScrollProgress(sectionRef, shouldAnimate);
 
   /* ---- mobile / reduced motion: normal flow ---- */
@@ -101,100 +75,55 @@ export function DetailScrollContent({
 
   /* ---- desktop: scroll-driven phased animation ---- */
 
-  // Header: 0.00-0.18 visible, 0.18-0.30 fade out
-  const hOpacity = layerOpacity(progress, {
-    hold: [0.00, 0.18],
-    fadeOut: [0.18, 0.30],
-  });
-
-  // Card 0 (01): 0.18-0.30 fade in, 0.30-0.48 hold, 0.48-0.60 fade out
-  const c0Opacity = layerOpacity(progress, {
-    fadeIn: [0.18, 0.30],
-    hold: [0.30, 0.48],
-    fadeOut: [0.48, 0.60],
-  });
-
-  // Card 1 (02): 0.48-0.60 fade in, 0.60-0.72 hold, 0.72-0.84 fade out
-  const c1Opacity = layerOpacity(progress, {
-    fadeIn: [0.48, 0.60],
-    hold: [0.60, 0.72],
-    fadeOut: [0.72, 0.84],
-  });
-
-  // Card 2 (03): 0.72-0.84 fade in, then stay visible through progress 1.00.
-  const c2Opacity = progress >= 0.84 ? 1 : fadeIn(0.72, 0.84, progress);
+  const steps = [
+    {
+      id: "intro",
+      content: (
+        <IntroContent
+          addressLabel={addressLabel}
+          areaLabel={areaLabel}
+          description={description}
+          eyebrow={eyebrow}
+          locale={locale}
+          showroomCtaLabel={showroomCtaLabel}
+          showroomHref={showroomHref}
+          title={title}
+        />
+      ),
+    },
+    ...cards.map((card, index) => ({
+      id: `card-${index + 1}`,
+      content: <EditorialCard {...card} />,
+    })),
+  ];
+  const activeIndex = Math.min(
+    getActiveDetailStepIndex(progress, DETAIL_SCROLL_STEP_THRESHOLDS),
+    steps.length - 1,
+  );
 
   return (
-    <div data-scroll-progress={progress.toFixed(3)}>
+    <div data-active-step={activeIndex} data-scroll-progress={progress.toFixed(3)}>
       <div className="relative flex min-h-[420px] lg:h-[calc(100vh-8rem)] lg:min-h-[560px] lg:max-h-[680px]">
-        {/* ---- Header layer ---- */}
-        <div
-          className="absolute inset-0 flex items-start justify-center pt-4 lg:pt-8"
-          data-detail-layer="intro"
-          style={{
-            opacity: hOpacity,
-            transition: "opacity 100ms linear",
-            pointerEvents: layerInteractive(hOpacity),
-          }}
-        >
-          <div className="w-full">
-            <IntroContent
-              addressLabel={addressLabel}
-              areaLabel={areaLabel}
-              description={description}
-              eyebrow={eyebrow}
-              locale={locale}
-              showroomCtaLabel={showroomCtaLabel}
-              showroomHref={showroomHref}
-              title={title}
-            />
-          </div>
-        </div>
+        {steps.map((step, index) => {
+          const isActive = index === activeIndex;
 
-        {/* ---- Card 01 layer ---- */}
-        <div
-          className="absolute inset-0 flex items-start justify-center pt-4 lg:pt-8"
-          data-detail-layer="card-1"
-          style={{
-            opacity: c0Opacity,
-            transition: "opacity 100ms linear",
-            pointerEvents: layerInteractive(c0Opacity),
-          }}
-        >
-          <div className="w-full">
-            <EditorialCard {...cards[0]} />
-          </div>
-        </div>
-
-        {/* ---- Card 02 layer ---- */}
-        <div
-          className="absolute inset-0 flex items-start justify-center pt-4 lg:pt-8"
-          data-detail-layer="card-2"
-          style={{
-            opacity: c1Opacity,
-            transition: "opacity 100ms linear",
-            pointerEvents: layerInteractive(c1Opacity),
-          }}
-        >
-          <div className="w-full">
-            <EditorialCard {...cards[1]} />
-          </div>
-        </div>
-
-        {/* ---- Card 03 layer ---- */}
-        <div
-          className="absolute inset-0 flex items-start justify-center pt-4 lg:pt-8"
-          data-detail-layer="card-3"
-          style={{
-            opacity: c2Opacity,
-            transition: "opacity 100ms linear",
-            pointerEvents: layerInteractive(c2Opacity),
-          }}
-        >
-          <div className="w-full">
-            <EditorialCard {...cards[2]} />
-          </div>
-        </div>
+          return (
+            <div
+              key={step.id}
+              aria-hidden={!isActive}
+              className="absolute inset-0 flex items-start justify-center pt-4 lg:pt-8"
+              data-active={isActive ? "true" : "false"}
+              data-detail-layer={step.id}
+              style={{
+                opacity: isActive ? 1 : 0,
+                pointerEvents: isActive ? "auto" : "none",
+                zIndex: isActive ? 10 : 0,
+              }}
+            >
+              <div className="w-full">{step.content}</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

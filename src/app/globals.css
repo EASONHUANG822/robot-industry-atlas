@@ -13,11 +13,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   color: #1a2744;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 12% 8%, rgba(55, 89, 187, 0.16), transparent 24rem),
     linear-gradient(180deg, #f7f9fd 0%, #eaeff7 100%);
@@ -50,17 +52,31 @@ a {
 }
 
 .hero-bg-cycle__layer--bg1 {
-  animation-delay: 5s;
+  animation-delay: 3s;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
     url("/images/hero-bg-1.JPG");
 }
 
 .hero-bg-cycle__layer--bg2 {
-  animation-delay: 10s;
+  animation-delay: 6s;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
     url("/images/hero-bg-2.JPG");
+}
+
+.hero-bg-cycle__layer--robot1 {
+  animation-delay: 9s;
+  background-image:
+    linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
+    url("/images/hero-robot-1.JPG");
+}
+
+.hero-bg-cycle__layer--robot2 {
+  animation-delay: 12s;
+  background-image:
+    linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
+    url("/images/hero-robot-2.JPG");
 }
 
 .hero-bg-cycle__matrix {
@@ -299,12 +315,12 @@ a {
     transform: scale(1.03);
   }
 
-  7%,
-  33% {
+  5%,
+  18% {
     opacity: 1;
   }
 
-  42% {
+  24% {
     opacity: 0;
     transform: scale(1.09);
   }

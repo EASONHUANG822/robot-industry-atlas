@@ -22,7 +22,6 @@ export function Footer() {
       title: t("colExplore"),
       links: [
         { label: t("showroom"), href: "/showroom" },
-        { label: t("robotValley"), href: "/#robot-valley-detail" },
         { label: t("applyToVisit"), href: "/apply" },
       ],
     },
@@ -30,14 +29,13 @@ export function Footer() {
       title: t("colVisit"),
       links: [
         { label: t("visitPlan"), href: "/visit" },
-        { label: t("partners"), href: "/partners" },
+        { label: t("payment"), href: "/payment" },
       ],
     },
     {
       title: t("colRobotValley"),
       links: [
         { label: t("about"), href: "/showroom" },
-        { label: t("partners"), href: "/partners" },
       ],
     },
     {
@@ -45,7 +43,6 @@ export function Footer() {
       links: [
         { label: t("contact"), href: "mailto:contact@robotvalley.cn", external: true },
         { label: t("mediaInquiry"), href: "/showroom" },
-        { label: t("terms"), href: "/terms" },
       ],
     },
   ];
@@ -55,7 +52,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="inline-block" aria-label="Home">
-          <img src="/images/brand-logo.png" alt="" className="h-14 w-auto" />
+          <img src="/images/logo.png" alt="" className="h-6 w-auto" />
         </Link>
 
         {/* Accordion columns */}
@@ -114,14 +111,6 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col-reverse items-start gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex gap-6">
-            <Link href="/terms" className="text-xs text-slate-400 hover:text-white transition">
-              {t("terms")}
-            </Link>
-            <Link href="/privacy" className="text-xs text-slate-400 hover:text-white transition">
-              {t("privacy")}
-            </Link>
-          </div>
           <p className="text-xs text-slate-500">
             &copy; 2026 {t("brand")}
           </p>

@@ -38,10 +38,8 @@ export function SiteHeader() {
     { label: t("overview"), href: "/" },
     { label: t("showroom"), href: "/showroom" },
     { label: t("foundation"), href: "/foundation" },
-    { label: t("innovation"), href: "/innovation" },
-    { label: t("collaboration"), href: "/collaboration" },
     { label: t("visit"), href: "/visit" },
-    { label: t("partners"), href: "/partners" },
+    { label: t("payment"), href: "/payment" },
   ];
 
   return (
@@ -57,7 +55,7 @@ export function SiteHeader() {
           href="/"
           className="flex min-w-0 items-center gap-3 font-semibold tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
-          <img src="/images/logo.png" alt="" className="size-9 shrink-0 rounded bg-accent object-contain" />
+          <span className="inline-flex size-9 shrink-0 items-center justify-center rounded bg-accent text-sm font-bold text-white">RV</span>
           <span className="truncate text-accent">{t("brand")}</span>
         </Link>
 

@@ -11,6 +11,7 @@
     "about": "详细介绍",
     "showroom": "展厅介绍",
     "visit": "参观流程",
+    "payment": "试运营支付",
     "partners": "合作接待",
     "foundation": "产业基础",
     "innovation": "创新平台",
@@ -49,6 +50,29 @@
         "area": "展厅面积"
       }
     },
+    "payment": {
+      "eyebrow": "试运营体验",
+      "title": "试运营参观体验支付",
+      "description": "试运营费用为 100 元/人，包含展厅机器人操作、3D 打印小礼品和茶歇。",
+      "priceLabel": "试运营费用",
+      "priceUnit": "元/人",
+      "cta": "前往支付",
+      "supportCta": "申请参观",
+      "benefits": {
+        "robotOperation": {
+          "title": "机器人操作",
+          "text": "在展厅现场体验机器人操作与互动演示。"
+        },
+        "printedGift": {
+          "title": "3D 打印小礼品",
+          "text": "完成体验后可领取一份 3D 打印纪念小礼品。"
+        },
+        "refreshments": {
+          "title": "茶歇服务",
+          "text": "参观期间提供基础茶歇，方便团队交流。"
+        }
+      }
+    },
     "detail": {
       "eyebrow": "机器人谷介绍",
       "title": "以南山智谷产业园为承载核心的机器人展示与创新平台",
@@ -67,13 +91,13 @@
           "tag": "生态",
           "title": "产业生态圈",
           "description": "平台链接南山科研机构、机器人企业、应用场景与产业服务，形成高效协作网络。超过 200 家机器人企业在此集聚，90% 零部件可在三公里内快速集结，从核心零部件到系统集成形成完整产业链闭环。",
-          "link": "探索生态"
+          "link": "了解展厅"
         },
         "visit": {
           "tag": "参观",
           "title": "面向参观者",
           "description": "适合政府园区、企业客户、投资机构、科研团队和产业伙伴前来参观与对接交流。我们根据来访方背景定制参观路线与介绍重点，提供展厅参观、技术演示、产业座谈与项目对接等一站式接待服务，让每一次参观都高效且有价值。",
-          "link": "合作接待"
+          "link": "了解展厅"
         }
       }
     },
@@ -178,6 +202,36 @@
     "description": "请填写以下信息提交参观申请。工作人员将根据您的期望日期、参观人数与机构信息进行确认，并尽快与您联系。",
     "addressLabel": "展厅地址",
     "areaLabel": "展厅面积"
+  },
+  "PaymentPage": {
+    "eyebrow": "试运营支付",
+    "title": "支付深圳机器人谷试运营参观费用",
+    "description": "试运营费用为 100 元/人，适用于展厅体验参观。费用包含展厅机器人操作、3D 打印小礼品和茶歇。",
+    "priceLabel": "费用标准",
+    "priceUnit": "元/人",
+    "priceNote": "按实际到访人数计费，暂不在页面内计算总价。",
+    "qrEyebrow": "扫码支付",
+    "qrTitle": "收款码占位",
+    "qrDescription": "当前页面先预留收款码位置。上传正式微信或支付宝收款码后，来访者可在此扫码完成付款。",
+    "qrPlaceholder": "收款码待上传",
+    "remarkTitle": "付款备注",
+    "remarkText": "付款时请备注姓名、联系方式与参观人数，方便工作人员核对。",
+    "applyCta": "还未申请？先提交参观申请",
+    "homeCta": "返回首页",
+    "benefits": {
+      "robotOperation": {
+        "title": "展厅机器人操作",
+        "text": "包含展厅内机器人操作体验与现场互动演示。"
+      },
+      "printedGift": {
+        "title": "3D 打印小礼品",
+        "text": "参观体验结束后可领取一份 3D 打印纪念小礼品。"
+      },
+      "refreshments": {
+        "title": "茶歇",
+        "text": "包含基础茶歇服务，适合参观后的短暂交流。"
+      }
+    }
   },
   "ApplicationForm": {
     "required": "*",
@@ -611,6 +665,7 @@
     "applyToVisit": "申请参观",
     "partners": "合作接待",
     "visitPlan": "参观流程",
+    "payment": "试运营支付",
     "mediaInquiry": "媒体咨询",
     "contact": "联系我们",
     "about": "关于我们",

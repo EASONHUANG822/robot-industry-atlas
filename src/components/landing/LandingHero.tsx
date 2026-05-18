@@ -22,6 +22,8 @@ export function LandingHero({
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--photo" aria-hidden="true" />
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--bg1" aria-hidden="true" />
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--bg2" aria-hidden="true" />
+      <div className="hero-bg-cycle__layer hero-bg-cycle__layer--robot1" aria-hidden="true" />
+      <div className="hero-bg-cycle__layer hero-bg-cycle__layer--robot2" aria-hidden="true" />
       <div className="hero-bg-cycle__matrix" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(139,173,230,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(139,173,230,0.08)_1px,transparent_1px)] bg-[size:40px_40px]" />
       <div className="hero-rail hero-rail--top pointer-events-none absolute inset-x-0 top-28 h-px" />

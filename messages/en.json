@@ -11,6 +11,7 @@
     "about": "Details",
     "showroom": "Showroom",
     "visit": "Visit Process",
+    "payment": "Trial Payment",
     "partners": "Partners",
     "foundation": "Industry Base",
     "innovation": "Innovation",
@@ -49,6 +50,29 @@
         "area": "Showroom Area"
       }
     },
+    "payment": {
+      "eyebrow": "Trial Experience",
+      "title": "Trial Visit Experience Payment",
+      "description": "The trial operation fee is 100 CNY per person, including showroom robot operation, a 3D-printed gift, and refreshments.",
+      "priceLabel": "Trial Fee",
+      "priceUnit": "CNY/person",
+      "cta": "Go to Payment",
+      "supportCta": "Apply to Visit",
+      "benefits": {
+        "robotOperation": {
+          "title": "Robot Operation",
+          "text": "Operate showroom robots and view interactive demonstrations on site."
+        },
+        "printedGift": {
+          "title": "3D-printed Gift",
+          "text": "Receive a small 3D-printed souvenir after the experience."
+        },
+        "refreshments": {
+          "title": "Refreshments",
+          "text": "Basic refreshments are included for short team discussion."
+        }
+      }
+    },
     "detail": {
       "eyebrow": "Robot Valley Introduction",
       "title": "A robotics showcase and innovation platform centered on Nanshan Zhigu Industrial Park",
@@ -67,13 +91,13 @@
           "tag": "Ecosystem",
           "title": "Industry Ecosystem",
           "description": "The platform connects Nanshan research institutions, robotics companies, application scenarios, and industry services into an efficient collaboration network. Over 200 robotics enterprises cluster here, with 90% of components available within a 3km radius, forming a complete industry chain from core components to system integration.",
-          "link": "Explore Ecosystem"
+          "link": "Explore Showroom"
         },
         "visit": {
           "tag": "Visit",
           "title": "Built for Visitors",
           "description": "Designed for government parks, enterprise clients, investors, research teams, and industry partners to visit and connect. We customize tour routes and briefing priorities based on each visitor background, offering one-stop reception services including showroom tours, technical demonstrations, industry discussions, and project matchmaking, making every visit efficient and valuable.",
-          "link": "Partnerships"
+          "link": "Explore Showroom"
         }
       }
     },
@@ -178,6 +202,36 @@
     "description": "Please submit your visit request below. Our team will review your preferred date, visitor count, and organization information, then contact you soon.",
     "addressLabel": "Showroom Address",
     "areaLabel": "Showroom Area"
+  },
+  "PaymentPage": {
+    "eyebrow": "Trial Payment",
+    "title": "Pay for the Shenzhen Robot Valley Trial Visit",
+    "description": "The trial operation fee is 100 CNY per person for the showroom visit experience. It includes showroom robot operation, a 3D-printed gift, and refreshments.",
+    "priceLabel": "Fee",
+    "priceUnit": "CNY/person",
+    "priceNote": "Charged by actual visitor count. This page does not calculate a total amount.",
+    "qrEyebrow": "Scan to Pay",
+    "qrTitle": "Payment Code Placeholder",
+    "qrDescription": "This page reserves space for the payment code. Once the official WeChat Pay or Alipay code is uploaded, visitors can scan here to complete payment.",
+    "qrPlaceholder": "Payment code pending upload",
+    "remarkTitle": "Payment Note",
+    "remarkText": "Please include your name, contact information, and visitor count in the payment note so staff can verify it.",
+    "applyCta": "Need to book first? Submit a visit application",
+    "homeCta": "Back to Home",
+    "benefits": {
+      "robotOperation": {
+        "title": "Showroom Robot Operation",
+        "text": "Includes hands-on robot operation and interactive demonstrations in the showroom."
+      },
+      "printedGift": {
+        "title": "3D-printed Gift",
+        "text": "Visitors can receive a small 3D-printed souvenir after the visit experience."
+      },
+      "refreshments": {
+        "title": "Refreshments",
+        "text": "Basic refreshments are included for a short discussion after the visit."
+      }
+    }
   },
   "ApplicationForm": {
     "required": "*",
@@ -611,6 +665,7 @@
     "applyToVisit": "Apply to Visit",
     "partners": "Partners",
     "visitPlan": "Visit Process",
+    "payment": "Trial Payment",
     "mediaInquiry": "Media Inquiry",
     "contact": "Contact Us",
     "about": "About Us",
