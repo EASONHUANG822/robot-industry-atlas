@@ -22,10 +22,9 @@ export function LandingHero({
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--photo" aria-hidden="true" />
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--bg1" aria-hidden="true" />
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--bg2" aria-hidden="true" />
-      <div className="hero-bg-cycle__matrix" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(139,173,230,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(139,173,230,0.08)_1px,transparent_1px)] bg-[size:40px_40px]" />
-      <div className="hero-rail hero-rail--top pointer-events-none absolute inset-x-0 top-28 h-px" />
-      <div className="hero-rail hero-rail--bottom pointer-events-none absolute bottom-24 left-0 h-px w-2/3" />
+      <div className="hero-bg-cycle__layer hero-bg-cycle__layer--robot1" aria-hidden="true" />
+      <div className="hero-bg-cycle__layer hero-bg-cycle__layer--robot2" aria-hidden="true" />
+
 
       <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-4 py-16 pb-24 sm:px-6 lg:grid-cols-[1fr_0.76fr] lg:px-8">
         <div className="hero-copy-reveal max-w-3xl">
@@ -40,13 +39,13 @@ export function LandingHero({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/apply"
-              className="hero-primary-cta inline-flex min-h-12 items-center justify-center rounded bg-white px-5 py-3 text-sm font-semibold text-[#173e8f] transition-colors hover:bg-[#e6efff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="hero-primary-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-accent transition-all duration-200 hover:-translate-y-px hover:bg-[#edf3ff] hover:shadow-[0_16px_34px_rgba(127,176,255,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:translate-y-0"
             >
               {applyLabel}
             </Link>
             <Link
               href={learnMoreHref}
-              className="inline-flex min-h-12 items-center justify-center rounded border border-[#9dbbff]/45 bg-[#8fb4ff]/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-[#8fb4ff]/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/[0.45] bg-white/[0.08] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:border-white/75 hover:bg-white/[0.14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:translate-y-0"
             >
               {learnMoreLabel}
             </Link>
@@ -54,7 +53,7 @@ export function LandingHero({
         </div>
 
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-page to-transparent" />
+      <div className="hero-scanline-effect" aria-hidden="true" />
     </section>
   );
 }

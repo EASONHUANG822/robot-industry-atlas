@@ -14,6 +14,11 @@ const config: Config = {
         subtle: "#3a5a8a",
         page: "#f7f9fd",
         dark: "#0a1e3d",
+        "mid-dark": "#2d4a8a",
+        "mid-light": "#6b8fd4",
+        "metal-gray": "#4a5568",
+        "glass-white": "#f0f2f5",
+        "warm-light": "#d9c9b8",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],

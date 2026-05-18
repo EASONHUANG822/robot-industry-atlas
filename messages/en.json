@@ -11,6 +11,7 @@
     "about": "Details",
     "showroom": "Showroom",
     "visit": "Visit Process",
+    "payment": "Book Experience",
     "partners": "Partners",
     "foundation": "Industry Base",
     "innovation": "Innovation",
@@ -23,10 +24,10 @@
   "Landing": {
     "eyebrow": "Shenzhen Robot Valley",
     "title": "Shenzhen Robot Valley",
-    "description": "Anchored at Nanshan Zhigu Industrial Park, Shenzhen Robot Valley is an open showcase for robotics exhibitions, technology experiences, industry exchange, and innovation collaboration in Shenzhen.",
-    "learnMore": "Explore Robot Valley",
+    "description": "From showroom scenes and robot interaction to on-site exchange, Shenzhen Robot Valley turns robotics capability into a visit journey people can see, touch, and book.",
+    "learnMore": "Explore the Experience",
     "exploreAtlas": "Explore Robot Valley",
-    "applyToVisit": "Apply to Visit",
+    "applyToVisit": "Book an Experience Slot",
     "robotValleyStats": {
       "showroomArea": "Robot Valley Showroom Area",
       "companies": "Companies in Robot Valley"
@@ -49,31 +50,92 @@
         "area": "Showroom Area"
       }
     },
+    "payment": {
+      "eyebrow": "Trial Experience",
+      "title": "Book the Trial Showroom Experience",
+      "description": "The trial experience is RMB 100 per person, including showroom robot operation, a 3D-printed gift, and refreshments.",
+      "priceLabel": "Experience Fee",
+      "priceUnit": "RMB/person",
+      "cta": "Book an Experience Slot",
+      "supportCta": "Apply to Visit",
+      "benefits": {
+        "robotOperation": {
+          "title": "Robot Operation",
+          "text": "Operate showroom robots and view interactive demonstrations on site."
+        },
+        "printedGift": {
+          "title": "3D-printed Gift",
+          "text": "Receive a small 3D-printed souvenir after the experience."
+        },
+        "refreshments": {
+          "title": "Refreshments",
+          "text": "Basic refreshments are included for short team discussion."
+        }
+      }
+    },
+    "experienceBooking": {
+      "eyebrow": "Experience Booking",
+      "title": "Book an approximately two-hour Robot Valley showroom experience",
+      "description": "Follow the showroom route through real robotics scenes, complete an on-site briefing, operate robots, receive a 3D-printed souvenir, and continue the conversation over refreshments.",
+      "priceLabel": "Trial Experience Fee",
+      "priceUnit": "RMB/person",
+      "priceNote": "Approximately two hours on site, verified by actual visitor count.",
+      "cta": "Book an Experience Slot",
+      "supportCta": "Submit Visit Application First",
+      "stats": {
+        "globalLocations": {
+          "value": "34",
+          "label": "global regions",
+          "text": "Connected to robotics innovation across 34 global regions, giving visitors a clearer view of Robot Valley's industry position."
+        },
+        "enterpriseVisits": {
+          "value": "50+",
+          "label": "enterprise visits/month",
+          "text": "During trial operation, the showroom receives companies, parks, research teams, and industry partners for on-site exchange."
+        }
+      },
+      "benefits": {
+        "robotOperation": {
+          "title": "Operate robots hands-on",
+          "text": "Try robot operation and interactive demonstrations on site, turning technical claims into visible movement and feedback."
+        },
+        "printedGift": {
+          "title": "3D-printed souvenir",
+          "text": "Receive a small 3D-printed souvenir after the experience as a tangible memory of the visit."
+        },
+        "refreshments": {
+          "title": "Refreshment exchange",
+          "text": "Basic refreshments are included so teams can continue discussing needs, visit routes, and follow-up opportunities."
+        }
+      }
+    },
     "detail": {
-      "eyebrow": "Robot Valley Introduction",
-      "title": "A robotics showcase and innovation platform centered on Nanshan Zhigu Industrial Park",
-      "description": "Shenzhen Robot Valley focuses on frontier robotics showcases, application-scenario experiences, industry resource connection, and innovation exchange. Visitors can explore robot bodies, intelligent manufacturing, AI algorithms, core components, and service robot applications while seeing Shenzhen's robotics ecosystem in context.",
+      "eyebrow": "Enter the showroom",
+      "title": "From the entrance to the operation bench, a route for seeing real robotics capability",
+      "description": "Centered on Nanshan Zhigu Industrial Park, Shenzhen Robot Valley organizes frontier robotics showcases, application-scenario experiences, industry resources, and innovation exchange into a clear on-site route. Visitors can explore robot bodies, intelligent manufacturing, AI algorithms, core components, and service robot applications before moving into the experience and exchange path that fits their team.",
       "addressLabel": "Showroom Address",
       "areaLabel": "Showroom Area",
-      "showroomCta": "Explore Showroom",
+      "globeHubLabel": "Robot Valley",
+      "globeAriaLabel": "Global robotics innovation regions connected around Shenzhen Robot Valley",
+      "showroomCta": "View Showroom Experience",
       "cards": {
         "showroom": {
           "tag": "Showroom",
-          "title": "Immersive Showroom Experience",
+          "title": "First, see real robots",
           "description": "Physical robots, interactive demos, and scenario-based displays show the full path from robotics R&D to real-world application. The showroom spans over 2,000 sqm, showcasing cutting-edge achievements in embodied intelligence, industrial automation, service robots, and core components, giving every visitor a close-up experience of real robotics capabilities.",
           "link": "Explore Showroom"
         },
         "ecosystem": {
           "tag": "Ecosystem",
-          "title": "Industry Ecosystem",
-          "description": "The platform connects Nanshan research institutions, robotics companies, application scenarios, and industry services into an efficient collaboration network. Over 200 robotics enterprises cluster here, with 90% of components available within a 3km radius, forming a complete industry chain from core components to system integration.",
-          "link": "Explore Ecosystem"
+          "title": "Then, understand the innovation network",
+          "description": "Behind the showroom, the platform connects Nanshan research institutions, robotics companies, application scenarios, and industry services into an efficient collaboration network. Over 200 robotics enterprises cluster here, with 90% of components available within a 3km radius, forming a complete industry chain from core components to system integration.",
+          "link": "Explore Showroom"
         },
         "visit": {
           "tag": "Visit",
-          "title": "Built for Visitors",
+          "title": "Finally, book the experience",
           "description": "Designed for government parks, enterprise clients, investors, research teams, and industry partners to visit and connect. We customize tour routes and briefing priorities based on each visitor background, offering one-stop reception services including showroom tours, technical demonstrations, industry discussions, and project matchmaking, making every visit efficient and valuable.",
-          "link": "Partnerships"
+          "link": "Explore Showroom"
         }
       }
     },
@@ -178,6 +240,36 @@
     "description": "Please submit your visit request below. Our team will review your preferred date, visitor count, and organization information, then contact you soon.",
     "addressLabel": "Showroom Address",
     "areaLabel": "Showroom Area"
+  },
+  "PaymentPage": {
+    "eyebrow": "Trial Experience Booking",
+    "title": "Book the Shenzhen Robot Valley trial showroom experience",
+    "description": "The trial experience is RMB 100 per person for the on-site showroom visit. It includes showroom robot operation, a 3D-printed gift, and refreshments; payment confirms the experience slot.",
+    "priceLabel": "Experience Fee",
+    "priceUnit": "RMB/person",
+    "priceNote": "Charged by actual visitor count. This page does not calculate a total amount.",
+    "qrEyebrow": "Confirm Payment",
+    "qrTitle": "Experience Slot Payment Code Placeholder",
+    "qrDescription": "This page reserves space for the payment code. Once the official WeChat Pay or Alipay code is uploaded, visitors can scan here to complete the trial experience payment.",
+    "qrPlaceholder": "Payment code pending upload",
+    "remarkTitle": "Payment Note",
+    "remarkText": "Please include your name, contact information, and visitor count in the payment note so staff can verify it.",
+    "applyCta": "Submit Visit Application First",
+    "homeCta": "Back to Home",
+    "benefits": {
+      "robotOperation": {
+        "title": "Showroom Robot Operation",
+        "text": "Includes hands-on robot operation and interactive demonstrations in the showroom."
+      },
+      "printedGift": {
+        "title": "3D-printed Gift",
+        "text": "Visitors can receive a small 3D-printed souvenir after the visit experience."
+      },
+      "refreshments": {
+        "title": "Refreshments",
+        "text": "Basic refreshments are included for a short discussion after the visit."
+      }
+    }
   },
   "ApplicationForm": {
     "required": "*",
@@ -611,6 +703,7 @@
     "applyToVisit": "Apply to Visit",
     "partners": "Partners",
     "visitPlan": "Visit Process",
+    "payment": "Book Experience",
     "mediaInquiry": "Media Inquiry",
     "contact": "Contact Us",
     "about": "About Us",

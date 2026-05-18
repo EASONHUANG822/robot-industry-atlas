@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Line2 } from "three/examples/jsm/lines/Line2.js";
@@ -90,7 +90,7 @@ const LOCATIONS: Location[] = [
 
 const OPTIONS = {
   backgroundColor: "#061a3d",
-  markerColor: "#3b82f6",
+  markerColor: "#6b8fd4",
   autoRotate: true,
   globeRadius: 5.65,
   offset: { y: -1.25, x: 0, z: 0 },
@@ -101,13 +101,36 @@ const numberFormatter = new Intl.NumberFormat("en", {
   signDisplay: "never",
 });
 
-export default function OfficeGlobe() {
+type OfficeGlobeProps = {
+  ariaLabel?: string;
+  hubLabel?: string;
+  scrollContainerRef?: RefObject<HTMLElement | null>;
+};
+
+function clampProgress(value: number) {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(1, value));
+}
+
+function easeInOutCubic(value: number) {
+  const progress = clampProgress(value);
+  return progress < 0.5
+    ? 4 * progress * progress * progress
+    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+}
+
+export default function OfficeGlobe({
+  ariaLabel = "Global robotics innovation connections centered on Shenzhen",
+  hubLabel = "Robot Valley",
+  scrollContainerRef,
+}: OfficeGlobeProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const host = hostRef.current;
     const labelsLayer = labelsRef.current;
+    const scrollSection = scrollContainerRef?.current ?? null;
 
     if (!host || !labelsLayer) return;
 
@@ -126,8 +149,10 @@ export default function OfficeGlobe() {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    controls.enableDamping = true;
-    controls.autoRotate = OPTIONS.autoRotate && !prefersReducedMotion;
+    const shouldDriveWithScroll = Boolean(scrollSection) && !prefersReducedMotion;
+    controls.enabled = !shouldDriveWithScroll;
+    controls.enableDamping = !shouldDriveWithScroll;
+    controls.autoRotate = OPTIONS.autoRotate && !prefersReducedMotion && !shouldDriveWithScroll;
     controls.autoRotateSpeed = 0.4;
     controls.enableZoom = false;
     controls.enablePan = false;
@@ -163,6 +188,8 @@ export default function OfficeGlobe() {
     const hubGlowMaterial = createHubMarker(scene);
     const labelLayoutState = new Map<number, { x: number; y: number }>();
     let frameId = 0;
+    let scrollFrameId = 0;
+    let scrollProgress = 0;
     let isMounted = true;
     let isVisible = true;
 
@@ -181,6 +208,31 @@ export default function OfficeGlobe() {
     resizeObserver.observe(hostElement);
     resize();
 
+    function computeScrollProgress() {
+      if (!scrollSection) return;
+
+      const rect = scrollSection.getBoundingClientRect();
+      const scrollable = rect.height - window.innerHeight;
+      scrollProgress = scrollable <= 0 ? 1 : clampProgress(-rect.top / scrollable);
+    }
+
+    function requestScrollProgress() {
+      if (scrollFrameId) return;
+
+      scrollFrameId = window.requestAnimationFrame(() => {
+        computeScrollProgress();
+        scrollFrameId = 0;
+      });
+    }
+
+    const scrollResizeObserver = scrollSection ? new ResizeObserver(requestScrollProgress) : null;
+    if (scrollSection) {
+      scrollResizeObserver?.observe(scrollSection);
+      window.addEventListener("scroll", requestScrollProgress, { passive: true });
+      window.addEventListener("resize", requestScrollProgress);
+      computeScrollProgress();
+    }
+
     const intersectionObserver = new IntersectionObserver(([entry]) => {
       isVisible = entry?.isIntersecting ?? true;
     });
@@ -190,7 +242,17 @@ export default function OfficeGlobe() {
       if (!isMounted) return;
 
       if (isVisible) {
-        controls.update();
+        if (shouldDriveWithScroll) {
+          const easedProgress = easeInOutCubic(scrollProgress);
+          const angle = easedProgress * Math.PI * 2;
+          camera.position.x = Math.sin(angle) * 10;
+          camera.position.y = Math.sin(easedProgress * Math.PI) * 0.32;
+          camera.position.z = Math.cos(angle) * 10;
+          camera.lookAt(0, 0, 0);
+        } else {
+          controls.update();
+        }
+
         updateLabels(camera, hostElement, labelsElement, labelLayoutState);
         worldGroup.userData.update?.(time);
 
@@ -209,18 +271,24 @@ export default function OfficeGlobe() {
     return () => {
       isMounted = false;
       window.cancelAnimationFrame(frameId);
+      if (scrollFrameId) {
+        window.cancelAnimationFrame(scrollFrameId);
+      }
       intersectionObserver.disconnect();
       resizeObserver.disconnect();
+      scrollResizeObserver?.disconnect();
+      window.removeEventListener("scroll", requestScrollProgress);
+      window.removeEventListener("resize", requestScrollProgress);
       controls.dispose();
       disposeScene(scene);
       renderer.dispose();
       renderer.domElement.remove();
       labelLayoutState.clear();
     };
-  }, []);
+  }, [scrollContainerRef]);
 
   return (
-    <figure className="office-globe" aria-label="Global robotics innovation connections centered on Shenzhen">
+    <figure className="office-globe" aria-label={ariaLabel}>
       <div className="office-globe__mask">
         <div ref={hostRef} className="office-globe__canvas-host" />
         <div ref={labelsRef} className="office-globe__labels">
@@ -235,7 +303,9 @@ export default function OfficeGlobe() {
               <div className="office-globe__label-stack">
                 <div className="office-globe__label-dot" style={{ background: OPTIONS.markerColor }} />
                 <div className={`office-globe__label-text office-globe__label-text--${location.labelPosition}`}>
-                  <span className="office-globe__label-name">{location.label}</span>
+                  <span className="office-globe__label-name">
+                    {location.isHub ? hubLabel : location.label}
+                  </span>
                   <br />
                   <span className="office-globe__label-coordinates">{formatLatLng(location)}</span>
                 </div>
@@ -339,7 +409,7 @@ function createLineFromLngLat({
   geometry.setPositions(points);
 
   const material = new LineMaterial({
-    color: "#7fb0ff",
+    color: "#8fb2e8",
     linewidth: 1,
     fog: false,
   });

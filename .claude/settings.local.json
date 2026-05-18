@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(python3 -c \"import json; json.load\\(open\\('messages/en.json', encoding='utf-8'\\)\\); print\\('en.json OK'\\)\")",
-      "Bash(python3 -c \"import json; json.load\\(open\\('messages/zh.json', encoding='utf-8'\\)\\); print\\('zh.json OK'\\)\")"
+      "Bash(python3 -c \"import json; json.load\\(open\\('messages/zh.json', encoding='utf-8'\\)\\); print\\('zh.json OK'\\)\")",
+      "Bash(rm \"src/app/[locale]/innovation/page.tsx\")",
+      "Bash(rm \"src/app/[locale]/collaboration/page.tsx\")",
+      "Bash(rm \"src/app/[locale]/partners/page.tsx\")",
+      "Bash(rm \"src/app/[locale]/apply/page.tsx\")",
+      "Bash(rm \"src/app/[locale]/apply/success/page.tsx\")"
     ]
   }
 }

@@ -1,8 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LandingDetailSection } from "@/components/landing/LandingDetailSection";
+import { LandingExperienceBooking } from "@/components/landing/LandingExperienceBooking";
 import { LandingHero } from "@/components/landing/LandingHero";
-import { LandingShowroomSection } from "@/components/landing/LandingShowroomSection";
-import { robotValley } from "@/data/robotValley";
+import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/content/paymentOffer";
 import type { AppLocale } from "@/i18n/routing";
 
 type LandingPageProps = {
@@ -26,6 +26,33 @@ export default async function LandingPage({ params }: LandingPageProps) {
         learnMoreHref="/showroom"
         applyLabel={t("applyToVisit")}
       />
+      <LandingExperienceBooking
+        eyebrow={t("experienceBooking.eyebrow")}
+        title={t("experienceBooking.title")}
+        description={t("experienceBooking.description")}
+        priceLabel={t("experienceBooking.priceLabel")}
+        price={TRIAL_PAYMENT_PRICE_CNY}
+        priceUnit={t("experienceBooking.priceUnit")}
+        priceNote={t("experienceBooking.priceNote")}
+        ctaLabel={t("experienceBooking.cta")}
+        supportLabel={t("experienceBooking.supportCta")}
+        stats={[
+          {
+            value: t("experienceBooking.stats.globalLocations.value"),
+            label: t("experienceBooking.stats.globalLocations.label"),
+            text: t("experienceBooking.stats.globalLocations.text"),
+          },
+          {
+            value: t("experienceBooking.stats.enterpriseVisits.value"),
+            label: t("experienceBooking.stats.enterpriseVisits.label"),
+            text: t("experienceBooking.stats.enterpriseVisits.text"),
+          },
+        ]}
+        benefits={PAYMENT_BENEFIT_KEYS.map((benefitKey) => ({
+          title: t(`experienceBooking.benefits.${benefitKey}.title`),
+          text: t(`experienceBooking.benefits.${benefitKey}.text`),
+        }))}
+      />
       <LandingDetailSection
         locale={locale}
         eyebrow={t("detail.eyebrow")}
@@ -33,22 +60,14 @@ export default async function LandingPage({ params }: LandingPageProps) {
         description={t("detail.description")}
         addressLabel={t("detail.addressLabel")}
         areaLabel={t("detail.areaLabel")}
+        globeAriaLabel={t("detail.globeAriaLabel")}
+        globeHubLabel={t("detail.globeHubLabel")}
         showroomCtaLabel={t("detail.showroomCta")}
         showroomHref="/showroom"
         cards={[
           { tag: t("detail.cards.showroom.tag"), title: t("detail.cards.showroom.title"), description: t("detail.cards.showroom.description"), linkLabel: t("detail.cards.showroom.link"), href: "/foundation" },
-          { tag: t("detail.cards.ecosystem.tag"), title: t("detail.cards.ecosystem.title"), description: t("detail.cards.ecosystem.description"), linkLabel: t("detail.cards.ecosystem.link"), href: "/innovation" },
-          { tag: t("detail.cards.visit.tag"), title: t("detail.cards.visit.title"), description: t("detail.cards.visit.description"), linkLabel: t("detail.cards.visit.link"), href: "/collaboration" },
-        ]}
-      />
-      <LandingShowroomSection
-        eyebrow={t("showroom.eyebrow")}
-        title={t("showroom.title")}
-        description={t("showroom.description")}
-        applyLabel={t("showroom.apply")}
-        stats={[
-          { label: t("showroom.stats.companies"), value: robotValley.stats.companies[locale] },
-          { label: t("showroom.stats.area"), value: robotValley.stats.showroomArea[locale] },
+          { tag: t("detail.cards.ecosystem.tag"), title: t("detail.cards.ecosystem.title"), description: t("detail.cards.ecosystem.description"), linkLabel: t("detail.cards.ecosystem.link"), href: "/showroom" },
+          { tag: t("detail.cards.visit.tag"), title: t("detail.cards.visit.title"), description: t("detail.cards.visit.description"), linkLabel: t("detail.cards.visit.link"), href: "/showroom" },
         ]}
       />
     </main>
