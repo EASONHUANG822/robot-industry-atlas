@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  let body: unknown;
-
   try {
-    body = await request.json();
+    await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON request body." }, { status: 400 });
   }
