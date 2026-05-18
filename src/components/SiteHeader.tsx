@@ -7,12 +7,10 @@ import { useState, useCallback, useEffect } from "react";
 
 export function SiteHeader() {
   const t = useTranslations("Header");
-  const visitT = useTranslations("VisitApplication");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
-  // Close menu on Escape key
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -22,7 +20,6 @@ export function SiteHeader() {
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen, closeMenu]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
@@ -37,7 +34,6 @@ export function SiteHeader() {
   const navLinks = [
     { label: t("overview"), href: "/" },
     { label: t("showroom"), href: "/showroom" },
-    { label: t("foundation"), href: "/foundation" },
     { label: t("visit"), href: "/visit" },
     { label: t("payment"), href: "/payment" },
   ];
@@ -70,23 +66,11 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/apply"
-            className="rounded-lg bg-accent px-3 py-2 text-white transition-colors hover:bg-mid-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            {visitT("button")}
-          </Link>
           <LanguageSwitcher />
         </div>
 
         {/* Mobile controls */}
         <div className="flex items-center gap-1 xl:hidden">
-          <Link
-            href="/apply"
-            className="rounded-lg bg-accent px-3 py-2 text-sm text-white transition-colors hover:bg-mid-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            {visitT("button")}
-          </Link>
           <LanguageSwitcher />
           <button
             type="button"
