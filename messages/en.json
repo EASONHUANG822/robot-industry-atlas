@@ -526,11 +526,11 @@
     "colVisit": "Visit",
     "colInfo": "Info",
     "showroom": "Showroom",
+    "about": "About",
     "visitPlan": "Visit Process",
     "payment": "Book Experience",
-    "contact": "Contact Us",
-    "about": "About Us",
     "terms": "Terms of Use",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "contact": "Contact Us"
   }
 }

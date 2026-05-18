@@ -526,11 +526,11 @@
     "colVisit": "参观",
     "colInfo": "信息",
     "showroom": "展厅介绍",
+    "about": "关于我们",
     "visitPlan": "参观流程",
     "payment": "体验预约",
-    "contact": "联系我们",
-    "about": "关于我们",
     "terms": "使用条款",
-    "privacy": "隐私政策"
+    "privacy": "隐私政策",
+    "contact": "联系我们"
   }
 }
