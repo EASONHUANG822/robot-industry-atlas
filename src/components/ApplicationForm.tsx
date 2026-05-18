@@ -12,7 +12,11 @@ type SubmitState = "idle" | "submitting" | "error";
 const inputClassName =
   "w-full rounded border border-line bg-white px-3 py-2 text-sm font-medium text-accent outline-none ring-blue-100 transition placeholder:text-[#9ab0d4] focus:border-accent focus:ring-4 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-[#9ab0d4]";
 
-export function ApplicationForm() {
+type ApplicationFormProps = {
+  successHref?: string;
+};
+
+export function ApplicationForm({ successHref = "/payment?success=1" }: ApplicationFormProps) {
   const router = useRouter();
   const t = useTranslations("ApplicationForm");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -44,7 +48,7 @@ export function ApplicationForm() {
       }
 
       form.reset();
-      router.push("/apply/success");
+      router.push(successHref);
     } catch {
       setErrorMessage(t("errors.network"));
       setSubmitState("error");

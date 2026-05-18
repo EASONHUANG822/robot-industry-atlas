@@ -194,7 +194,11 @@
         "title": "Refreshments",
         "text": "Basic refreshments are included for a short discussion after the visit."
       }
-    }
+    },
+    "formTitle": "Registration Information",
+    "formDescription": "Please fill in your information below. You will proceed to payment after submission.",
+    "successTitle": "Registration Submitted",
+    "successMessage": "Your registration has been received. Please complete payment to confirm your experience slot."
   },
   "ApplicationForm": {
     "required": "*",

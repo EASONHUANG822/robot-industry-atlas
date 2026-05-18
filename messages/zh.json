@@ -194,7 +194,11 @@
         "title": "茶歇",
         "text": "包含基础茶歇服务，适合参观后的短暂交流。"
       }
-    }
+    },
+    "formTitle": "填写报名信息",
+    "formDescription": "请填写以下信息，提交后将进入付款环节。",
+    "successTitle": "报名已提交",
+    "successMessage": "您的报名信息已收到。请完成付款以确认体验名额。"
   },
   "ApplicationForm": {
     "required": "*",
