@@ -22,7 +22,7 @@ export function Footer() {
       title: t("colExplore"),
       links: [
         { label: t("showroom"), href: "/showroom" },
-        { label: t("applyToVisit"), href: "/apply" },
+        { label: t("about"), href: "/foundation" },
       ],
     },
     {
@@ -33,16 +33,11 @@ export function Footer() {
       ],
     },
     {
-      title: t("colRobotValley"),
-      links: [
-        { label: t("about"), href: "/showroom" },
-      ],
-    },
-    {
       title: t("colInfo"),
       links: [
+        { label: t("terms"), href: "/terms" },
+        { label: t("privacy"), href: "/privacy" },
         { label: t("contact"), href: "mailto:contact@robotvalley.cn", external: true },
-        { label: t("mediaInquiry"), href: "/showroom" },
       ],
     },
   ];
@@ -50,13 +45,11 @@ export function Footer() {
   return (
     <footer className="border-t border-line bg-ink">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Logo */}
         <Link href="/" className="inline-block" aria-label="Home">
           <img src="/images/logo.png" alt="" className="h-6 w-auto" />
         </Link>
 
-        {/* Accordion columns */}
-        <div className="mt-8 md:grid md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-8 md:grid md:grid-cols-3 md:gap-8">
           {columns.map((col) => {
             const id = col.title;
             const isOpen = openSection === id;
@@ -94,7 +87,7 @@ export function Footer() {
                   {col.links.map((link) => {
                     const cls = "block py-1 text-sm text-slate-400 hover:text-white transition";
                     return (
-                      <li key={link.label}>
+                      <li key={link.href}>
                         {link.external ? (
                           <a href={link.href} className={cls}>{link.label}</a>
                         ) : (
@@ -109,8 +102,7 @@ export function Footer() {
           })}
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 flex flex-col-reverse items-start gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 border-t border-white/10 pt-6">
           <p className="text-xs text-slate-500">
             &copy; 2026 {t("brand")}
           </p>
