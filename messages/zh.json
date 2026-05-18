@@ -19,53 +19,7 @@
     "title": "深圳机器人谷",
     "description": "从展厅实景、机器人互动到现场交流，深圳机器人谷把机器人产业能力转化为一次可以亲眼看见、亲手体验的参观旅程。",
     "learnMore": "了解展厅体验",
-    "exploreAtlas": "了解机器人谷",
     "applyToVisit": "预约体验名额",
-    "robotValleyStats": {
-      "showroomArea": "机器人谷展厅面积",
-      "companies": "机器人谷企业"
-    },
-    "metricsLabel": "以下为机器人谷生态中的南山片区企业指标",
-    "metrics": {
-      "companies": "南山企业",
-      "makers": "机器人本体",
-      "components": "核心零部件",
-      "aiSoftware": "AI / 软件",
-      "manufacturing": "智能制造"
-    },
-    "showroom": {
-      "eyebrow": "机器人谷展厅",
-      "title": "参观深圳机器人谷展厅",
-      "description": "展厅呈现具身智能、服务机器人、工业自动化、核心零部件与互动演示，让来访者通过真实场景与技术展示了解深圳机器人谷。",
-      "apply": "申请参观",
-      "stats": {
-        "companies": "入驻企业",
-        "area": "展厅面积"
-      }
-    },
-    "payment": {
-      "eyebrow": "试运营体验",
-      "title": "预约试运营现场体验",
-      "description": "试运营体验为 100 元/人，包含展厅机器人操作、3D 打印小礼品和茶歇。",
-      "priceLabel": "体验费用",
-      "priceUnit": "元/人",
-      "cta": "预约体验名额",
-      "supportCta": "申请参观",
-      "benefits": {
-        "robotOperation": {
-          "title": "机器人操作",
-          "text": "在展厅现场体验机器人操作与互动演示。"
-        },
-        "printedGift": {
-          "title": "3D 打印小礼品",
-          "text": "完成体验后可领取一份 3D 打印纪念小礼品。"
-        },
-        "refreshments": {
-          "title": "茶歇服务",
-          "text": "参观期间提供基础茶歇，方便团队交流。"
-        }
-      }
-    },
     "experienceBooking": {
       "eyebrow": "体验预约",
       "title": "预约一次约 2 小时的机器人谷现场体验",
@@ -131,40 +85,7 @@
           "link": "了解展厅"
         }
       }
-    },
-    "whyEyebrow": "为什么关注深圳机器人谷",
-    "whyTitle": "集聚研发、企业与真实应用场景的机器人创新高地",
-    "whyDescription": "机器人谷汇聚南山高校科研、头部机器人企业、应用场景、资本网络与大湾区供应链资源。企业地图作为辅助内容，帮助理解南山机器人生态分布。",
-    "whyItems": {
-      "innovation": "西丽、留仙洞、科技园等片区形成密集的科技创新网络。",
-      "cluster": "机器人本体、AI 软件、核心零部件与智能制造企业在南山持续集聚。",
-      "bayArea": "依托大湾区供应链、资本与应用场景，机器人企业具备跨区域协同优势。"
-    },
-    "datasetEyebrow": "辅助数据集",
-    "datasetTitle": "继续了解南山机器人企业",
-    "datasetDescription": "以下企业卡片展示南山片区机器人相关企业，作为深圳机器人谷生态的补充信息。",
-    "openInteractiveMap": "打开机器人谷地图"
-  },
-  "VisitApplication": {
-    "button": "申请参观",
-    "eyebrow": "展厅参观",
-    "title": "申请参观深圳机器人谷",
-    "close": "关闭申请表单",
-    "required": "*",
-    "fields": {
-      "name": "姓名",
-      "organization": "公司 / 机构",
-      "email": "联系邮箱",
-      "phone": "联系电话",
-      "date": "期望参观日期",
-      "visitors": "参观人数",
-      "message": "留言"
-    },
-    "cancel": "取消",
-    "submit": "提交申请",
-    "successTitle": "感谢申请！",
-    "successMessage": "我们已收到您的参观申请，将尽快与您联系。",
-    "done": "完成"
+    }
   },
   "PaymentPage": {
     "eyebrow": "试运营体验预约",

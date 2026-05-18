@@ -19,53 +19,7 @@
     "title": "Shenzhen Robot Valley",
     "description": "From showroom scenes and robot interaction to on-site exchange, Shenzhen Robot Valley turns robotics capability into a visit journey people can see, touch, and book.",
     "learnMore": "Explore the Experience",
-    "exploreAtlas": "Explore Robot Valley",
     "applyToVisit": "Book an Experience Slot",
-    "robotValleyStats": {
-      "showroomArea": "Robot Valley Showroom Area",
-      "companies": "Companies in Robot Valley"
-    },
-    "metricsLabel": "Nanshan area indicators within the broader Robot Valley ecosystem",
-    "metrics": {
-      "companies": "Nanshan Companies",
-      "makers": "Robot Makers",
-      "components": "Core Components",
-      "aiSoftware": "AI / Software",
-      "manufacturing": "Intelligent Manufacturing"
-    },
-    "showroom": {
-      "eyebrow": "Robot Valley Showroom",
-      "title": "Visit the Shenzhen Robot Valley Showroom",
-      "description": "The showroom presents embodied intelligence, service robots, industrial automation, core components, and interactive demos so visitors can understand Shenzhen Robot Valley through real scenes and technology showcases.",
-      "apply": "Apply for a Visit",
-      "stats": {
-        "companies": "Companies",
-        "area": "Showroom Area"
-      }
-    },
-    "payment": {
-      "eyebrow": "Trial Experience",
-      "title": "Book the Trial Showroom Experience",
-      "description": "The trial experience is RMB 100 per person, including showroom robot operation, a 3D-printed gift, and refreshments.",
-      "priceLabel": "Experience Fee",
-      "priceUnit": "RMB/person",
-      "cta": "Book an Experience Slot",
-      "supportCta": "Apply to Visit",
-      "benefits": {
-        "robotOperation": {
-          "title": "Robot Operation",
-          "text": "Operate showroom robots and view interactive demonstrations on site."
-        },
-        "printedGift": {
-          "title": "3D-printed Gift",
-          "text": "Receive a small 3D-printed souvenir after the experience."
-        },
-        "refreshments": {
-          "title": "Refreshments",
-          "text": "Basic refreshments are included for short team discussion."
-        }
-      }
-    },
     "experienceBooking": {
       "eyebrow": "Experience Booking",
       "title": "Book an approximately two-hour Robot Valley showroom experience",
@@ -131,40 +85,7 @@
           "link": "Explore Showroom"
         }
       }
-    },
-    "whyEyebrow": "Why Shenzhen Robot Valley",
-    "whyTitle": "A concentrated robotics innovation hub for R&D, companies, and real-world applications",
-    "whyDescription": "Robot Valley brings together Nanshan's university research, leading robotics companies, application scenarios, capital networks, and Greater Bay Area supply chain resources. The map remains available as supporting context for understanding the Nanshan enterprise ecosystem.",
-    "whyItems": {
-      "innovation": "Xili, Liuxiandong, Science Park, and nearby innovation zones form a dense technology network.",
-      "cluster": "Robot makers, AI software, core component, and intelligent manufacturing companies continue to cluster in Nanshan.",
-      "bayArea": "Greater Bay Area supply chains, capital, and application scenarios help robotics companies collaborate across the region."
-    },
-    "datasetEyebrow": "Supporting dataset",
-    "datasetTitle": "Also Discover Nanshan Enterprises",
-    "datasetDescription": "The following company cards show Nanshan area robotics enterprises as secondary ecosystem context for Shenzhen Robot Valley.",
-    "openInteractiveMap": "Open Robot Valley Map"
-  },
-  "VisitApplication": {
-    "button": "Apply to Visit",
-    "eyebrow": "Showroom Visit",
-    "title": "Apply to Visit Shenzhen Robot Valley",
-    "close": "Close application form",
-    "required": "*",
-    "fields": {
-      "name": "Name",
-      "organization": "Company / Organization",
-      "email": "Contact Email",
-      "phone": "Phone Number",
-      "date": "Preferred Visit Date",
-      "visitors": "Number of Visitors",
-      "message": "Message"
-    },
-    "cancel": "Cancel",
-    "submit": "Submit Application",
-    "successTitle": "Thank you!",
-    "successMessage": "Your visit request has been received. We will contact you soon.",
-    "done": "Done"
+    }
   },
   "PaymentPage": {
     "eyebrow": "Trial Experience Booking",
