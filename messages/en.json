@@ -413,7 +413,112 @@
           "value": "Line design, automation, digital twin"
         }
       ]
-    }
+    },
+    "platforms": {
+      "title": "Key Innovation Platforms",
+      "description": "Multiple national and provincial innovation platforms are rooted in Shenzhen Robot Valley, providing enterprises with technology R&D, testing, validation, and commercialization support.",
+      "items": [
+        {
+          "title": "Model Camp AI Community",
+          "description": "The Greater Bay Area's first AI-themed industry community, gathering startups in embodied intelligence, foundation models, and robotics with access to computing power, scenarios, and capital."
+        },
+        {
+          "title": "Guangdong Embodied AI Robotics Innovation Center",
+          "description": "A provincial innovation platform focused on core embodied intelligence technologies, driving the R&D and industrialization of humanoid robot systems and key components."
+        },
+        {
+          "title": "Xili Lake International Science and Education City",
+          "description": "Home to research institutes from Tsinghua, Peking University, HIT and more, forming a complete innovation chain from fundamental research to applied development."
+        }
+      ]
+    },
+    "research": {
+      "title": "Frontier Technology Directions",
+      "description": "The innovation strength of Shenzhen Robot Valley is concentrated in these key areas, continuously driving generational advances in robotics technology.",
+      "items": [
+        {
+          "label": "Embodied Intelligence",
+          "value": "Multimodal perception, autonomous decision-making, dexterous manipulation"
+        },
+        {
+          "label": "Humanoid Robots",
+          "value": "Bipedal locomotion, whole-body control, human-robot interaction"
+        },
+        {
+          "label": "AI Foundation Models",
+          "value": "Robot foundation models, task planning, scene understanding"
+        },
+        {
+          "label": "Core Components",
+          "value": "High-performance servos, precision reducers, force sensors"
+        },
+        {
+          "label": "Collaborative Robots",
+          "value": "Safe interaction, flexible manufacturing, easy deployment"
+        },
+        {
+          "label": "Swarm Intelligence",
+          "value": "Multi-robot coordination, distributed control, fleet scheduling"
+        }
+      ]
+    },
+    "models": {
+      "title": "Five Collaboration Models",
+      "description": "Shenzhen Robot Valley connects the full chain from technology R&D to market deployment through multi-tier collaboration mechanisms.",
+      "items": [
+        {
+          "title": "Industry-Academia-Research",
+          "description": "Universities and enterprises jointly tackle challenges, conducting targeted R&D aligned with industry needs and accelerating technology transfer from lab to production line."
+        },
+        {
+          "title": "Investment & Financing",
+          "description": "X-DAY Xili Lake Roadshow Club hosts regular pitch events connecting angel investors, VCs, and industrial capital, with a 100-billion-yuan financing plan providing sustained support."
+        },
+        {
+          "title": "Showcase & Exchange",
+          "description": "The Robot Valley showroom and industry summits provide product display and networking platforms, fostering upstream-downstream collaboration."
+        },
+        {
+          "title": "Project Incubation",
+          "description": "Providing startups with office space, technical support, and industry resource connections, lowering barriers to entry and accelerating product commercialization."
+        },
+        {
+          "title": "International Cooperation",
+          "description": "Connecting global robotics industry resources to drive cross-border technology transfer, market expansion, and mutual recognition of standards."
+        }
+      ]
+    },
+    "partnerEcosystem": {
+      "title": "Partner Ecosystem",
+      "description": "Shenzhen Robot Valley has established deep partnerships with the following types of organizations to jointly advance the robotics industry.",
+      "items": [
+        {
+          "label": "Government & Parks",
+          "value": "Policy support, space capacity, project attraction"
+        },
+        {
+          "label": "Universities & Institutes",
+          "value": "Technology R&D, talent cultivation, joint labs"
+        },
+        {
+          "label": "Investment Institutions",
+          "value": "Full-stage coverage: angel, VC, PE, industry funds"
+        },
+        {
+          "label": "Leading Enterprises",
+          "value": "Scenario sharing, supply chain synergy, joint innovation"
+        },
+        {
+          "label": "Industry Associations",
+          "value": "Standard setting, industry networking, policy advocacy"
+        },
+        {
+          "label": "Service Providers",
+          "value": "IP protection, testing & certification, legal advisory"
+        }
+      ]
+    },
+    "cta": "Book an Experience"
   },
   "Footer": {
     "brand": "Shenzhen Robot Valley",
