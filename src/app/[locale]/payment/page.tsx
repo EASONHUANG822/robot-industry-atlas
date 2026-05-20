@@ -1,28 +1,23 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/content/paymentOffer";
-import { ApplicationForm } from "@/components/ApplicationForm";
+import { ApplicationModal } from "@/components/ApplicationModal";
 import type { AppLocale } from "@/i18n/routing";
 
 type PaymentPageProps = {
   params: Promise<{
     locale: AppLocale;
   }>;
-  searchParams: Promise<{ success?: string }>;
 };
 
-export default async function PaymentPage({ params, searchParams }: PaymentPageProps) {
+export default async function PaymentPage({ params }: PaymentPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("PaymentPage");
-  const { success } = await searchParams;
 
   const benefits = PAYMENT_BENEFIT_KEYS.map((benefitKey) => ({
     title: t(`benefits.${benefitKey}.title`),
     text: t(`benefits.${benefitKey}.text`),
   }));
-
-  const isSuccess = success === "1";
 
   return (
     <main
@@ -64,34 +59,19 @@ export default async function PaymentPage({ params, searchParams }: PaymentPageP
         </div>
       </section>
 
-      {/* Registration Form Section */}
+      {/* CTA Section */}
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl rounded-lg border border-line bg-white p-5 shadow-soft sm:p-6">
-          {isSuccess ? (
-            <div className="py-8 text-center">
-              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-green-100">
-                <svg className="size-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h2 className="mt-4 text-2xl font-bold text-accent">{t("successTitle")}</h2>
-              <p className="mt-2 text-sm leading-6 text-secondary">{t("successMessage")}</p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Link
-                  href="/"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-line bg-white px-5 py-3 text-sm font-semibold text-accent transition-colors hover:bg-blue-50"
-                >
-                  {t("homeCta")}
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <>
-              <h2 className="mb-5 text-xl font-bold text-accent">{t("formTitle")}</h2>
-              <p className="mb-5 text-sm leading-6 text-secondary">{t("formDescription")}</p>
-              <ApplicationForm />
-            </>
-          )}
+        <div className="mx-auto max-w-2xl text-center">
+          <ApplicationModal
+            triggerLabel={t("applyCta")}
+            formTitle={t("formTitle")}
+            formDescription={t("formDescription")}
+            successTitle={t("successTitle")}
+            successMessage={t("successMessage")}
+            homeCta={t("homeCta")}
+            paymentMode={true}
+            locale={locale}
+          />
         </div>
       </section>
     </main>

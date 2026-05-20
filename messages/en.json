@@ -118,8 +118,11 @@
     },
     "formTitle": "Registration Information",
     "formDescription": "Please fill in your information below. You will proceed to payment after submission.",
-    "successTitle": "Registration Submitted",
-    "successMessage": "Your registration has been received. Please complete payment to confirm your experience slot."
+    "successTitle": "Payment Confirmed",
+    "successMessage": "Your payment has been completed and your experience slot is confirmed. We will arrange your visit based on your selected date.",
+    "cancelTitle": "Payment Cancelled",
+    "cancelMessage": "Your payment was cancelled and your experience slot has not been confirmed. To book again, please resubmit your information and complete the payment.",
+    "retryPayment": "Try Again"
   },
   "ApplicationForm": {
     "required": "*",
@@ -131,6 +134,14 @@
       "preferredVisitDate": "Preferred Visit Date",
       "visitorCount": "Number of Visitors",
       "message": "Message"
+    },
+    "payNow": "Proceed to Payment",
+    "paymentMethods": {
+      "legend": "Choose payment method",
+      "stripe": "Card / Stripe",
+      "stripeText": "Pay by card and confirm the experience slot after checkout.",
+      "paypal": "PayPal",
+      "paypalText": "Continue to PayPal, then return here after the payment is completed."
     },
     "submit": "Submit Application",
     "submitting": "Submitting...",

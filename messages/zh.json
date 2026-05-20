@@ -118,8 +118,11 @@
     },
     "formTitle": "填写报名信息",
     "formDescription": "请填写以下信息，提交后将进入付款环节。",
-    "successTitle": "报名已提交",
-    "successMessage": "您的报名信息已收到。请完成付款以确认体验名额。"
+    "successTitle": "支付成功，体验已确认",
+    "successMessage": "您的付款已完成，体验名额已确认。我们将根据您填写的日期安排参观。",
+    "cancelTitle": "支付已取消",
+    "cancelMessage": "您的支付已被取消，体验名额尚未确认。如需重新预约，请再次填写信息并完成支付。",
+    "retryPayment": "重新支付"
   },
   "ApplicationForm": {
     "required": "*",
@@ -131,6 +134,14 @@
       "preferredVisitDate": "期望参观日期",
       "visitorCount": "参观人数",
       "message": "留言"
+    },
+    "payNow": "前往支付",
+    "paymentMethods": {
+      "legend": "选择支付方式",
+      "stripe": "银行卡 / Stripe",
+      "stripeText": "支持银行卡支付，完成后自动确认体验名额。",
+      "paypal": "PayPal",
+      "paypalText": "跳转到 PayPal 完成付款，付款成功后返回确认页。"
     },
     "submit": "提交申请",
     "submitting": "提交中...",

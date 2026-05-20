@@ -1036,7 +1036,7 @@ EOF
 
 ---
 
-### Task 9: 替换所有残留的 `/apply` 路由引用
+### Task 9: 替换所有残留的已删除路由引用
 
 **Files:**
 - Modify: `src/components/landing/LandingHero.tsx`
@@ -1047,27 +1047,25 @@ EOF
 - Modify: `src/app/[locale]/showroom/page.tsx`
 - Delete: `src/components/VisitApplicationButton.tsx`
 
-- [ ] **Step 1: 全局替换所有 `/apply` 为 `/payment`**
-
-在以下文件中将 `href="/apply"` 替换为 `href="/payment"`：
-
-1. `src/components/landing/LandingHero.tsx:41` — 主 CTA 按钮
-2. `src/components/landing/LandingExperienceBooking.tsx:158` — 辅助 CTA 按钮
-3. `src/components/landing/LandingPaymentSection.tsx:46` — CTA 按钮
-4. `src/components/landing/LandingShowroomSection.tsx:40` — CTA 按钮
-5. `src/app/[locale]/visit/page.tsx:50` — CTA 按钮
-6. `src/app/[locale]/showroom/page.tsx:30` — CTA 按钮行
-7. `src/app/[locale]/showroom/page.tsx:60` — MasonryCard linkHref
+- [ ] **Step 1: 替换所有 `/apply` 为 `/payment`，替换 `/partners` 和 `/collaboration` 为 `/foundation`**
 
 ```bash
-# Mac/Linux sed
+# 替换 /apply → /payment
 find src -type f -name "*.tsx" -exec sed -i 's|href="/apply"|href="/payment"|g' {} +
 
+# 替换被删除页面的链接 /partners → /foundation
+find src -type f -name "*.tsx" -exec sed -i 's|linkHref="/partners"|linkHref="/foundation"|g' {} +
+find src -type f -name "*.tsx" -exec sed -i 's|href="/partners"|href="/foundation"|g' {} +
+
+# 替换被删除页面的链接 /collaboration → /foundation
+find src -type f -name "*.tsx" -exec sed -i 's|linkHref="/collaboration"|linkHref="/foundation"|g' {} +
+find src -type f -name "*.tsx" -exec sed -i 's|href="/collaboration"|href="/foundation"|g' {} +
+
 # 验证无残留
-grep -r '"\/apply"' src/ --include="*.tsx" --include="*.ts"
+grep -rn '"\/apply"\|"\/partners"\|"\/collaboration"' src/ --include="*.tsx" --include="*.ts"
 ```
 
-预期：无输出（所有 `/apply` 路由引用已替换为 `/payment`）。
+预期：无输出（所有已删除路由的引用已替换）。
 
 - [ ] **Step 2: 删除未使用的 VisitApplicationButton 组件**
 
@@ -1075,14 +1073,12 @@ grep -r '"\/apply"' src/ --include="*.tsx" --include="*.ts"
 rm src/components/VisitApplicationButton.tsx
 ```
 
-该组件已无任何导入引用。
-
 - [ ] **Step 3: 提交**
 
 ```bash
 git add src/components/landing/LandingHero.tsx src/components/landing/LandingExperienceBooking.tsx src/components/landing/LandingPaymentSection.tsx src/components/landing/LandingShowroomSection.tsx src/app/\[locale\]/visit/page.tsx src/app/\[locale\]/showroom/page.tsx src/components/VisitApplicationButton.tsx
 git commit -m "$(cat <<'EOF'
-fix: replace all /apply route references with /payment, remove unused VisitApplicationButton
+fix: replace deleted route refs (/apply→/payment, /partners→/foundation, /collaboration→/foundation)
 EOF
 )"
 ```

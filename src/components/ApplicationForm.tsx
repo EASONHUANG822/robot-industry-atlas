@@ -4,7 +4,9 @@ import { useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import type { ApplicationFieldKey, ApplicationPayload } from "@/config/applicationForm";
+import { PAYMENT_METHOD_KEYS, type PaymentMethod } from "@/content/paymentOffer";
 import { useRouter } from "@/i18n/navigation";
+import type { AppLocale } from "@/i18n/routing";
 import { BookingCalendar } from "./BookingCalendar";
 
 type SubmitState = "idle" | "submitting" | "error";
@@ -14,9 +16,12 @@ const inputClassName =
 
 type ApplicationFormProps = {
   successHref?: string;
+  onSuccess?: () => void;
+  paymentMode?: boolean;
+  locale?: AppLocale;
 };
 
-export function ApplicationForm({ successHref = "/payment?success=1" }: ApplicationFormProps) {
+export function ApplicationForm({ successHref = "/payment?success=1", onSuccess, paymentMode, locale }: ApplicationFormProps) {
   const router = useRouter();
   const t = useTranslations("ApplicationForm");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -32,14 +37,26 @@ export function ApplicationForm({ successHref = "/payment?success=1" }: Applicat
     const payload = buildPayload(formData);
 
     try {
-      const response = await fetch("/api/applications", {
+      const endpoint = paymentMode ? "/api/payment/create" : "/api/applications";
+
+      const body: Record<string, unknown> = { ...payload };
+      if (paymentMode && locale) {
+        body.locale = locale;
+      }
+      if (paymentMode) {
+        body.paymentMethod = getPaymentMethod(formData);
+      }
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(body),
       });
-      const result = (await response.json().catch(() => undefined)) as { error?: string } | undefined;
+      const result = (await response.json().catch(() => undefined)) as
+        | { error?: string; url?: string }
+        | undefined;
 
       if (!response.ok) {
         setErrorMessage(result?.error || t("errors.generic"));
@@ -47,8 +64,17 @@ export function ApplicationForm({ successHref = "/payment?success=1" }: Applicat
         return;
       }
 
+      if (paymentMode && result?.url) {
+        window.location.href = result.url;
+        return;
+      }
+
       form.reset();
-      router.push(successHref);
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push(successHref);
+      }
     } catch {
       setErrorMessage(t("errors.network"));
       setSubmitState("error");
@@ -133,14 +159,72 @@ export function ApplicationForm({ successHref = "/payment?success=1" }: Applicat
         <textarea id="message" name="message" rows={5} disabled={isSubmitting} className={`${inputClassName} resize-none`} />
       </Field>
 
+      {paymentMode ? <PaymentMethodSelector disabled={isSubmitting} /> : null}
+
       <button
         type="submit"
         disabled={isSubmitting}
         className="rounded bg-accent px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-slate-400"
       >
-        {isSubmitting ? t("submitting") : t("submit")}
+        {isSubmitting ? t("submitting") : paymentMode ? t("payNow") : t("submit")}
       </button>
     </form>
+  );
+}
+
+function PaymentMethodSelector({ disabled }: { disabled: boolean }) {
+  const t = useTranslations("ApplicationForm");
+
+  return (
+    <fieldset>
+      <legend className="text-sm font-semibold text-accent">{t("paymentMethods.legend")}</legend>
+      <div className="mt-2 grid gap-3 sm:grid-cols-2">
+        <PaymentMethodOption
+          defaultChecked
+          disabled={disabled}
+          label={t("paymentMethods.stripe")}
+          name="stripe"
+          text={t("paymentMethods.stripeText")}
+        />
+        <PaymentMethodOption
+          disabled={disabled}
+          label={t("paymentMethods.paypal")}
+          name="paypal"
+          text={t("paymentMethods.paypalText")}
+        />
+      </div>
+    </fieldset>
+  );
+}
+
+function PaymentMethodOption({
+  defaultChecked = false,
+  disabled,
+  label,
+  name,
+  text,
+}: {
+  defaultChecked?: boolean;
+  disabled: boolean;
+  label: string;
+  name: PaymentMethod;
+  text: string;
+}) {
+  return (
+    <label className="block">
+      <input
+        className="peer sr-only"
+        defaultChecked={defaultChecked}
+        disabled={disabled}
+        name="paymentMethod"
+        type="radio"
+        value={name}
+      />
+      <span className="block rounded-lg border border-line bg-white p-4 transition peer-checked:border-accent peer-checked:bg-blue-50 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent peer-disabled:cursor-not-allowed peer-disabled:opacity-60">
+        <span className="block text-sm font-bold text-accent">{label}</span>
+        <span className="mt-1 block text-xs leading-5 text-secondary">{text}</span>
+      </span>
+    </label>
   );
 }
 
@@ -192,4 +276,11 @@ function buildPayload(formData: FormData): ApplicationPayload {
 function getFormValue(formData: FormData, key: ApplicationFieldKey) {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim() : "";
+}
+
+function getPaymentMethod(formData: FormData): PaymentMethod {
+  const value = formData.get("paymentMethod");
+  return PAYMENT_METHOD_KEYS.includes(value as PaymentMethod)
+    ? (value as PaymentMethod)
+    : "stripe";
 }
