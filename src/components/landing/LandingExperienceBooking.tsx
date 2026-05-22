@@ -20,7 +20,6 @@ type LandingExperienceBookingProps = {
   priceUnit: string;
   priceNote: string;
   ctaLabel: string;
-  supportLabel: string;
   stats: ExperienceStat[];
   benefits: ExperienceBenefit[];
 };
@@ -35,7 +34,6 @@ export function LandingExperienceBooking({
   priceNote,
   priceUnit,
   stats,
-  supportLabel,
   title,
 }: LandingExperienceBookingProps) {
   const [featuredBenefit, ...secondaryBenefits] = benefits;
@@ -76,7 +74,7 @@ export function LandingExperienceBooking({
             {stats.map((stat) => (
               <article
                 key={stat.label}
-                className="rounded-lg border border-white/70 bg-white/[0.72] p-5 shadow-[0_18px_48px_rgba(45,74,138,0.10)] backdrop-blur"
+                className="rounded-lg border border-white/70 bg-white/[0.72] p-5 shadow-[0_18px_48px_rgba(45,74,138,0.10)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(45,74,138,0.16)]"
               >
                 <div className="flex items-end gap-2">
                   <span className="font-mono text-5xl font-black leading-none text-accent">
@@ -93,7 +91,7 @@ export function LandingExperienceBooking({
         </div>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-          <article className="relative min-h-[360px] overflow-hidden rounded-lg bg-dark p-6 text-white shadow-[0_24px_72px_rgba(10,30,61,0.22)] sm:p-8">
+          <article className="group relative min-h-[360px] overflow-hidden rounded-lg bg-dark p-6 text-white shadow-[0_24px_72px_rgba(10,30,61,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(10,30,61,0.30)] sm:p-8">
             <div
               className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,16,29,0.92)_0%,rgba(6,16,29,0.68)_48%,rgba(6,16,29,0.30)_100%),url('/images/hero-robot-1.JPG')] bg-cover bg-center"
               aria-hidden="true"
@@ -123,7 +121,7 @@ export function LandingExperienceBooking({
             {secondaryBenefits.map((benefit, index) => (
               <article
                 key={benefit.title}
-                className="rounded-lg border border-line bg-white/[0.86] p-6 shadow-[0_18px_52px_rgba(45,74,138,0.09)] backdrop-blur"
+                className="group rounded-lg border border-line bg-white/[0.86] p-6 shadow-[0_18px_52px_rgba(45,74,138,0.09)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_rgba(45,74,138,0.15)]"
               >
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-mid-light">
                   {String(index + 2).padStart(2, "0")}
@@ -137,7 +135,7 @@ export function LandingExperienceBooking({
           </div>
         </div>
 
-        <div className="mt-6 grid gap-6 rounded-lg border border-white/70 bg-white/[0.78] p-5 shadow-[0_24px_72px_rgba(45,74,138,0.12)] backdrop-blur sm:p-6 lg:grid-cols-[0.72fr_1fr] lg:items-center">
+        <div className="mt-6 grid gap-6 rounded-lg border border-white/70 bg-white/[0.78] p-4 shadow-[0_24px_72px_rgba(45,74,138,0.12)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(45,74,138,0.18)] sm:p-5 lg:grid-cols-[0.72fr_1fr] lg:items-center">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted">{priceLabel}</p>
             <div className="mt-3 flex flex-wrap items-end gap-x-3 gap-y-1">
@@ -150,15 +148,9 @@ export function LandingExperienceBooking({
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
             <Link
               href="/payment"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:bg-mid-dark hover:shadow-[0_14px_28px_rgba(45,74,138,0.22)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0"
+              className="inline-flex min-h-16 items-center justify-center rounded-xl bg-accent px-10 py-5 text-lg font-bold text-white shadow-[0_8px_32px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-mid-dark hover:shadow-[0_12px_40px_rgba(55,89,187,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0"
             >
               {ctaLabel}
-            </Link>
-            <Link
-              href="/payment"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-accent/[0.45] bg-white/80 px-6 py-3 text-sm font-semibold text-accent transition-all duration-200 hover:-translate-y-px hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0"
-            >
-              {supportLabel}
             </Link>
           </div>
         </div>

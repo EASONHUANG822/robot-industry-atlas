@@ -10,7 +10,7 @@ export default async function TermsPage({ params }: Props) {
   const isZh = locale === "zh";
 
   return (
-    <main id="main-content" className="bg-page">
+    <main id="main-content">
       <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
           <h1 className="text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">

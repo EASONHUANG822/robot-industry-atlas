@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { LandingAerialView } from "@/components/landing/LandingAerialView";
 import { LandingDetailSection } from "@/components/landing/LandingDetailSection";
 import { LandingExperienceBooking } from "@/components/landing/LandingExperienceBooking";
 import { LandingHero } from "@/components/landing/LandingHero";
@@ -35,7 +36,6 @@ export default async function LandingPage({ params }: LandingPageProps) {
         priceUnit={t("experienceBooking.priceUnit")}
         priceNote={t("experienceBooking.priceNote")}
         ctaLabel={t("experienceBooking.cta")}
-        supportLabel={t("experienceBooking.supportCta")}
         stats={[
           {
             value: t("experienceBooking.stats.globalLocations.value"),
@@ -69,6 +69,13 @@ export default async function LandingPage({ params }: LandingPageProps) {
           { tag: t("detail.cards.ecosystem.tag"), title: t("detail.cards.ecosystem.title"), description: t("detail.cards.ecosystem.description"), linkLabel: t("detail.cards.ecosystem.link"), href: "/showroom" },
           { tag: t("detail.cards.visit.tag"), title: t("detail.cards.visit.title"), description: t("detail.cards.visit.description"), linkLabel: t("detail.cards.visit.link"), href: "/showroom" },
         ]}
+      />
+      <LandingAerialView
+        eyebrow={t("aerialView.eyebrow")}
+        title={t("aerialView.title")}
+        description={t("aerialView.description")}
+        ctaLabel={t("aerialView.cta")}
+        ctaHref="/showroom"
       />
     </main>
   );

@@ -84,7 +84,7 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
   const isSubmitting = submitState === "submitting";
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
+    <form className="space-y-3" onSubmit={handleSubmit}>
       {submitState === "error" ? (
         <div className="rounded border border-red-200 bg-red-50 p-4">
           <p className="text-sm font-bold text-red-900">{t("errorTitle")}</p>
@@ -92,7 +92,7 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
         </div>
       ) : null}
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-2.5 sm:grid-cols-2">
         <Field label={t("fields.name")} name="name" required>
           <input id="name" required type="text" name="name" autoComplete="name" disabled={isSubmitting} className={inputClassName} />
         </Field>
@@ -156,7 +156,7 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
       </div>
 
       <Field label={t("fields.message")} name="message">
-        <textarea id="message" name="message" rows={5} disabled={isSubmitting} className={`${inputClassName} resize-none`} />
+        <textarea id="message" name="message" rows={2} disabled={isSubmitting} className={`${inputClassName} resize-none`} />
       </Field>
 
       {paymentMode ? <PaymentMethodSelector disabled={isSubmitting} /> : null}
@@ -164,7 +164,7 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded bg-accent px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-slate-400"
+        className="rounded bg-accent px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-slate-400"
       >
         {isSubmitting ? t("submitting") : paymentMode ? t("payNow") : t("submit")}
       </button>
@@ -178,7 +178,7 @@ function PaymentMethodSelector({ disabled }: { disabled: boolean }) {
   return (
     <fieldset>
       <legend className="text-sm font-semibold text-accent">{t("paymentMethods.legend")}</legend>
-      <div className="mt-2 grid gap-3 sm:grid-cols-2">
+      <div className="mt-2 grid gap-2 sm:grid-cols-2">
         <PaymentMethodOption
           defaultChecked
           disabled={disabled}
@@ -220,9 +220,9 @@ function PaymentMethodOption({
         type="radio"
         value={name}
       />
-      <span className="block rounded-lg border border-line bg-white p-4 transition peer-checked:border-accent peer-checked:bg-blue-50 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent peer-disabled:cursor-not-allowed peer-disabled:opacity-60">
+      <span className="block rounded-lg border border-line bg-white p-2.5 transition peer-checked:border-accent peer-checked:bg-blue-50 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent peer-disabled:cursor-not-allowed peer-disabled:opacity-60">
         <span className="block text-sm font-bold text-accent">{label}</span>
-        <span className="mt-1 block text-xs leading-5 text-secondary">{text}</span>
+        <span className="mt-0.5 block text-xs leading-4 text-secondary">{text}</span>
       </span>
     </label>
   );
@@ -232,7 +232,7 @@ function DateField({ children, label }: { children: ReactNode; label: string }) 
   return (
     <div className="block text-sm font-semibold text-accent">
       <span>{label}</span>
-      <span className="mt-2 block">{children}</span>
+      <span className="mt-1 block">{children}</span>
     </div>
   );
 }
@@ -256,7 +256,7 @@ function Field({
         {label}
         {required ? <span className="text-accent"> {t("required")}</span> : null}
       </span>
-      <span className="mt-2 block">{children}</span>
+      <span className="mt-1 block">{children}</span>
     </label>
   );
 }

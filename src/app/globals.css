@@ -46,12 +46,14 @@ a {
 }
 
 .hero-bg-cycle__layer--photo {
+  z-index: 5;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.80) 0%, rgba(6, 16, 29, 0.55) 44%, rgba(6, 16, 29, 0.20) 100%),
     url("/images/robot-valley-hero.png");
 }
 
 .hero-bg-cycle__layer--bg1 {
+  z-index: 4;
   animation-delay: 3s;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
@@ -59,6 +61,7 @@ a {
 }
 
 .hero-bg-cycle__layer--bg2 {
+  z-index: 3;
   animation-delay: 6s;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
@@ -66,6 +69,7 @@ a {
 }
 
 .hero-bg-cycle__layer--robot1 {
+  z-index: 2;
   animation-delay: 9s;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
@@ -73,7 +77,10 @@ a {
 }
 
 .hero-bg-cycle__layer--robot2 {
-  animation-delay: 12s;
+  z-index: 1;
+  animation: none;
+  opacity: 1;
+  transform: none;
   background-image:
     linear-gradient(90deg, rgba(6, 16, 29, 0.82) 0%, rgba(6, 16, 29, 0.58) 44%, rgba(6, 16, 29, 0.22) 100%),
     url("/images/hero-robot-2.JPG");

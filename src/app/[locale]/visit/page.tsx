@@ -26,10 +26,28 @@ export default async function VisitPage({ params }: VisitPageProps) {
       </section>
 
       <section className="border-y border-line bg-white">
-        <div className="mx-auto grid max-w-7xl gap-4 px-4 py-12 sm:px-6 lg:grid-cols-3 lg:px-8">
-          <StepCard number="01" title={t("steps.request.title")} text={t("steps.request.text")} />
-          <StepCard number="02" title={t("steps.confirm.title")} text={t("steps.confirm.text")} />
-          <StepCard number="03" title={t("steps.visit.title")} text={t("steps.visit.text")} />
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-center lg:gap-0">
+            <div className="flex-1">
+              <StepCard number="01" title={t("steps.request.title")} text={t("steps.request.text")} />
+            </div>
+            <div className="hidden px-4 lg:flex lg:items-center" aria-hidden="true">
+              <svg className="size-8 text-accent/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <StepCard number="02" title={t("steps.confirm.title")} text={t("steps.confirm.text")} />
+            </div>
+            <div className="hidden px-4 lg:flex lg:items-center" aria-hidden="true">
+              <svg className="size-8 text-accent/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <StepCard number="03" title={t("steps.visit.title")} text={t("steps.visit.text")} />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -60,9 +78,14 @@ export default async function VisitPage({ params }: VisitPageProps) {
 
 function StepCard({ number, text, title }: { number: string; text: string; title: string }) {
   return (
-    <article className="rounded border border-line bg-white p-5 shadow-sm">
-      <p className="text-xs font-black tabular-nums text-muted">{number}</p>
-      <h2 className="mt-3 text-xl font-bold leading-tight text-accent">{title}</h2>
+    <article className="group relative rounded border border-line bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_16px_40px_rgba(45,74,138,0.12)]">
+      <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-accent to-mid-light opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="flex items-center gap-3">
+        <div className="flex size-10 items-center justify-center rounded-lg bg-accent/10">
+          <span className="text-sm font-black text-accent">{number}</span>
+        </div>
+        <h2 className="text-xl font-bold leading-tight text-accent">{title}</h2>
+      </div>
       <p className="mt-3 text-sm leading-7 text-secondary">{text}</p>
     </article>
   );

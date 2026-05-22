@@ -26,7 +26,7 @@ export function LandingHero({
       <div className="hero-bg-cycle__layer hero-bg-cycle__layer--robot2" aria-hidden="true" />
 
 
-      <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-4 py-16 pb-24 sm:px-6 lg:grid-cols-[1fr_0.76fr] lg:px-8">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-4 py-16 pb-24 sm:px-6 lg:grid-cols-[1fr_0.76fr] lg:px-8">
         <div className="hero-copy-reveal max-w-3xl">
           <p className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-[#b8ccff]">
             <span className="inline-block h-3 w-0.5 rounded-full bg-[#7fb0ff]" aria-hidden="true" />
@@ -53,7 +53,7 @@ export function LandingHero({
         </div>
 
       </div>
-      <div className="hero-scanline-effect" aria-hidden="true" />
+      <div className="hero-scanline-effect relative z-10" aria-hidden="true" />
     </section>
   );
 }

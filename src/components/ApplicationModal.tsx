@@ -71,7 +71,7 @@ export function ApplicationModal({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-mid-dark hover:shadow-lg"
+          className="inline-flex min-h-14 items-center justify-center rounded-xl bg-accent px-10 py-4 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)] hover:-translate-y-0.5"
         >
           {triggerLabel}
         </button>
@@ -109,10 +109,10 @@ export function ApplicationModal({
           <div
             ref={dialogRef}
             tabIndex={-1}
-            className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg border border-line bg-white shadow-[0_24px_72px_rgba(10,30,61,0.22)]"
+            className="relative z-10 flex w-full max-w-xl flex-col rounded-lg border border-line bg-white shadow-[0_24px_72px_rgba(10,30,61,0.22)] sm:max-h-[88vh]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-line px-5 py-4 sm:px-6">
+            <div className="flex shrink-0 items-center justify-between border-b border-line px-4 py-3 sm:px-5">
               <h2 className="text-lg font-extrabold text-accent">{formTitle}</h2>
               <button
                 type="button"
@@ -127,8 +127,8 @@ export function ApplicationModal({
             </div>
 
             {/* Body */}
-            <div className="p-5 sm:p-6">
-              <p className="mb-5 text-sm leading-6 text-secondary">{formDescription}</p>
+            <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-5">
+              <p className="mb-4 text-sm leading-6 text-secondary">{formDescription}</p>
               <ApplicationForm onSuccess={handleSuccess} paymentMode={paymentMode} locale={locale} />
             </div>
           </div>

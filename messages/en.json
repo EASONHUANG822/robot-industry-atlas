@@ -85,6 +85,18 @@
           "link": "Explore Showroom"
         }
       }
+    },
+    "aerialView": {
+      "eyebrow": "Industry Corridor",
+      "title": "An Innovation Corridor Between Tanglang and Yangtai Mountains",
+      "description": "Shenzhen Robot Valley, nestled between Tanglang Mountain and Yangtai Mountain, is a robotics industry innovation corridor stretching approximately 10 kilometers along Liuxian Boulevard, with a radiating area of about 28 square kilometers.",
+      "cta": "Explore Showroom"
+    },
+    "mapAdvantages": {
+      "eyebrow": "Geographic Advantage",
+      "title": "Rooted in Nanshan Zhigu, connecting the global robotics industry",
+      "description": "Shenzhen Robot Valley is located in the heart of Nanshan District, adjacent to Shenzhen University, SUSTech, and other leading institutions. Over 200 robotics enterprises cluster here, forming a complete industry chain from core components to system integration.",
+      "imageAlt": "Shenzhen Robot Valley ecosystem map"
     }
   },
   "PaymentPage": {
@@ -122,7 +134,53 @@
     "successMessage": "Your payment has been completed and your experience slot is confirmed. We will arrange your visit based on your selected date.",
     "cancelTitle": "Payment Cancelled",
     "cancelMessage": "Your payment was cancelled and your experience slot has not been confirmed. To book again, please resubmit your information and complete the payment.",
-    "retryPayment": "Try Again"
+    "retryPayment": "Try Again",
+    "steps": {
+      "eyebrow": "How It Works",
+      "title": "Book in three simple steps",
+      "description": "From submitting your application to confirming your visit, the entire process is quick and can be completed online.",
+      "items": [
+        {
+          "title": "Fill in your details",
+          "text": "Provide your name, contact information, preferred visit date, and submit your visit application."
+        },
+        {
+          "title": "Pay online",
+          "text": "Pay securely via bank card (Stripe) or PayPal to complete the experience fee payment."
+        },
+        {
+          "title": "Confirm your visit",
+          "text": "Once payment is confirmed, your experience slot is reserved. We will arrange your showroom visit based on your selected date."
+        }
+      ]
+    },
+    "showroom": {
+      "eyebrow": "Showroom Preview",
+      "title": "Step inside the Shenzhen Robot Valley showroom",
+      "description": "Located in Nanshan Smart Park, the showroom features cutting-edge robotic products and interactive experience stations. Visitors can operate robots hands-on, explore AI technology applications, and experience innovative manufacturing processes such as 3D printing."
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "What is included in the experience fee?",
+          "a": "The RMB 100 per person fee includes hands-on robot operation, a 3D-printed souvenir, and basic refreshments."
+        },
+        {
+          "q": "Can I bring children?",
+          "a": "Yes. The showroom has interactive experiences suitable for all ages. Please note the number of accompanying children when you register."
+        },
+        {
+          "q": "How long does the visit take?",
+          "a": "A typical visit lasts 60–90 minutes, depending on the interactive experiences you choose and on-site discussions."
+        },
+        {
+          "q": "How do I cancel or reschedule?",
+          "a": "To cancel or reschedule, please contact our team in advance and we will coordinate before your visit date."
+        }
+      ]
+    }
   },
   "ApplicationForm": {
     "required": "*",
@@ -211,47 +269,44 @@
     "backToShowroom": "Back to Showroom"
   },
   "ShowroomPage": {
-    "eyebrow": "Robot Valley Showroom",
-    "title": "A focused showroom for robotics technology, scenes, and industry exchange",
-    "description": "The Shenzhen Robot Valley showroom turns robotics capability into a clear visit experience: physical products, interactive demonstrations, ecosystem briefings, and scenario displays for teams that need to understand the platform quickly.",
-    "apply": "Apply to Visit",
+    "eyebrow": "53F Exhibition Hall",
+    "title": "Shenzhen Robot Valley · 53F Exhibition Hall",
+    "description": "As the core display window of Robot Valley, the 53rd Floor Exhibition Hall centrally presents the latest technological achievements and development ecology of Shenzhen's robotics industry. The visitable area covers 1500 square meters with three themed exhibition areas, gathering 39 robotics enterprises across the entire industry chain.",
+    "apply": "Book Experience",
     "visit": "View Visit Flow",
-    "addressLabel": "Showroom Address",
-    "areaLabel": "Showroom Area",
-    "what": {
-      "tag": "Showroom",
-      "title": "Industry connections driven by showcase experiences",
-      "description": "The Shenzhen Robot Valley showroom turns robotics capability into a clear visit experience. Physical products, interactive demonstrations, ecosystem briefings, and scenario displays help visiting teams quickly understand the platform value and technology landscape.",
-      "link": "Apply to Visit"
+    "stats": {
+      "area": { "value": "1500", "unit": "sqm", "label": "Visitable Area" },
+      "enterprises": { "value": "39", "unit": "enterprises", "label": "Exhibiting Companies" },
+      "corridor": { "value": "10", "unit": "km", "label": "Industry Corridor" }
     },
-    "see": {
-      "tag": "Exhibits",
-      "title": "From core technologies to real-world applications",
-      "description": "The showroom presents embodied intelligence, service robots, industrial automation, core components, and AI systems. Every exhibit is organized around real application scenarios, making technical capabilities tangible through live demonstrations.",
-      "link": "View Visit Flow"
+    "areas": {
+      "eyebrow": "Three Themed Exhibition Areas",
+      "title": "Real-world Display Across the Full Industry Chain",
+      "description": "From humanoid robot complete machines to core components, the three exhibition areas fully present the robotics industry ecosystem.",
+      "humanoid": {
+        "name": "Humanoid Robot Complete Machine Area",
+        "description": "Bringing together top domestic humanoid robot manufacturers to showcase cutting-edge motion control, embodied intelligence and multimodal interaction technologies.",
+        "companies": "Agile Robots, Stardust Intelligence, CrossDimension Intelligence, ZQ Robotics, ZhiPingFang, etc."
+      },
+      "application": {
+        "name": "Large-scale Application Scenario Area",
+        "description": "Showcase the mature implementation of robotics technology in consumer entertainment, home services and other fields.",
+        "companies": "Robosen Robotics, Makeblock, UBTECH Robotics, etc."
+      },
+      "components": {
+        "name": "Core Components Exhibition Area",
+        "description": "Showcase the core components supporting the development of the robotics industry, including key technologies such as dexterous hands, joint modules, and motion control chips.",
+        "companies": "DH-Robotics, Yuansheng Intelligent, Leadshin Technology, etc."
+      }
     },
-    "audience": {
-      "tag": "Visitors",
-      "title": "Tailored visit experiences for diverse audiences",
-      "description": "Designed for government delegations, enterprise clients, investors, research teams, media visitors, and industry partners. We customize tour routes and briefing priorities based on each group background, making every visit efficient and valuable.",
-      "link": "Partnerships"
-    },
-    "collaboration": {
-      "tag": "Collaboration",
-      "title": "Building a robotics industry collaboration ecosystem",
-      "description": "Leveraging the industrial cluster advantages of Shenzhen Robot Valley, we provide partners with comprehensive support including technology matchmaking, project incubation, and market expansion to jointly advance robotics innovation and industrialization.",
-      "link": "Learn More"
-    },
-    "detailFoundation": {
-      "title": "Industrial Foundation",
-      "text": "More than 200 robotics enterprises cluster here, with 90% of components able to assemble quickly within 3 kilometers, supporting a full loop from R&D and manufacturing to application."
-    },
-    "detailInnovation": {
-      "title": "Innovation Ecosystem",
-      "text": "Ecological platforms such as Model Camp, the Greater Bay Area's first AI community, and the Guangdong Embodied AI Robotics Innovation Center are rooted here."
+    "corridor": {
+      "eyebrow": "Industry Corridor",
+      "title": "An Innovation Corridor Between Tanglang and Yangtai Mountains",
+      "description": "Shenzhen Robot Valley, nestled between Tanglang Mountain and Yangtai Mountain, is a robotics industry innovation corridor stretching approximately 10 kilometers along Liuxian Boulevard, with a radiating area of about 28 square kilometers.",
+      "balcony": "The 53rd-floor viewing balcony offers a panoramic view of the Robot Valley industrial corridor, experiencing the charm of the integration of technology and industrial ecology."
     },
     "gallery": {
-      "title": "Event Photos",
+      "title": "Showroom Gallery",
       "close": "Close",
       "prev": "Previous",
       "next": "Next"

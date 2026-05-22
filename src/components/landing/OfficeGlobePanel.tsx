@@ -3,9 +3,14 @@
 import dynamic from "next/dynamic";
 import type { RefObject } from "react";
 
-const OfficeGlobe = dynamic(() => import("@/components/OfficeGlobe"), {
+const Globe3D = dynamic(() => import("@/components/Globe3D"), {
   ssr: false,
-  loading: () => <div className="office-globe office-globe--loading" aria-hidden="true" />,
+  loading: () => (
+    <div
+      className="office-globe office-globe--loading aspect-square w-full"
+      aria-hidden="true"
+    />
+  ),
 });
 
 type OfficeGlobePanelProps = {
@@ -20,10 +25,8 @@ export function OfficeGlobePanel({
   scrollContainerRef,
 }: OfficeGlobePanelProps) {
   return (
-    <OfficeGlobe
-      ariaLabel={ariaLabel}
-      hubLabel={hubLabel}
-      scrollContainerRef={scrollContainerRef}
-    />
+    <div className="aspect-square w-full">
+      <Globe3D />
+    </div>
   );
 }

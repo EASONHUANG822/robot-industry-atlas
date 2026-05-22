@@ -16,7 +16,7 @@ export default async function PaymentSuccessPage({ params }: PaymentSuccessPageP
   return (
     <main
       id="main-content"
-      className="flex min-h-[60vh] items-center justify-center bg-[linear-gradient(180deg,#eef3fb_0%,#f7f9fd_46%,#ffffff_100%)]"
+      className="flex min-h-[60vh] items-center justify-center"
     >
       <div className="mx-auto max-w-xl px-4 py-16 text-center">
         <div className="rounded-lg border border-line bg-white p-8 shadow-soft">

@@ -16,10 +16,15 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
   const t = await getTranslations("ShowroomPage");
 
   return (
-    <main id="main-content" className="bg-page">
-      <section className="border-b border-line bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-          <div>
+    <main id="main-content">
+      {/* Hero Section */}
+      <section className="relative isolate overflow-hidden border-b border-line bg-white">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.95)_0%,rgba(255,255,255,0.82)_44%,rgba(255,255,255,0.55)_100%),url('/images/robot-valley-hero.png')] bg-cover bg-center"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("eyebrow")}</p>
             <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-accent sm:text-5xl">
               {t("title")}
@@ -40,63 +45,72 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
               </Link>
             </div>
           </div>
-          <div
-            className="min-h-[360px] rounded border border-line bg-cover bg-center shadow-soft"
-            style={{ backgroundImage: "url('/images/robot-valley-hero.png')" }}
-            aria-hidden="true"
-          />
+
+          {/* Stats */}
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <StatCard value={t("stats.area.value")} unit={t("stats.area.unit")} label={t("stats.area.label")} />
+            <StatCard value={t("stats.enterprises.value")} unit={t("stats.enterprises.unit")} label={t("stats.enterprises.label")} />
+            <StatCard value={t("stats.corridor.value")} unit={t("stats.corridor.unit")} label={t("stats.corridor.label")} />
+          </div>
         </div>
       </section>
 
+      {/* Exhibition Areas */}
       <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <ul className="columns-1 gap-6 lg:columns-2" role="list">
-            <li className="break-inside-avoid mb-6" role="listitem">
-              <MasonryCard
-                image="/images/show/GXL_5538.JPG"
-                tag={t("what.tag")}
-                title={t("what.title")}
-                description={t("what.description")}
-                linkHref="/payment"
-                linkLabel={t("what.link")}
-                tall
-              />
-            </li>
-            <li className="break-inside-avoid mb-6" role="listitem">
-              <MasonryCard
-                image="/images/show/GXL_5611.JPG"
-                tag={t("see.tag")}
-                title={t("see.title")}
-                description={t("see.description")}
-                linkHref="/visit"
-                linkLabel={t("see.link")}
-              />
-            </li>
-            <li className="break-inside-avoid mb-6" role="listitem">
-              <MasonryCard
-                image="/images/show/GXL_5681.JPG"
-                tag={t("audience.tag")}
-                title={t("audience.title")}
-                description={t("audience.description")}
-                linkHref="/foundation"
-                linkLabel={t("audience.link")}
-                tall
-              />
-            </li>
-            <li className="break-inside-avoid mb-6" role="listitem">
-              <MasonryCard
-                image="/images/show/GXL_5567.JPG"
-                tag={t("collaboration.tag")}
-                title={t("collaboration.title")}
-                description={t("collaboration.description")}
-                linkHref="/foundation"
-                linkLabel={t("collaboration.link")}
-              />
-            </li>
-          </ul>
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("areas.eyebrow")}</p>
+            <h2 className="mt-3 text-balance text-3xl font-bold leading-tight text-accent sm:text-4xl">
+              {t("areas.title")}
+            </h2>
+            <p className="mt-4 text-pretty text-base leading-8 text-secondary">{t("areas.description")}</p>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <AreaCard
+              title={t("areas.humanoid.name")}
+              description={t("areas.humanoid.description")}
+              companies={t("areas.humanoid.companies")}
+              image="/images/show/page2_img1.jpeg"
+            />
+            <AreaCard
+              title={t("areas.application.name")}
+              description={t("areas.application.description")}
+              companies={t("areas.application.companies")}
+              image="/images/show/page2_img3.jpeg"
+            />
+            <AreaCard
+              title={t("areas.components.name")}
+              description={t("areas.components.description")}
+              companies={t("areas.components.companies")}
+              image="/images/show/page3_img2.jpeg"
+            />
+          </div>
         </div>
       </section>
 
+      {/* Industry Corridor */}
+      <section className="border-t border-line bg-white px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-accent">{t("corridor.eyebrow")}</p>
+              <h2 className="mt-3 text-balance text-3xl font-bold leading-tight text-accent sm:text-4xl">
+                {t("corridor.title")}
+              </h2>
+              <p className="mt-4 text-pretty text-base leading-8 text-secondary">{t("corridor.description")}</p>
+              <p className="mt-4 text-pretty text-sm leading-7 text-secondary">{t("corridor.balcony")}</p>
+            </div>
+            <div
+              className="min-h-[320px] rounded-lg border border-line bg-cover bg-center shadow-soft"
+              style={{ backgroundImage: "url('/images/show/GXL_5681.JPG')" }}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Gallery */}
       <PhotoGallery
         t={{
           title: t("gallery.title"),
@@ -108,52 +122,43 @@ export default async function ShowroomPage({ params }: ShowroomPageProps) {
   );
 }
 
-function MasonryCard({
-  image,
-  tag,
+function StatCard({ value, unit, label }: { value: string; unit: string; label: string }) {
+  return (
+    <div className="rounded-lg border border-line bg-white p-5 shadow-sm">
+      <div className="flex items-baseline gap-2">
+        <span className="text-4xl font-bold text-accent">{value}</span>
+        <span className="text-lg font-semibold text-secondary">{unit}</span>
+      </div>
+      <p className="mt-2 text-sm text-secondary">{label}</p>
+    </div>
+  );
+}
+
+function AreaCard({
   title,
   description,
-  linkHref,
-  linkLabel,
-  tall = false,
+  companies,
+  image,
 }: {
-  image: string;
-  tag: string;
   title: string;
   description: string;
-  linkHref: string;
-  linkLabel: string;
-  tall?: boolean;
+  companies: string;
+  image: string;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-lg sm:rounded-xl">
-      <div className={tall ? "aspect-[3/4] lg:aspect-[2/3]" : "aspect-[4/5] lg:aspect-[3/4]"}>
+    <div className="group overflow-hidden rounded-lg border border-line bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+      <div className="aspect-[16/10] overflow-hidden">
         <img
           src={image}
           alt={title}
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <span className="pointer-events-none absolute inset-0 bg-black/45" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-5 text-center lg:p-10">
-        <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-white/80">
-          <span>[</span>
-          <span>{tag}</span>
-          <span>]</span>
-        </div>
-        <h3 className="mt-3 max-w-md text-balance text-2xl font-bold text-white lg:text-3xl">
-          {title}
-        </h3>
-        <p className="mt-3 max-w-md text-pretty text-sm leading-7 text-white/75 lg:text-base">
-          {description}
-        </p>
-        <Link
-          href={linkHref}
-          className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          {linkLabel}
-        </Link>
+      <div className="p-5">
+        <h3 className="text-lg font-bold text-accent">{title}</h3>
+        <p className="mt-2 text-sm leading-6 text-secondary">{description}</p>
+        <p className="mt-3 text-xs text-muted">{companies}</p>
       </div>
     </div>
   );
