@@ -39,7 +39,11 @@ export function buildPayPalOrderRequest({
   quantity: number;
   returnUrl: string;
 }) {
-  const amountValue = (TRIAL_PAYMENT_PRICE_CNY * quantity).toFixed(2);
+  const environment = normalizePayPalEnvironment(process.env.PAYPAL_ENVIRONMENT);
+  const isLive = environment === "live";
+  const currencyCode = isLive ? "CNY" : "USD";
+  const unitPrice = isLive ? TRIAL_PAYMENT_PRICE_CNY : toUsdCents(TRIAL_PAYMENT_PRICE_CNY) / 100;
+  const amountValue = (unitPrice * quantity).toFixed(2);
 
   return {
     intent: "CAPTURE",
@@ -47,9 +51,9 @@ export function buildPayPalOrderRequest({
       {
         reference_id: "robot-valley-trial-experience",
         custom_id: "robot-valley-trial-experience",
-        description: `Shenzhen Robot Valley Trial Experience: ${TRIAL_PAYMENT_PRICE_CNY} CNY/person x ${quantity} person(s)`,
+        description: `Shenzhen Robot Valley Trial Experience: ${unitPrice} ${currencyCode}/person x ${quantity} person(s)`,
         amount: {
-          currency_code: "CNY",
+          currency_code: currencyCode,
           value: amountValue,
         },
       },
@@ -68,6 +72,11 @@ export function buildPayPalOrderRequest({
       },
     },
   } as const;
+}
+
+function toUsdCents(cnyYuan: number) {
+  const cnyToUsdRate = 0.14;
+  return Math.round(cnyYuan * 100 * cnyToUsdRate);
 }
 
 export function getPayPalApprovalUrl(order: PayPalOrderResponse) {
@@ -102,6 +111,7 @@ export async function createPayPalCheckoutOrder({
   const order = (await readPayPalJson(response)) as PayPalOrderResponse;
 
   if (!response.ok) {
+    console.error("PayPal order creation response:", JSON.stringify(order, null, 2));
     throw new Error(getPayPalErrorMessage("PayPal order creation failed.", order));
   }
 
@@ -187,8 +197,13 @@ function getPayPalErrorMessage(fallback: string, body: unknown) {
   if (typeof body === "object" && body !== null) {
     const record = body as Record<string, unknown>;
     const message = record.message || record.error_description || record.name;
+    const details = Array.isArray(record.details)
+      ? (record.details as Array<Record<string, unknown>>)
+          .map((d) => `${d.issue || d.field}: ${d.description || JSON.stringify(d)}`)
+          .join("; ")
+      : "";
     if (typeof message === "string" && message) {
-      return `${fallback} (${message})`;
+      return `${fallback} (${message})${details ? ` [${details}]` : ""}`;
     }
   }
 

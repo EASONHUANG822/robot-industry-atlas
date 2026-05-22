@@ -199,7 +199,25 @@
       "stripe": "银行卡 / Stripe",
       "stripeText": "支持银行卡支付，完成后自动确认体验名额。",
       "paypal": "PayPal",
-      "paypalText": "跳转到 PayPal 完成付款，付款成功后返回确认页。"
+      "paypalText": "跳转到 PayPal 完成付款，付款成功后返回确认页。",
+      "alipay": "支付宝",
+      "alipayText": "跳转到支付宝完成付款，付款成功后返回确认页。",
+      "wechatpay": "微信支付",
+      "wechatpayText": "使用微信扫描二维码完成付款，付款成功后自动确认。",
+      "unionpay": "银联支付",
+      "unionpayText": "跳转到银联支付页面，支持各大银行借记卡和信用卡。"
+    },
+    "wechatpayQr": {
+      "title": "微信扫码支付",
+      "scanTip": "请使用微信扫一扫扫描下方二维码完成支付",
+      "amount": "支付金额",
+      "orderNo": "订单号",
+      "checking": "正在查询支付状态...",
+      "paid": "支付成功",
+      "pending": "等待支付中",
+      "refresh": "刷新二维码",
+      "cancel": "取消支付",
+      "paySuccessRedirect": "支付成功，正在跳转..."
     },
     "submit": "提交申请",
     "submitting": "提交中...",

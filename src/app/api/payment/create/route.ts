@@ -6,6 +6,9 @@ import {
   validateApplicationPayload,
   validatePreferredVisitDateAvailability,
 } from "@/server/airtableApplications";
+import { createAlipayPagePayUrl, buildAlipaySubject, generateOutTradeNo } from "@/server/alipay";
+import { getWechatPayConfig, wechatPayRequest } from "@/server/wechatpay";
+import { getUnionPayConfig } from "@/server/unionpay";
 import { PAYMENT_METHOD_KEYS, TRIAL_PAYMENT_PRICE_CNY, type PaymentMethod } from "@/content/paymentOffer";
 
 export async function POST(request: Request) {
@@ -60,6 +63,71 @@ export async function POST(request: Request) {
   }
 
   try {
+    if (paymentMethod === "wechatpay") {
+      const config = getWechatPayConfig();
+      const outTradeNo = generateOutTradeNo();
+
+      type NativePrepayResponse = { code_url: string };
+
+      const response = await wechatPayRequest<NativePrepayResponse>(
+        config,
+        "POST",
+        "/v3/pay/transactions/native",
+        {
+          appid: config.appid,
+          mchid: config.mchid,
+          description:
+            locale === "zh"
+              ? "深圳机器人谷体验套餐"
+              : "Shenzhen Robot Valley Trial Experience",
+          out_trade_no: outTradeNo,
+          notify_url: `${siteUrl}/api/payment/wechatpay/notify`,
+          amount: {
+            total: TRIAL_PAYMENT_PRICE_CNY * quantity * 100,
+            currency: "CNY",
+          },
+          attach: JSON.stringify(validation.payload),
+        },
+      );
+
+      return NextResponse.json({
+        codeUrl: response.code_url,
+        outTradeNo,
+        amount: TRIAL_PAYMENT_PRICE_CNY * quantity,
+      });
+    }
+
+    if (paymentMethod === "alipay") {
+      const state = await sealPaymentState({
+        locale,
+        payload: validation.payload,
+        paymentMethod,
+        quantity,
+      });
+      const returnUrl = `${siteUrl}/api/payment/alipay/return?state=${encodeURIComponent(state)}`;
+      const alipayUrl = createAlipayPagePayUrl({
+        outTradeNo: generateOutTradeNo(),
+        totalAmount: TRIAL_PAYMENT_PRICE_CNY * quantity,
+        subject: buildAlipaySubject(locale),
+        returnUrl,
+        notifyUrl: `${siteUrl}/api/payment/alipay/notify`,
+      });
+
+      return NextResponse.json({ url: alipayUrl });
+    }
+
+    if (paymentMethod === "unionpay") {
+      getUnionPayConfig(); // validate config early
+      const state = await sealPaymentState({
+        locale,
+        payload: validation.payload,
+        paymentMethod,
+        quantity,
+      });
+      const submitUrl = `${siteUrl}/api/payment/unionpay/submit?state=${encodeURIComponent(state)}`;
+      return NextResponse.json({ url: submitUrl });
+    }
+
     if (paymentMethod === "paypal") {
       const state = await sealPaymentState({
         locale,

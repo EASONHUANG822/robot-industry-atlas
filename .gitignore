@@ -17,3 +17,6 @@ tmp-map-redesign.png
 *.xlsx
 data/geocode-cache.backup.json
 data/geocode-cache.json
+pay/
+.agents/
+.superpowers/

@@ -8,6 +8,6 @@ export const PAYMENT_BENEFIT_KEYS = [
 
 export type PaymentBenefitKey = (typeof PAYMENT_BENEFIT_KEYS)[number];
 
-export const PAYMENT_METHOD_KEYS = ["stripe", "paypal"] as const;
+export const PAYMENT_METHOD_KEYS = ["stripe", "paypal", "alipay", "wechatpay", "unionpay"] as const;
 
 export type PaymentMethod = (typeof PAYMENT_METHOD_KEYS)[number];

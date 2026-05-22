@@ -199,7 +199,25 @@
       "stripe": "Card / Stripe",
       "stripeText": "Pay by card and confirm the experience slot after checkout.",
       "paypal": "PayPal",
-      "paypalText": "Continue to PayPal, then return here after the payment is completed."
+      "paypalText": "Continue to PayPal, then return here after the payment is completed.",
+      "alipay": "Alipay",
+      "alipayText": "Continue to Alipay, then return here after the payment is completed.",
+      "wechatpay": "WeChat Pay",
+      "wechatpayText": "Scan the QR code with WeChat to complete the payment.",
+      "unionpay": "UnionPay",
+      "unionpayText": "Continue to UnionPay payment page. Supports major bank debit and credit cards."
+    },
+    "wechatpayQr": {
+      "title": "WeChat Pay QR Code",
+      "scanTip": "Scan the QR code below with WeChat to complete payment",
+      "amount": "Amount",
+      "orderNo": "Order No.",
+      "checking": "Checking payment status...",
+      "paid": "Payment successful",
+      "pending": "Waiting for payment",
+      "refresh": "Refresh QR Code",
+      "cancel": "Cancel payment",
+      "paySuccessRedirect": "Payment successful, redirecting..."
     },
     "submit": "Submit Application",
     "submitting": "Submitting...",
