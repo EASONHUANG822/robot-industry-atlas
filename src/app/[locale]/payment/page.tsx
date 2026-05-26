@@ -1,7 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/content/paymentOffer";
-import { Link } from "@/i18n/navigation";
+import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
+import { CheckoutModal } from "@/components/CheckoutModal";
+import { ImageCarousel } from "@/components/ImageCarousel";
+import type { CheckoutLabels } from "@/components/CheckoutModal";
 import type { AppLocale } from "@/i18n/routing";
 
 type PaymentPageProps = {
@@ -15,10 +17,54 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
   setRequestLocale(locale);
   const t = await getTranslations("PaymentPage");
 
+  const checkoutLabels: CheckoutLabels = {
+    title: t("checkoutModal.title"),
+    close: t("checkoutModal.close"),
+    from: t("checkoutModal.from"),
+    bookingFee: t("checkoutModal.bookingFee"),
+    selectDate: t("checkoutModal.selectDate"),
+    selectTime: t("checkoutModal.selectTime"),
+    today: t("checkoutModal.today"),
+    tomorrow: t("checkoutModal.tomorrow"),
+    otherDates: t("checkoutModal.otherDates"),
+    noSlots: t("checkoutModal.noSlots"),
+    continueToPayment: t("checkoutModal.continueToPayment"),
+    total: t("checkoutModal.total"),
+    perPerson: t("checkoutModal.perPerson"),
+    weekdays: ["checkoutModal.weekdays.0", "checkoutModal.weekdays.1", "checkoutModal.weekdays.2", "checkoutModal.weekdays.3", "checkoutModal.weekdays.4", "checkoutModal.weekdays.5", "checkoutModal.weekdays.6"].map((k) => t(k)),
+    months: Array.from({ length: 12 }, (_, i) => t(`checkoutModal.months.${i}`)),
+    formTitle: t("checkoutModal.formTitle"),
+    formBack: t("checkoutModal.formBack"),
+    formDescription: t("checkoutModal.formDescription"),
+    visitorCount: t("checkoutModal.visitorCount"),
+  };
+
   const benefits = PAYMENT_BENEFIT_KEYS.map((benefitKey) => ({
     title: t(`benefits.${benefitKey}.title`),
     text: t(`benefits.${benefitKey}.text`),
   }));
+
+  const showroomCarouselImages = [
+    { src: "/images/支付页.jpg", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5655.JPG", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5671.JPG", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5679.JPG", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5681.JPG", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5628.JPG", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5619.JPG", alt: t("showroom.title") },
+    { src: "/images/show/GXL_5611.JPG", alt: t("showroom.title") },
+  ];
+
+  const carouselLabels = {
+    previousSlide: t("showroom.carousel.previousSlide"),
+    nextSlide: t("showroom.carousel.nextSlide"),
+    slideNumberTemplate: t("showroom.carousel.slideNumber"),
+  };
+
+  const productCarouselImages = [
+    { src: "/images/支付2.jpg", alt: t("checkoutModal.productName") },
+    { src: "/images/支付页.jpg", alt: t("checkoutModal.productName") },
+  ];
 
   return (
     <main id="main-content">
@@ -55,12 +101,17 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                   <span className="pb-1 text-xl font-bold text-secondary">{t("priceUnit")}</span>
                 </div>
               </div>
-              <Link
-                href="/payment/register"
-                className="inline-flex min-h-14 items-center justify-center whitespace-nowrap rounded-xl bg-accent px-10 py-4 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)]"
-              >
-                {t("applyCta")}
-              </Link>
+              <CheckoutModal
+                triggerLabel={t("applyCta")}
+                triggerClassName="inline-flex min-h-14 items-center justify-center whitespace-nowrap rounded-xl bg-accent px-10 py-4 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)]"
+                productName={t("checkoutModal.productName")}
+                productDescription={t("checkoutModal.productDescription")}
+                productImages={productCarouselImages}
+                price={TRIAL_PAYMENT_PRICE_CNY}
+                bookingFee={5}
+                labels={checkoutLabels}
+                locale={locale}
+              />
             </div>
           </div>
 
@@ -159,12 +210,17 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                 {t("showroom.description")}
               </p>
               <div className="mt-8">
-                <Link
-                  href="/payment/register"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-lg"
-                >
-                  {t("applyCta")}
-                </Link>
+                <CheckoutModal
+                  triggerLabel={t("applyCta")}
+                  triggerClassName="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-lg"
+                  productName={t("checkoutModal.productName")}
+                  productDescription={t("checkoutModal.productDescription")}
+                  productImages={productCarouselImages}
+                  price={TRIAL_PAYMENT_PRICE_CNY}
+                  bookingFee={5}
+                  labels={checkoutLabels}
+                  locale={locale}
+                />
               </div>
             </ScrollReveal>
 
@@ -172,9 +228,9 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
               <div className="group relative">
                 <div className="absolute -inset-3 rounded-2xl bg-gradient-to-br from-accent/5 to-mid-light/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative overflow-hidden rounded-xl border border-line shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_24px_60px_rgba(45,74,138,0.18)]">
-                  <div
-                    className="aspect-[16/10] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                    style={{ backgroundImage: "url('/images/show/GXL_5655.JPG')" }}
+                  <ImageCarousel
+                    images={showroomCarouselImages}
+                    labels={carouselLabels}
                   />
                 </div>
               </div>
@@ -248,12 +304,17 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
               {t("description")}
             </p>
             <div className="mt-8">
-              <Link
-                href="/payment/register"
-                className="inline-flex min-h-14 items-center justify-center whitespace-nowrap rounded-xl bg-accent px-10 py-4 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)]"
-              >
-                {t("applyCta")}
-              </Link>
+              <CheckoutModal
+                triggerLabel={t("applyCta")}
+                triggerClassName="inline-flex min-h-14 items-center justify-center whitespace-nowrap rounded-xl bg-accent px-10 py-4 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)]"
+                productName={t("checkoutModal.productName")}
+                productDescription={t("checkoutModal.productDescription")}
+                productImages={productCarouselImages}
+                price={TRIAL_PAYMENT_PRICE_CNY}
+                bookingFee={5}
+                labels={checkoutLabels}
+                locale={locale}
+              />
             </div>
           </ScrollReveal>
         </div>

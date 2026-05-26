@@ -3,7 +3,7 @@ import { LandingAerialView } from "@/components/landing/LandingAerialView";
 import { LandingDetailSection } from "@/components/landing/LandingDetailSection";
 import { LandingExperienceBooking } from "@/components/landing/LandingExperienceBooking";
 import { LandingHero } from "@/components/landing/LandingHero";
-import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/content/paymentOffer";
+import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
 import type { AppLocale } from "@/i18n/routing";
 
 type LandingPageProps = {
