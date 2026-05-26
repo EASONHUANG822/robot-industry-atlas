@@ -8,7 +8,7 @@
     "overview": "Home",
     "showroom": "Showroom",
     "visit": "Visit Process",
-    "payment": "Book Experience"
+    "payment": "Visit Application"
   },
   "LanguageSwitcher": {
     "zh": "中文",
@@ -106,14 +106,31 @@
     "priceLabel": "Experience Fee",
     "priceUnit": "RMB/person",
     "priceNote": "Charged by actual visitor count. This page does not calculate a total amount.",
-    "qrEyebrow": "Confirm Payment",
-    "qrTitle": "Experience Slot Payment Code Placeholder",
-    "qrDescription": "This page reserves space for the payment code. Once the official WeChat Pay or Alipay code is uploaded, visitors can scan here to complete the trial experience payment.",
-    "qrPlaceholder": "Payment code pending upload",
-    "remarkTitle": "Payment Note",
-    "remarkText": "Please include your name, contact information, and visitor count in the payment note so staff can verify it.",
     "applyCta": "Submit Visit Application First",
     "homeCta": "Back to Home",
+    "checkoutModal": {
+      "title": "Tickets",
+      "close": "Close",
+      "from": "from",
+      "bookingFee": "Booking Fee",
+      "selectDate": "Select Date",
+      "selectTime": "Select Time",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "otherDates": "Other Dates",
+      "noSlots": "Select from available time slots",
+      "continueToPayment": "Continue",
+      "total": "Total",
+      "perPerson": "person(s)",
+      "productName": "Shenzhen Robot Valley Trial Experience",
+      "productDescription": "Includes showroom robot operation, 3D-printed souvenir and refreshments. Approximately 2 hours on site.",
+      "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "formTitle": "Visitor Information",
+      "formBack": "Back",
+      "formDescription": "Please fill in the information below. We will contact you by email after submission.",
+      "visitorCount": "Visitors"
+    },
     "benefits": {
       "robotOperation": {
         "title": "Showroom Robot Operation",
@@ -129,12 +146,9 @@
       }
     },
     "formTitle": "Registration Information",
-    "formDescription": "Please fill in your information below. You will proceed to payment after submission.",
-    "successTitle": "Payment Confirmed",
-    "successMessage": "Your payment has been completed and your experience slot is confirmed. We will arrange your visit based on your selected date.",
-    "cancelTitle": "Payment Cancelled",
-    "cancelMessage": "Your payment was cancelled and your experience slot has not been confirmed. To book again, please resubmit your information and complete the payment.",
-    "retryPayment": "Try Again",
+    "formDescription": "Please fill in your information below. We will contact you by email after submission.",
+    "successTitle": "Application Submitted",
+    "successMessage": "Your visit application has been submitted. We will review it within 1-2 business days and notify you of the result by email.",
     "steps": {
       "eyebrow": "How It Works",
       "title": "Book in three simple steps",
@@ -145,19 +159,24 @@
           "text": "Provide your name, contact information, preferred visit date, and submit your visit application."
         },
         {
-          "title": "Pay online",
-          "text": "Pay securely via bank card (Stripe) or PayPal to complete the experience fee payment."
+          "title": "Under Review",
+          "text": "After submission, we will review your application within 1-2 business days and notify you of the result by email."
         },
         {
           "title": "Confirm your visit",
-          "text": "Once payment is confirmed, your experience slot is reserved. We will arrange your showroom visit based on your selected date."
+          "text": "Once approved, follow the payment instructions in the email to confirm your visit slot. We will arrange your showroom visit based on your selected date."
         }
       ]
     },
     "showroom": {
       "eyebrow": "Showroom Preview",
       "title": "Step inside the Shenzhen Robot Valley showroom",
-      "description": "Located in Nanshan Smart Park, the showroom features cutting-edge robotic products and interactive experience stations. Visitors can operate robots hands-on, explore AI technology applications, and experience innovative manufacturing processes such as 3D printing."
+      "description": "Located in Nanshan Smart Park, the showroom features cutting-edge robotic products and interactive experience stations. Visitors can operate robots hands-on, explore AI technology applications, and experience innovative manufacturing processes such as 3D printing.",
+      "carousel": {
+        "previousSlide": "Previous slide",
+        "nextSlide": "Next slide",
+        "slideNumber": "Slide %n%"
+      }
     },
     "faq": {
       "eyebrow": "FAQ",
@@ -192,32 +211,6 @@
       "preferredVisitDate": "Preferred Visit Date",
       "visitorCount": "Number of Visitors",
       "message": "Message"
-    },
-    "payNow": "Proceed to Payment",
-    "paymentMethods": {
-      "legend": "Choose payment method",
-      "stripe": "Card / Stripe",
-      "stripeText": "Pay by card and confirm the experience slot after checkout.",
-      "paypal": "PayPal",
-      "paypalText": "Continue to PayPal, then return here after the payment is completed.",
-      "alipay": "Alipay",
-      "alipayText": "Continue to Alipay, then return here after the payment is completed.",
-      "wechatpay": "WeChat Pay",
-      "wechatpayText": "Scan the QR code with WeChat to complete the payment.",
-      "unionpay": "UnionPay",
-      "unionpayText": "Continue to UnionPay payment page. Supports major bank debit and credit cards."
-    },
-    "wechatpayQr": {
-      "title": "WeChat Pay QR Code",
-      "scanTip": "Scan the QR code below with WeChat to complete payment",
-      "amount": "Amount",
-      "orderNo": "Order No.",
-      "checking": "Checking payment status...",
-      "paid": "Payment successful",
-      "pending": "Waiting for payment",
-      "refresh": "Refresh QR Code",
-      "cancel": "Cancel payment",
-      "paySuccessRedirect": "Payment successful, redirecting..."
     },
     "submit": "Submit Application",
     "submitting": "Submitting...",
@@ -547,7 +540,7 @@
     "showroom": "Showroom",
     "about": "About",
     "visitPlan": "Visit Process",
-    "payment": "Book Experience",
+    "payment": "Visit Application",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
     "contact": "Contact Us"

@@ -8,7 +8,7 @@
     "overview": "首页",
     "showroom": "展厅介绍",
     "visit": "参观流程",
-    "payment": "体验预约"
+    "payment": "参观申请"
   },
   "LanguageSwitcher": {
     "zh": "中文",
@@ -106,14 +106,31 @@
     "priceLabel": "体验费用",
     "priceUnit": "元/人",
     "priceNote": "按实际到访人数计费，暂不在页面内计算总价。",
-    "qrEyebrow": "确认付款",
-    "qrTitle": "体验名额收款码占位",
-    "qrDescription": "当前页面先预留收款码位置。上传正式微信或支付宝收款码后，来访者可在此扫码完成试运营体验付款。",
-    "qrPlaceholder": "收款码待上传",
-    "remarkTitle": "付款备注",
-    "remarkText": "付款时请备注姓名、联系方式与参观人数，方便工作人员核对。",
     "applyCta": "先提交参观申请",
     "homeCta": "返回首页",
+    "checkoutModal": {
+      "title": "选择门票",
+      "close": "关闭",
+      "from": "起",
+      "bookingFee": "预约服务费",
+      "selectDate": "选择日期",
+      "selectTime": "选择时间",
+      "today": "今天",
+      "tomorrow": "明天",
+      "otherDates": "其他日期",
+      "noSlots": "选择可用时间段",
+      "continueToPayment": "继续填写信息",
+      "total": "合计",
+      "perPerson": "人",
+      "productName": "深圳机器人谷试运营体验",
+      "productDescription": "包含展厅机器人操作、3D 打印小礼品和茶歇，约 2 小时现场体验。",
+      "weekdays": ["日", "一", "二", "三", "四", "五", "六"],
+      "months": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+      "formTitle": "填写参观信息",
+      "formBack": "返回修改",
+      "formDescription": "请填写以下信息，提交后我们将通过邮件与您联系。",
+      "visitorCount": "参观人数"
+    },
     "benefits": {
       "robotOperation": {
         "title": "展厅机器人操作",
@@ -130,11 +147,8 @@
     },
     "formTitle": "填写报名信息",
     "formDescription": "请填写以下信息，提交后将进入付款环节。",
-    "successTitle": "支付成功，体验已确认",
-    "successMessage": "您的付款已完成，体验名额已确认。我们将根据您填写的日期安排参观。",
-    "cancelTitle": "支付已取消",
-    "cancelMessage": "您的支付已被取消，体验名额尚未确认。如需重新预约，请再次填写信息并完成支付。",
-    "retryPayment": "重新支付",
+    "successTitle": "申请已提交",
+    "successMessage": "您的参观申请已成功提交。我们将在 1-2 个工作日内完成审核，审核结果将以邮件形式通知您，请留意邮箱。",
     "steps": {
       "eyebrow": "预约流程",
       "title": "三步完成体验预约",
@@ -145,19 +159,24 @@
           "text": "填写姓名、联系方式、期望参观日期等基本信息，提交参观申请。"
         },
         {
-          "title": "在线支付",
-          "text": "支持银行卡（Stripe）和 PayPal 在线支付，安全便捷地完成体验费用缴纳。"
+          "title": "等待审核",
+          "text": "提交申请后，我们会在 1-2 个工作日内审核，并通过邮件通知审核结果。"
         },
         {
           "title": "确认参观",
-          "text": "支付成功后即确认体验名额，我们将根据您选择的日期安排展厅参观。"
+          "text": "审核通过后，按邮件指引完成转账即可确认参观名额，我们会根据您选择的日期安排展厅参观。"
         }
       ]
     },
     "showroom": {
       "eyebrow": "展厅实景",
       "title": "走进深圳机器人谷展厅",
-      "description": "展厅位于深圳南山智园，汇集了多款前沿机器人产品与互动体验设备。参观者可现场操作机器人、了解人工智能技术应用，并体验 3D 打印等创新制造流程。"
+      "description": "展厅位于深圳南山智园，汇集了多款前沿机器人产品与互动体验设备。参观者可现场操作机器人、了解人工智能技术应用，并体验 3D 打印等创新制造流程。",
+      "carousel": {
+        "previousSlide": "上一张",
+        "nextSlide": "下一张",
+        "slideNumber": "第 %n% 张幻灯片"
+      }
     },
     "faq": {
       "eyebrow": "常见问题",
@@ -192,32 +211,6 @@
       "preferredVisitDate": "期望参观日期",
       "visitorCount": "参观人数",
       "message": "留言"
-    },
-    "payNow": "前往支付",
-    "paymentMethods": {
-      "legend": "选择支付方式",
-      "stripe": "银行卡 / Stripe",
-      "stripeText": "支持银行卡支付，完成后自动确认体验名额。",
-      "paypal": "PayPal",
-      "paypalText": "跳转到 PayPal 完成付款，付款成功后返回确认页。",
-      "alipay": "支付宝",
-      "alipayText": "跳转到支付宝完成付款，付款成功后返回确认页。",
-      "wechatpay": "微信支付",
-      "wechatpayText": "使用微信扫描二维码完成付款，付款成功后自动确认。",
-      "unionpay": "银联支付",
-      "unionpayText": "跳转到银联支付页面，支持各大银行借记卡和信用卡。"
-    },
-    "wechatpayQr": {
-      "title": "微信扫码支付",
-      "scanTip": "请使用微信扫一扫扫描下方二维码完成支付",
-      "amount": "支付金额",
-      "orderNo": "订单号",
-      "checking": "正在查询支付状态...",
-      "paid": "支付成功",
-      "pending": "等待支付中",
-      "refresh": "刷新二维码",
-      "cancel": "取消支付",
-      "paySuccessRedirect": "支付成功，正在跳转..."
     },
     "submit": "提交申请",
     "submitting": "提交中...",
@@ -547,7 +540,7 @@
     "showroom": "展厅介绍",
     "about": "关于我们",
     "visitPlan": "参观流程",
-    "payment": "体验预约",
+    "payment": "参观申请",
     "terms": "使用条款",
     "privacy": "隐私政策",
     "contact": "联系我们"
