@@ -13,20 +13,16 @@
   },
   "dependencies": {
     "@swc/core": "^1.15.33",
-    "alipay-sdk": "^4.14.0",
     "next": "^15.2.4",
     "next-intl": "^4.9.1",
-    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^6.12.4",
-    "stripe": "^22.1.1",
     "three": "^0.172.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
-    "@types/qrcode": "^1.5.6",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/three": "^0.172.0",
