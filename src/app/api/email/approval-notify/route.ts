@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { sendApprovalNotificationEmail } from "@/server/resend";
 import { TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
@@ -6,7 +7,14 @@ export async function POST(request: Request) {
   const secret = request.headers.get("x-webhook-secret");
   const expectedSecret = process.env.WEBHOOK_SECRET;
 
-  if (!expectedSecret || secret !== expectedSecret) {
+  if (!expectedSecret || !secret) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const enc = new TextEncoder();
+  const a = enc.encode(secret);
+  const b = enc.encode(expectedSecret);
+  if (a.length !== b.length || !timingSafeEqual(a, b)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
