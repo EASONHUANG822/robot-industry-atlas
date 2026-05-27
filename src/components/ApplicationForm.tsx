@@ -171,6 +171,12 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
         <textarea id="message" name="message" rows={2} disabled={isSubmitting} className={`${inputClassName} resize-none`} />
       </Field>
 
+      {paymentMode ? (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+          <p className="text-sm font-medium text-amber-800">{t("trialNotice")}</p>
+        </div>
+      ) : null}
+
       <button
         type="submit"
         disabled={isSubmitting}

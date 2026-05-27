@@ -48,7 +48,7 @@
         },
         "printedGift": {
           "title": "3D-printed souvenir",
-          "text": "Receive a small 3D-printed souvenir after the experience as a tangible memory of the visit."
+          "text": "Receive a small 3D-printed souvenir after the experience as a tangible memory of the visit. During trial operation, groups of 5 or more only."
         },
         "refreshments": {
           "title": "Refreshment exchange",
@@ -102,7 +102,7 @@
   "PaymentPage": {
     "eyebrow": "Trial Experience Booking",
     "title": "Book the Shenzhen Robot Valley trial showroom experience",
-    "description": "The trial experience is RMB 100 per person for the on-site showroom visit. It includes showroom robot operation, a 3D-printed gift, and refreshments; payment confirms the experience slot.",
+    "description": "The trial experience is RMB 100 per person for the on-site showroom visit. It includes showroom robot operation, a 3D-printed gift, and refreshments; payment confirms the experience slot. During trial operation, groups of 5 or more only.",
     "priceLabel": "Experience Fee",
     "priceUnit": "RMB/person",
     "priceNote": "Charged by actual visitor count. This page does not calculate a total amount.",
@@ -123,7 +123,7 @@
       "total": "Total",
       "perPerson": "person(s)",
       "productName": "Shenzhen Robot Valley Trial Experience",
-      "productDescription": "Includes showroom robot operation, 3D-printed souvenir and refreshments. Approximately 2 hours on site.",
+      "productDescription": "Includes showroom robot operation, 3D-printed souvenir and refreshments. Approximately 1 hour on site.",
       "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
       "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       "formTitle": "Visitor Information",
@@ -212,6 +212,7 @@
       "visitorCount": "Number of Visitors",
       "message": "Message"
     },
+    "trialNotice": "During trial operation, groups of 5 or more only.",
     "submit": "Submit Application",
     "submitting": "Submitting...",
     "successTitle": "Application submitted",
