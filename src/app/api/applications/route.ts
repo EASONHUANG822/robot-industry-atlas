@@ -4,19 +4,15 @@ import {
   validateApplicationPayload,
   validatePreferredVisitDateAvailability,
 } from "@/server/airtableApplications";
-import { sendApplicationReceivedEmail } from "@/server/resend";
 
 export async function POST(request: Request) {
-  let body: Record<string, unknown>;
+  let body: unknown;
 
   try {
-    body = (await request.json()) as Record<string, unknown>;
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON request body." }, { status: 400 });
   }
-
-  const applicationType = String(body.applicationType || "visit");
-  const locale = String(body.locale || "zh");
 
   const validation = validateApplicationPayload(body);
   if (!validation.ok) {
@@ -34,19 +30,6 @@ export async function POST(request: Request) {
     const result = await createAirtableApplication(validation.payload);
     if (!result.ok) {
       return NextResponse.json({ error: result.error }, { status: result.status });
-    }
-
-    if (applicationType === "trial") {
-      const payload = validation.payload;
-      sendApplicationReceivedEmail({
-        to: payload.email || "",
-        name: payload.name || "",
-        preferredVisitDate: payload.preferredVisitDate,
-        visitorCount: payload.visitorCount,
-        locale,
-      }).catch((err) => {
-        console.error("Failed to send application received email:", err);
-      });
     }
 
     return NextResponse.json({ ok: true, recordId: result.recordId });

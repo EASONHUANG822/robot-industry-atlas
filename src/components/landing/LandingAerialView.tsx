@@ -46,22 +46,12 @@ export function LandingAerialView({
               <ImageLightbox
                 src="/images/robot-valley-static-map.png"
                 alt="深圳机器人谷产业生态地图"
-                className="w-full max-h-[400px] bg-contain bg-center bg-no-repeat rounded-lg shadow-[0_18px_52px_rgba(45,74,138,0.15)]"
+className="w-full bg-contain bg-center bg-no-repeat rounded-lg shadow-[0_18px_52px_rgba(45,74,138,0.15)]"
                 style={{ backgroundImage: "url('/images/robot-valley-static-map.png')" }}
               />
             </div>
           </div>
 
-          {/* Right: Aerial Image */}
-          <div className="flex-1 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-lg">
-              <ImageLightbox
-                src="/images/show/机器人谷地理位置空中实拍图.png"
-                alt="深圳机器人谷空中实拍图"
-                className="w-full h-auto rounded-lg shadow-[0_18px_52px_rgba(45,74,138,0.15)]"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
