@@ -62,6 +62,7 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
   };
 
   const productCarouselImages = [
+    { src: "/images/robot-valley-hero.png", alt: t("checkoutModal.productName") },
     { src: "/images/支付2.jpg", alt: t("checkoutModal.productName") },
     { src: "/images/支付页.jpg", alt: t("checkoutModal.productName") },
   ];
@@ -118,7 +119,7 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {benefits.map((benefit, i) => (
               <ScrollReveal key={benefit.title} staggerIndex={i}>
-                <article className="group rounded-xl border border-line bg-white/[0.86] p-5 shadow-[0_12px_36px_rgba(45,74,138,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_20px_48px_rgba(45,74,138,0.13)]">
+                <article className="group flex h-full flex-col rounded-xl border border-line bg-white/[0.86] p-5 shadow-[0_12px_36px_rgba(45,74,138,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_20px_48px_rgba(45,74,138,0.13)]">
                   <div className="flex items-start gap-3">
                     <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/8">
                       <span className="font-mono text-xs font-bold text-accent">{String(i + 1).padStart(2, "0")}</span>
