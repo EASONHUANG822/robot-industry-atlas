@@ -148,7 +148,7 @@ export function CheckoutModal({
   const [ticketCounts, setTicketCounts] = useState<Record<string, number>>(() => {
     const initial: Record<string, number> = {};
     defaultTiers.forEach((tier) => {
-      initial[tier.id] = tier.id === "adult" ? 1 : 0;
+      initial[tier.id] = tier.id === "adult" ? 5 : 0;
     });
     return initial;
   });
@@ -156,7 +156,7 @@ export function CheckoutModal({
   const handleOpen = useCallback(() => {
     const initial: Record<string, number> = {};
     defaultTiers.forEach((tier) => {
-      initial[tier.id] = tier.id === "adult" ? 1 : 0;
+      initial[tier.id] = tier.id === "adult" ? 5 : 0;
     });
     setTicketCounts(initial);
     setSelectedDate(today);
@@ -537,7 +537,7 @@ export function CheckoutModal({
                                 <button
                                   type="button"
                                   title={`Decrease ${tier.name} count`}
-                                  disabled={(ticketCounts[tier.id] || 0) <= 0}
+                                  disabled={(ticketCounts[tier.id] || 0) <= 5}
                                   onClick={() => updateCount(tier.id, -1)}
                                   className="group touch-manipulation px-2 py-1 focus:outline-0 disabled:cursor-not-allowed"
                                 >
@@ -837,7 +837,7 @@ export function CheckoutModal({
                     </div>
                     <button
                       type="button"
-                      disabled={!selectedDate || totalTickets === 0}
+                      disabled={!selectedDate || totalTickets < 5}
                       onClick={handleCheckout}
                       className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-accent px-6 py-3 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none disabled:hover:translate-y-0"
                     >

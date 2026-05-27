@@ -162,7 +162,7 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
           </ReadOnlyField>
         ) : (
           <Field label={t("fields.visitorCount")} name="visitorCount">
-            <input id="visitorCount" type="number" name="visitorCount" min="1" inputMode="numeric" disabled={isSubmitting} className={inputClassName} />
+            <input id="visitorCount" type="number" name="visitorCount" min="5" inputMode="numeric" disabled={isSubmitting} className={inputClassName} />
           </Field>
         )}
       </div>

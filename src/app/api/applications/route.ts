@@ -6,15 +6,17 @@ import {
 } from "@/server/airtableApplications";
 
 export async function POST(request: Request) {
-  let body: unknown;
+  let body: Record<string, unknown>;
 
   try {
-    body = await request.json();
+    body = (await request.json()) as Record<string, unknown>;
   } catch {
     return NextResponse.json({ error: "Invalid JSON request body." }, { status: 400 });
   }
 
-  const validation = validateApplicationPayload(body);
+  const { applicationType: _type, locale: _locale, ...fields } = body;
+
+  const validation = validateApplicationPayload(fields);
   if (!validation.ok) {
     return NextResponse.json({ error: validation.error }, { status: 400 });
   }
