@@ -45,7 +45,7 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
   }));
 
   const showroomCarouselImages = [
-    { src: "/images/支付页.jpg", alt: t("showroom.title") },
+    { src: "/images/robot-valley-hero.png", alt: t("showroom.title") },
     { src: "/images/show/GXL_5655.JPG", alt: t("showroom.title") },
     { src: "/images/show/GXL_5671.JPG", alt: t("showroom.title") },
     { src: "/images/show/GXL_5679.JPG", alt: t("showroom.title") },
