@@ -544,6 +544,10 @@
     "payment": "Apply",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "contactModalTitle": "Contact Us",
+    "contactModalDescription": "If you have any questions or would like to get in touch, please feel free to reach out to us at the email below.",
+    "copy": "Copy",
+    "copied": "Copied!"
   }
 }

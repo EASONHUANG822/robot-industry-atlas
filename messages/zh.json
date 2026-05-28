@@ -544,6 +544,10 @@
     "payment": "参观申请",
     "terms": "使用条款",
     "privacy": "隐私政策",
-    "contact": "联系我们"
+    "contact": "联系我们",
+    "contactModalTitle": "联系我们",
+    "contactModalDescription": "如有任何疑问或需要进一步交流，欢迎通过下方邮箱与我们联系。",
+    "copy": "复制",
+    "copied": "已复制！"
   }
 }

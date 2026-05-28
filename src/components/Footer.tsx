@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 
 type FooterColumn = {
@@ -9,9 +9,68 @@ type FooterColumn = {
   links: { label: string; href: string; external?: boolean }[];
 };
 
+const CONTACT_EMAIL = "info@robotuo.com";
+
+function ContactModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const t = useTranslations("Footer");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* clipboard not available */ }
+  }, []);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="relative w-full max-w-sm rounded-xl bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 rounded p-1 text-slate-400 transition hover:text-slate-600"
+          aria-label="Close"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <h3 className="text-lg font-bold text-accent">{t("contactModalTitle")}</h3>
+        <p className="mt-2 text-sm leading-6 text-secondary">{t("contactModalDescription")}</p>
+        <div className="mt-4 flex items-center gap-2 rounded-lg border border-line bg-slate-50 p-3">
+          <span className="flex-1 text-sm font-medium text-accent break-all">{CONTACT_EMAIL}</span>
+          <button
+            onClick={handleCopy}
+            className="shrink-0 rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-800"
+          >
+            {copied ? t("copied") : t("copy")}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Footer() {
   const t = useTranslations("Footer");
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const toggle = (id: string) => {
     setOpenSection((prev) => (prev === id ? null : id));
@@ -35,7 +94,7 @@ export function Footer() {
     {
       title: t("colInfo"),
       links: [
-        { label: t("contact"), href: "mailto:info@robotuo.com", external: true },
+        { label: t("contact"), href: "#contact", external: true },
       ],
     },
   ];
@@ -84,6 +143,13 @@ export function Footer() {
                 <ul className={`overflow-hidden transition-all duration-300 md:!h-auto md:!opacity-100 ${isOpen ? "mb-4" : "mb-0 h-0 opacity-0 md:mb-0"}`}>
                   {col.links.map((link) => {
                     const cls = "block py-1 text-sm text-slate-400 hover:text-white transition";
+                    if (link.href === "#contact") {
+                      return (
+                        <li key="contact">
+                          <button type="button" onClick={() => setContactOpen(true)} className={cls}>{link.label}</button>
+                        </li>
+                      );
+                    }
                     return (
                       <li key={link.href}>
                         {link.external ? (
@@ -106,6 +172,7 @@ export function Footer() {
           </p>
         </div>
       </div>
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </footer>
   );
 }
