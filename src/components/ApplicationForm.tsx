@@ -212,7 +212,7 @@ function ReadOnlyDateField({
   date: string;
   time?: string;
 }) {
-  const formattedDate = new Date(date + "T00:00:00").toLocaleDateString("zh-CN", {
+  const formattedDate = new Date(date + "T00:00:00").toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",

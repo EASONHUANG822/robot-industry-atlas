@@ -9,6 +9,8 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
   const t = useTranslations("LanguageSwitcher");
 
+  if (routing.locales.length <= 1) return null;
+
   return (
     <div className="flex items-center rounded border border-line bg-white p-1 text-sm font-semibold">
       {routing.locales.map((item) => {

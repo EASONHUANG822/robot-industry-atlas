@@ -135,7 +135,7 @@ export function CompanyDetails({ company, compact = false }: CompanyDetailsProps
           <h2 className="text-lg font-bold text-accent">{t("funding")}</h2>
           <dl className="mt-4 grid gap-3 sm:grid-cols-2">
             <StatCard label={t("fundingDate")} value={localizedCompany.latestFunding.date || t("unknown")} />
-            <StatCard label={t("fundingRound")} value={locale === "zh" ? localizedCompany.latestFunding.roundZh || t("unknown") : localizedCompany.latestFunding.roundEn || localizedCompany.latestFunding.roundZh || t("unknown")} />
+            <StatCard label={t("fundingRound")} value={localizedCompany.latestFunding.roundEn || localizedCompany.latestFunding.roundZh || t("unknown")} />
             <StatCard label={t("fundingAmount")} value={localizedCompany.latestFunding.amount || formatCnyWan(localizedCompany.latestFunding.amountCnyWan, t("cnyWan")) || t("unknown")} />
             <StatCard
               label={t("investors")}
