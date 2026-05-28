@@ -19,7 +19,7 @@ export default async function PrivacyPage({ params }: Props) {
       <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="text-base leading-8 text-secondary">
           <p>
-            This page is under construction. For inquiries, please contact contact@robotvalley.cn.
+            This page is under construction. For inquiries, please contact info@robotuo.com.
           </p>
         </div>
       </section>

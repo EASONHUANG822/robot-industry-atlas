@@ -35,9 +35,7 @@ export function Footer() {
     {
       title: t("colInfo"),
       links: [
-        { label: t("terms"), href: "/terms" },
-        { label: t("privacy"), href: "/privacy" },
-        { label: t("contact"), href: "mailto:contact@robotvalley.cn", external: true },
+        { label: t("contact"), href: "mailto:info@robotuo.com", external: true },
       ],
     },
   ];

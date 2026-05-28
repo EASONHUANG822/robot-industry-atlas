@@ -8,7 +8,7 @@
     "overview": "Home",
     "showroom": "Showroom",
     "visit": "Visit Process",
-    "payment": "Visit Application"
+    "payment": "Apply"
   },
   "LanguageSwitcher": {
     "zh": "中文",
@@ -541,7 +541,7 @@
     "showroom": "Showroom",
     "about": "About",
     "visitPlan": "Visit Process",
-    "payment": "Visit Application",
+    "payment": "Apply",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
     "contact": "Contact Us"
