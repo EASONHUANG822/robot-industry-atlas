@@ -4,7 +4,6 @@ import { LandingDetailSection } from "@/components/landing/LandingDetailSection"
 import { LandingExperienceBooking } from "@/components/landing/LandingExperienceBooking";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { LandingTestimonials } from "@/components/landing/LandingTestimonials";
-import { LandingFeedbackCTA } from "@/components/landing/LandingFeedbackCTA";
 import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -56,7 +55,6 @@ export default async function LandingPage({ params }: LandingPageProps) {
         }))}
       />
       <LandingTestimonials />
-      <LandingFeedbackCTA />
       <LandingDetailSection
         locale={locale}
         eyebrow={t("detail.eyebrow")}
