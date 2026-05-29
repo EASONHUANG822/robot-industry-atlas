@@ -42,6 +42,7 @@ export function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   }, [onLogout]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- data-fetching triggered by tab change
     fetchFeedback(activeTab);
   }, [activeTab, fetchFeedback]);
 
