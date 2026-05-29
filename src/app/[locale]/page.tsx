@@ -54,7 +54,6 @@ export default async function LandingPage({ params }: LandingPageProps) {
           text: t(`experienceBooking.benefits.${benefitKey}.text`),
         }))}
       />
-      <LandingTestimonials />
       <LandingDetailSection
         locale={locale}
         eyebrow={t("detail.eyebrow")}
@@ -79,6 +78,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
         ctaLabel={t("aerialView.cta")}
         ctaHref="/showroom"
       />
+      <LandingTestimonials />
     </main>
   );
 }
