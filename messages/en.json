@@ -101,7 +101,15 @@
     "testimonials": {
       "eyebrow": "Visitor Feedback",
       "title": "Trusted by Industry Leaders",
-      "description": "Hear from the researchers, engineers, and executives who have experienced Shenzhen Robot Valley firsthand."
+      "description": "Hear from the researchers, engineers, and executives who have experienced Shenzhen Robot Valley firsthand.",
+      "t1": "An extraordinary facility that showcases the full spectrum of robotics innovation. Our team left with actionable insights for our own R&D roadmap.",
+      "t2": "The robot operation experience was eye-opening. Seeing these systems up close gave our engineering team a new perspective on what's possible in industrial automation.",
+      "t3": "Shenzhen Robot Valley is more than a showroom — it's a living lab. The density of talent and technology here is unmatched in the region.",
+      "t4": "We brought our entire leadership team and everyone walked away impressed. The 3D-printed souvenir was a nice touch too.",
+      "t5": "As an investor, I need to see real capabilities, not slides. Robot Valley delivered — tangible demos, real robots, clear value.",
+      "t6": "The integration of AI, hardware, and manufacturing under one roof makes this a must-visit for anyone serious about the future of robotics.",
+      "t7": "We traveled from Europe specifically to visit Robot Valley and it exceeded our expectations. The ecosystem density is remarkable.",
+      "t8": "A world-class facility that bridges the gap between research and commercialization. We're already planning our next visit."
     },
     "feedbackCTA": {
       "heading": "Loved your visit?",

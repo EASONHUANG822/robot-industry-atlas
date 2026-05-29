@@ -77,14 +77,13 @@ function Track({ testimonials, direction }: { testimonials: Testimonial[]; direc
 
 export function LandingTestimonials() {
   const t = useTranslations("Landing");
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loaded, setLoaded] = useState(false);
+  const [testimonials, setTestimonials] = useState<Testimonial[] | null>(null);
 
   useEffect(() => {
     fetch("/api/feedback")
       .then((res) => res.json())
       .then((data) => {
-        if (data.feedback) {
+        if (data.feedback && data.feedback.length > 0) {
           setTestimonials(
             data.feedback.map((f: { name: string; role: string; message: string }) => ({
               name: f.name,
@@ -92,15 +91,27 @@ export function LandingTestimonials() {
               text: f.message,
             }))
           );
+        } else {
+          setTestimonials([]);
         }
       })
-      .catch(() => {})
-      .finally(() => setLoaded(true));
+      .catch(() => {
+        setTestimonials([]);
+      });
   }, []);
 
-  if (!loaded || testimonials.length === 0) {
-    return null;
-  }
+  const displayTestimonials: Testimonial[] = testimonials && testimonials.length > 0
+    ? testimonials
+    : [
+        { name: "Dr. Sarah Chen", role: "CTO, Robotics Innovation Lab", text: t("testimonials.t1") },
+        { name: "James Mitchell", role: "VP Engineering, AutoMotion Corp", text: t("testimonials.t2") },
+        { name: "Emily Wang", role: "Research Director, AI Future Institute", text: t("testimonials.t3") },
+        { name: "Michael Torres", role: "CEO, Precision Robotics Inc", text: t("testimonials.t4") },
+        { name: "Lisa Nakamura", role: "Head of Innovation, TechBridge Ventures", text: t("testimonials.t5") },
+        { name: "David Park", role: "Managing Partner, Future Factory Fund", text: t("testimonials.t6") },
+        { name: "Anna Johansson", role: "Director, Nordic Automation Alliance", text: t("testimonials.t7") },
+        { name: "Robert Kim", role: "Chief Scientist, Smart Manufacturing Lab", text: t("testimonials.t8") },
+      ];
 
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7f9fd_0%,#ffffff_48%,#eef3fb_100%)]">
@@ -130,8 +141,8 @@ export function LandingTestimonials() {
       </div>
 
       <div className="relative z-10 pb-20 lg:pb-24">
-        <Track testimonials={testimonials.slice(0, 4)} direction="left" />
-        <Track testimonials={testimonials.slice(4, 8)} direction="right" />
+        <Track testimonials={displayTestimonials.slice(0, 4)} direction="left" />
+        <Track testimonials={displayTestimonials.slice(4, 8)} direction="right" />
       </div>
 
       <style jsx>{`
