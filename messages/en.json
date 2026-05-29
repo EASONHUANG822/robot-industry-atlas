@@ -97,6 +97,19 @@
       "title": "Rooted in Nanshan Zhigu, connecting the global robotics industry",
       "description": "Shenzhen Robot Valley is located in the heart of Nanshan District, adjacent to Shenzhen University, SUSTech, and other leading institutions. Over 200 robotics enterprises cluster here, forming a complete industry chain from core components to system integration.",
       "imageAlt": "Shenzhen Robot Valley ecosystem map"
+    },
+    "testimonials": {
+      "eyebrow": "Visitor Feedback",
+      "title": "Trusted by Industry Leaders",
+      "description": "Hear from the researchers, engineers, and executives who have experienced Shenzhen Robot Valley firsthand.",
+      "t1": "An extraordinary facility that showcases the full spectrum of robotics innovation. Our team left with actionable insights for our own R&D roadmap.",
+      "t2": "The robot operation experience was eye-opening. Seeing these systems up close gave our engineering team a new perspective on what's possible in industrial automation.",
+      "t3": "Shenzhen Robot Valley is more than a showroom — it's a living lab. The density of talent and technology here is unmatched in the region.",
+      "t4": "We brought our entire leadership team and everyone walked away impressed. The 3D-printed souvenir was a nice touch too.",
+      "t5": "As an investor, I need to see real capabilities, not slides. Robot Valley delivered — tangible demos, real robots, clear value.",
+      "t6": "The integration of AI, hardware, and manufacturing under one roof makes this a must-visit for anyone serious about the future of robotics.",
+      "t7": "We traveled from Europe specifically to visit Robot Valley and it exceeded our expectations. The ecosystem density is remarkable.",
+      "t8": "A world-class facility that bridges the gap between research and commercialization. We're already planning our next visit."
     }
   },
   "PaymentPage": {
@@ -549,5 +562,36 @@
     "contactModalDescription": "If you have any questions or would like to get in touch, please feel free to reach out to us at the email below.",
     "copy": "Copy",
     "copied": "Copied!"
+  },
+  "FeedbackPage": {
+    "eyebrow": "Share Your Experience",
+    "title": "We value your feedback",
+    "description": "Tell us about your visit to the Shenzhen Robot Valley showroom. Your insights help us improve the experience for future visitors.",
+    "moderationNotice": "Your review will be published after moderation.",
+    "backToHome": "Back to Home",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "role": {
+        "label": "Role & Company",
+        "placeholder": "e.g. CTO, Robotics Innovation Lab"
+      },
+      "message": {
+        "label": "Your Feedback",
+        "placeholder": "Share your thoughts about the visit..."
+      },
+      "submit": "Submit Review",
+      "submitting": "Submitting...",
+      "success": "Thank you for your feedback!",
+      "error": "Something went wrong. Please try again.",
+      "validation": {
+        "nameRequired": "Name is required.",
+        "roleRequired": "Role is required.",
+        "messageRequired": "Feedback is required.",
+        "messageTooLong": "Message must be 1000 characters or fewer."
+      }
+    }
   }
 }
