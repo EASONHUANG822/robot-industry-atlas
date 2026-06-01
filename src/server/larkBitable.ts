@@ -29,12 +29,12 @@ const BITABLE_API_BASE = "https://open.feishu.cn/open-apis/bitable/v1";
 
 const APPLICATION_FIELD_MAP = {
   name: "Name",
-  organization: "Organization",
-  email: "Email",
-  phone: "Phone",
-  preferredVisitDate: "Preferred Visit Date",
-  visitorCount: "Visitor Count",
-  message: "Message",
+  organization: "organization",
+  email: "email",
+  phone: "phone",
+  preferredVisitDate: "preferredVisitDate",
+  visitorCount: "visitorCount",
+  message: "message",
   status: "Status",
   submittedAt: "Submitted At",
   recordId: "Record ID",
@@ -46,7 +46,7 @@ const FEEDBACK_FIELD_MAP = {
   message: "Message",
   status: "Status",
   featured: "Featured",
-  submittedAt: "Submitted At",
+  submittedAt: "SubmittedAt",
   recordId: "Record ID",
 } satisfies Record<string, string>;
 
@@ -69,8 +69,8 @@ export async function syncApplicationToBitable(
     }
   }
   fields[APPLICATION_FIELD_MAP.status] = "New";
-  fields[APPLICATION_FIELD_MAP.submittedAt] = new Date().toISOString();
-  fields[APPLICATION_FIELD_MAP.recordId] = airtableRecordId ?? "";
+  fields[APPLICATION_FIELD_MAP.submittedAt] = Date.now();
+  fields[APPLICATION_FIELD_MAP.recordId] = airtableRecordId;
 
   const url = `${BITABLE_API_BASE}/apps/${config.config.bitableAppToken}/tables/${config.config.tableIdApplications}/records`;
   try {
@@ -117,8 +117,8 @@ export async function syncFeedbackToBitable(
   }
   fields[FEEDBACK_FIELD_MAP.status] = "Pending";
   fields[FEEDBACK_FIELD_MAP.featured] = false;
-  fields[FEEDBACK_FIELD_MAP.submittedAt] = new Date().toISOString();
-  fields[FEEDBACK_FIELD_MAP.recordId] = airtableRecordId ?? "";
+  fields[FEEDBACK_FIELD_MAP.submittedAt] = Date.now();
+  fields[FEEDBACK_FIELD_MAP.recordId] = airtableRecordId;
 
   const url = `${BITABLE_API_BASE}/apps/${config.config.bitableAppToken}/tables/${config.config.tableIdFeedback}/records`;
   try {
