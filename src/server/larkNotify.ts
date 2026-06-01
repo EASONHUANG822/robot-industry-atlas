@@ -13,7 +13,11 @@ function sendWebhook(payload: Record<string, unknown>) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-  }).catch(() => {});
+  })
+    .then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    })
+    .catch(() => {});
 }
 
 export async function notifyNewApplication(
