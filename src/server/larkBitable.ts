@@ -73,21 +73,25 @@ export async function syncApplicationToBitable(
   fields[APPLICATION_FIELD_MAP.recordId] = airtableRecordId ?? "";
 
   const url = `${BITABLE_API_BASE}/apps/${config.config.bitableAppToken}/tables/${config.config.tableIdApplications}/records`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${tokenResult.token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ fields }),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${tokenResult.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields }),
+    });
 
-  const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
-  if (body.code !== 0) {
-    return { ok: false as const, error: `Bitable create failed: ${body.msg ?? "unknown"}` };
+    const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
+    if (body.code !== 0) {
+      return { ok: false as const, error: `Bitable create failed: ${body.msg ?? "unknown"}` };
+    }
+
+    return { ok: true as const, recordId: body.data?.record?.record_id ?? "" };
+  } catch (e) {
+    return { ok: false as const, error: `Bitable request failed: ${e instanceof Error ? e.message : "unknown"}` };
   }
-
-  return { ok: true as const, recordId: body.data?.record?.record_id ?? "" };
 }
 
 export async function syncFeedbackToBitable(
@@ -114,21 +118,25 @@ export async function syncFeedbackToBitable(
   fields[FEEDBACK_FIELD_MAP.recordId] = airtableRecordId ?? "";
 
   const url = `${BITABLE_API_BASE}/apps/${config.config.bitableAppToken}/tables/${config.config.tableIdFeedback}/records`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${tokenResult.token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ fields }),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${tokenResult.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields }),
+    });
 
-  const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
-  if (body.code !== 0) {
-    return { ok: false as const, error: `Bitable create failed: ${body.msg ?? "unknown"}` };
+    const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
+    if (body.code !== 0) {
+      return { ok: false as const, error: `Bitable create failed: ${body.msg ?? "unknown"}` };
+    }
+
+    return { ok: true as const, recordId: body.data?.record?.record_id ?? "" };
+  } catch (e) {
+    return { ok: false as const, error: `Bitable request failed: ${e instanceof Error ? e.message : "unknown"}` };
   }
-
-  return { ok: true as const, recordId: body.data?.record?.record_id ?? "" };
 }
 
 export async function updateFeedbackInBitable(
@@ -147,14 +155,19 @@ export async function updateFeedbackInBitable(
   );
   const searchUrl = `${BITABLE_API_BASE}/apps/${config.config.bitableAppToken}/tables/${config.config.tableIdFeedback}/records?filter=${filter}`;
 
-  const searchResponse = await fetch(searchUrl, {
-    headers: {
-      Authorization: `Bearer ${tokenResult.token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  let searchBody: LarkApiResponse<LarkListResponse>;
+  try {
+    const searchResponse = await fetch(searchUrl, {
+      headers: {
+        Authorization: `Bearer ${tokenResult.token}`,
+        "Content-Type": "application/json",
+      },
+    });
 
-  const searchBody = (await searchResponse.json()) as LarkApiResponse<LarkListResponse>;
+    searchBody = (await searchResponse.json()) as LarkApiResponse<LarkListResponse>;
+  } catch (e) {
+    return { ok: false as const, error: `Bitable request failed: ${e instanceof Error ? e.message : "unknown"}` };
+  }
   if (searchBody.code !== 0) {
     return { ok: false as const, error: `Bitable search failed: ${searchBody.msg ?? "unknown"}` };
   }
@@ -178,16 +191,21 @@ export async function updateFeedbackInBitable(
   }
 
   const updateUrl = `${BITABLE_API_BASE}/apps/${config.config.bitableAppToken}/tables/${config.config.tableIdFeedback}/records/${larkRecordId}`;
-  const updateResponse = await fetch(updateUrl, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${tokenResult.token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ fields: updateFields }),
-  });
+  let updateBody: LarkApiResponse;
+  try {
+    const updateResponse = await fetch(updateUrl, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${tokenResult.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fields: updateFields }),
+    });
 
-  const updateBody = (await updateResponse.json()) as LarkApiResponse;
+    updateBody = (await updateResponse.json()) as LarkApiResponse;
+  } catch (e) {
+    return { ok: false as const, error: `Bitable request failed: ${e instanceof Error ? e.message : "unknown"}` };
+  }
   if (updateBody.code !== 0) {
     return { ok: false as const, error: `Bitable update failed: ${updateBody.msg ?? "unknown"}` };
   }
