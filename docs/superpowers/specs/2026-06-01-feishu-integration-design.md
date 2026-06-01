@@ -20,10 +20,10 @@
 - `LARK_APP_ID` — 飞书自建应用 App ID (`cli_aa96473a77395cd8`)
 - `LARK_APP_SECRET` — 飞书自建应用 App Secret
 - `LARK_BOT_WEBHOOK` — 群机器人 Incoming Webhook URL
-- `LARK_BITABLE_APP_TOKEN_APPLICATIONS` — 申请表所在多维表格文档 ID
-- `LARK_BITABLE_TABLE_ID_APPLICATIONS` — 申请表 table ID
-- `LARK_BITABLE_APP_TOKEN_FEEDBACK` — 评价表所在多维表格文档 ID
-- `LARK_BITABLE_TABLE_ID_FEEDBACK` — 评价表 table ID
+- `LARK_BITABLE_APP_TOKEN` — 多维表格文档 ID (`JHxnwP8DciEvKukoEyFcHWO5nLe`)，两表在同一文档
+- `LARK_BITABLE_TABLE_ID_APPLICATIONS` — 申请表 table ID (`tblveWXKFCxpbNcr`)
+- `LARK_BITABLE_TABLE_ID_FEEDBACK` — 评价表 table ID (`tblUw5hlw4vtBLxp`)
+- `LARK_BOT_WEBHOOK` — 群机器人 webhook (`https://open.feishu.cn/open-apis/bot/v2/hook/548c260b-4262-4a0f-839e-7aed39ceb9ad`)
 
 提供 `getLarkConfig()` 和 tenant access token 缓存（内存缓存，TTL 为飞书默认的 2 小时减去 5 分钟缓冲）。
 
