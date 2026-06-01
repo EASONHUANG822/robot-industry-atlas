@@ -14,15 +14,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: validation.error }, { status: 400 });
   }
 
-  try {
     const result = await createFeedback(validation.payload);
     if (!result.ok) {
       return NextResponse.json({ error: result.error }, { status: result.status });
     }
+
+    // Fire-and-forget: sync to Feishu Bitable + notify
+    if (result.recordId) {
+      const { syncFeedbackToBitable } = await import("@/server/larkBitable");
+      const { notifyNewFeedback } = await import("@/server/larkNotify");
+      syncFeedbackToBitable(validation.payload, result.recordId).catch(() => {});
+      notifyNewFeedback(validation.payload, result.recordId).catch(() => {});
+    }
+
     return NextResponse.json({ ok: true, recordId: result.recordId });
-  } catch {
-    return NextResponse.json({ error: "Submission failed. Please try again later." }, { status: 500 });
-  }
 }
 
 export async function GET() {
