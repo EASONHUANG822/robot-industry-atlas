@@ -27,7 +27,7 @@ type LarkListResponse = {
 
 const BITABLE_API_BASE = "https://open.feishu.cn/open-apis/bitable/v1";
 
-const APPLICATION_FIELD_MAP: Record<string, string> = {
+const APPLICATION_FIELD_MAP = {
   name: "Name",
   organization: "Organization",
   email: "Email",
@@ -38,9 +38,9 @@ const APPLICATION_FIELD_MAP: Record<string, string> = {
   status: "Status",
   submittedAt: "Submitted At",
   recordId: "Record ID",
-};
+} satisfies Record<string, string>;
 
-const FEEDBACK_FIELD_MAP: Record<string, string> = {
+const FEEDBACK_FIELD_MAP = {
   name: "Name",
   role: "Role",
   message: "Message",
@@ -48,7 +48,7 @@ const FEEDBACK_FIELD_MAP: Record<string, string> = {
   featured: "Featured",
   submittedAt: "Submitted At",
   recordId: "Record ID",
-};
+} satisfies Record<string, string>;
 
 export async function syncApplicationToBitable(
   payload: ApplicationPayload,
@@ -82,6 +82,9 @@ export async function syncApplicationToBitable(
       },
       body: JSON.stringify({ fields }),
     });
+    if (!response.ok) {
+      return { ok: false as const, error: `Bitable request failed: HTTP ${response.status}` };
+    }
 
     const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
     if (body.code !== 0) {
@@ -127,6 +130,9 @@ export async function syncFeedbackToBitable(
       },
       body: JSON.stringify({ fields }),
     });
+    if (!response.ok) {
+      return { ok: false as const, error: `Bitable request failed: HTTP ${response.status}` };
+    }
 
     const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
     if (body.code !== 0) {
@@ -163,6 +169,9 @@ export async function updateFeedbackInBitable(
         "Content-Type": "application/json",
       },
     });
+    if (!searchResponse.ok) {
+      return { ok: false as const, error: `Bitable request failed: HTTP ${searchResponse.status}` };
+    }
 
     searchBody = (await searchResponse.json()) as LarkApiResponse<LarkListResponse>;
   } catch (e) {
@@ -201,6 +210,9 @@ export async function updateFeedbackInBitable(
       },
       body: JSON.stringify({ fields: updateFields }),
     });
+    if (!updateResponse.ok) {
+      return { ok: false as const, error: `Bitable request failed: HTTP ${updateResponse.status}` };
+    }
 
     updateBody = (await updateResponse.json()) as LarkApiResponse;
   } catch (e) {
