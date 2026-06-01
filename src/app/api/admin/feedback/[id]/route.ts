@@ -36,13 +36,14 @@ export async function PATCH(
     return NextResponse.json({ error: "No valid fields to update." }, { status: 400 });
   }
 
-  try {
     const result = await updateFeedback(id, updates);
     if (!result.ok) {
       return NextResponse.json({ error: result.error }, { status: result.status });
     }
+
+    // Fire-and-forget: sync status update to Feishu Bitable
+    const { updateFeedbackInBitable } = await import("@/server/larkBitable");
+    updateFeedbackInBitable(id, updates).catch(() => {});
+
     return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ error: "Update failed. Please try again later." }, { status: 500 });
-  }
 }
