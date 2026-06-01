@@ -34,6 +34,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: result.error }, { status: result.status });
     }
 
+    // Fire-and-forget: sync to Feishu Bitable + notify (don't block response)
+    if (result.recordId) {
+      const { syncApplicationToBitable } = await import("@/server/larkBitable");
+      const { notifyNewApplication } = await import("@/server/larkNotify");
+      syncApplicationToBitable(validation.payload, result.recordId).catch(() => {});
+      notifyNewApplication(validation.payload, result.recordId).catch(() => {});
+    }
+
     return NextResponse.json({ ok: true, recordId: result.recordId });
   } catch {
     return NextResponse.json(
