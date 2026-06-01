@@ -588,6 +588,16 @@ export function CheckoutModal({
                         </div>
                       </div>
                     )}
+
+                    {/* Contact Email */}
+                    <div className="px-4 pb-2">
+                      <a
+                        href="mailto:info@robotuo.com"
+                        className="text-xs text-muted transition hover:text-accent"
+                      >
+                        info@robotuo.com
+                      </a>
+                    </div>
                   </div>
                 </section>
 
