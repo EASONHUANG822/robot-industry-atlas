@@ -4,6 +4,7 @@ export type LarkConfig = {
   appId: string;
   appSecret: string;
   botWebhook: string;
+  botWebhookSecret: string;
   bitableAppToken: string;
   tableIdApplications: string;
   tableIdFeedback: string;
@@ -22,6 +23,7 @@ export function getLarkConfig() {
   const appId = process.env.LARK_APP_ID;
   const appSecret = process.env.LARK_APP_SECRET;
   const botWebhook = process.env.LARK_BOT_WEBHOOK;
+  const botWebhookSecret = process.env.LARK_BOT_WEBHOOK_SECRET;
   const bitableAppToken = process.env.LARK_BITABLE_APP_TOKEN;
   const tableIdApplications = process.env.LARK_BITABLE_TABLE_ID_APPLICATIONS;
   const tableIdFeedback = process.env.LARK_BITABLE_TABLE_ID_FEEDBACK;
@@ -30,6 +32,7 @@ export function getLarkConfig() {
   if (!appId) missing.push("LARK_APP_ID");
   if (!appSecret) missing.push("LARK_APP_SECRET");
   if (!botWebhook) missing.push("LARK_BOT_WEBHOOK");
+  if (!botWebhookSecret) missing.push("LARK_BOT_WEBHOOK_SECRET");
   if (!bitableAppToken) missing.push("LARK_BITABLE_APP_TOKEN");
   if (!tableIdApplications) missing.push("LARK_BITABLE_TABLE_ID_APPLICATIONS");
   if (!tableIdFeedback) missing.push("LARK_BITABLE_TABLE_ID_FEEDBACK");
@@ -47,6 +50,7 @@ export function getLarkConfig() {
       appId,
       appSecret,
       botWebhook,
+      botWebhookSecret,
       bitableAppToken,
       tableIdApplications,
       tableIdFeedback,

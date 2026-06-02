@@ -62,10 +62,25 @@ export async function syncApplicationToBitable(
 
   const fields: Record<string, unknown> = {};
 
+  const DATE_FIELDS_APPS = new Set(["preferredVisitDate"]);
+  const NUMBER_FIELDS_APPS = new Set(["visitorCount"]);
+
   for (const key of APPLICATION_FIELD_KEYS) {
     const larkField = APPLICATION_FIELD_MAP[key];
     if (larkField && payload[key]) {
-      fields[larkField] = payload[key];
+      if (DATE_FIELDS_APPS.has(key) && typeof payload[key] === "string") {
+        const ms = Date.parse(payload[key]);
+        if (!Number.isNaN(ms)) {
+          fields[larkField] = ms;
+        }
+      } else if (NUMBER_FIELDS_APPS.has(key)) {
+        const num = Number(payload[key]);
+        if (!Number.isNaN(num)) {
+          fields[larkField] = num;
+        }
+      } else {
+        fields[larkField] = payload[key];
+      }
     }
   }
   fields[APPLICATION_FIELD_MAP.status] = "New";

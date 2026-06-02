@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: result.error }, { status: result.status });
     }
 
-    // Fire-and-forget: sync to Feishu Bitable + notify
+    // Fire-and-forget: sync to Feishu Bitable + notify (don't block response)
     if (result.recordId) {
       const { syncFeedbackToBitable } = await import("@/server/larkBitable");
       const { notifyNewFeedback } = await import("@/server/larkNotify");

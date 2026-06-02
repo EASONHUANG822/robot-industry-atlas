@@ -1,18 +1,30 @@
 import "server-only";
+import { createHmac } from "node:crypto";
 import { getLarkConfig } from "./larkConfig";
 import type { ApplicationPayload } from "@/config/applicationForm";
 import type { FeedbackPayload } from "./airtableFeedback";
 
 const MULTI_TABLE_URL = "https://xcnxydjnox4j.feishu.cn/wiki/JHxnwP8DciEvKukoEyFcHWO5nLe";
 
+function signPayload(secret: string): { timestamp: string; sign: string } {
+  const timestamp = Math.floor(Date.now() / 1000).toString();
+  const hmac = createHmac("sha256", timestamp + "\n" + secret);
+  hmac.update("");
+  const sign = hmac.digest("base64");
+  return { timestamp, sign };
+}
+
 function sendWebhook(payload: Record<string, unknown>) {
   const config = getLarkConfig();
   if (!config.ok) return Promise.resolve();
 
+  const { timestamp, sign } = signPayload(config.config.botWebhookSecret);
+  const body = JSON.stringify({ timestamp, sign, ...payload });
+
   return fetch(config.config.botWebhook, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body,
   })
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
