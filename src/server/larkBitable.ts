@@ -63,7 +63,7 @@ export async function syncApplicationToBitable(
   const fields: Record<string, unknown> = {};
 
   const DATE_FIELDS_APPS = new Set(["preferredVisitDate"]);
-  const NUMBER_FIELDS_APPS = new Set(["visitorCount"]);
+  const NUMBER_FIELDS_APPS = new Set(["visitorCount", "phone"]);
 
   for (const key of APPLICATION_FIELD_KEYS) {
     const larkField = APPLICATION_FIELD_MAP[key];
