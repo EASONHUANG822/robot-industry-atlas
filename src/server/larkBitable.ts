@@ -97,18 +97,27 @@ export async function syncApplicationToBitable(
       },
       body: JSON.stringify({ fields }),
     });
+
+    const responseBody = await response.text();
     if (!response.ok) {
-      return { ok: false as const, error: `Bitable request failed: HTTP ${response.status}` };
+      const err = `Bitable request failed: HTTP ${response.status} — ${responseBody.slice(0, 300)}`;
+      console.error("[FEISHU APP SYNC]", err);
+      return { ok: false as const, error: err };
     }
 
-    const body = (await response.json()) as LarkApiResponse<LarkRecordResponse>;
+    const body = JSON.parse(responseBody) as LarkApiResponse<LarkRecordResponse>;
     if (body.code !== 0) {
-      return { ok: false as const, error: `Bitable create failed: ${body.msg ?? "unknown"}` };
+      const err = `Bitable create failed: ${body.msg ?? "unknown"} (code ${body.code})`;
+      console.error("[FEISHU APP SYNC]", err);
+      return { ok: false as const, error: err };
     }
 
+    console.log("[FEISHU APP SYNC] OK", body.data?.record?.record_id);
     return { ok: true as const, recordId: body.data?.record?.record_id ?? "" };
   } catch (e) {
-    return { ok: false as const, error: `Bitable request failed: ${e instanceof Error ? e.message : "unknown"}` };
+    const err = `Bitable request failed: ${e instanceof Error ? e.message : "unknown"}`;
+    console.error("[FEISHU APP SYNC]", err);
+    return { ok: false as const, error: err };
   }
 }
 
