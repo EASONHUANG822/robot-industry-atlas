@@ -26,10 +26,24 @@ function sendWebhook(payload: Record<string, unknown>) {
     headers: { "Content-Type": "application/json" },
     body,
   })
-    .then((r) => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    .then(async (r) => {
+      const text = await r.text();
+      if (!r.ok) {
+        console.error("[FEISHU WEBHOOK] HTTP", r.status, text.slice(0, 200));
+        return;
+      }
+      try {
+        const json = JSON.parse(text);
+        if (json.code !== 0 && json.StatusCode !== 0) {
+          console.error("[FEISHU WEBHOOK] API error:", json.code ?? json.StatusCode, json.msg ?? text.slice(0, 200));
+        }
+      } catch {
+        // not JSON, ignore
+      }
     })
-    .catch(() => {});
+    .catch((e) => {
+      console.error("[FEISHU WEBHOOK] fetch error:", e instanceof Error ? e.message : e);
+    });
 }
 
 export async function notifyNewApplication(

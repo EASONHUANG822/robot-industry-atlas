@@ -38,8 +38,10 @@ export async function POST(request: Request) {
     if (result.recordId) {
       const { syncApplicationToBitable } = await import("@/server/larkBitable");
       const { notifyNewApplication } = await import("@/server/larkNotify");
-      syncApplicationToBitable(validation.payload, result.recordId).catch((e) => console.error("[FEISHU SYNC]", e instanceof Error ? e.message : e));
-      notifyNewApplication(validation.payload, result.recordId).catch((e) => console.error("[FEISHU NOTIFY]", e instanceof Error ? e.message : e));
+      syncApplicationToBitable(validation.payload, result.recordId).then((r) => {
+        if (!r.ok) console.error("[FEISHU SYNC FAIL]", r.error);
+      }).catch((e) => console.error("[FEISHU SYNC ERR]", e instanceof Error ? e.message : e));
+      notifyNewApplication(validation.payload, result.recordId).catch((e) => console.error("[FEISHU NOTIFY ERR]", e instanceof Error ? e.message : e));
     }
 
     return NextResponse.json({ ok: true, recordId: result.recordId });
