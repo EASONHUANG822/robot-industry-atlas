@@ -4,6 +4,8 @@ import {
   validateApplicationPayload,
   validatePreferredVisitDateAvailability,
 } from "@/server/airtableApplications";
+import { syncApplicationToBitable } from "@/server/larkBitable";
+import { notifyNewApplication } from "@/server/larkNotify";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -36,8 +38,6 @@ export async function POST(request: Request) {
 
     // Fire-and-forget: sync to Feishu Bitable + notify (don't block response)
     if (result.recordId) {
-      const { syncApplicationToBitable } = await import("@/server/larkBitable");
-      const { notifyNewApplication } = await import("@/server/larkNotify");
       syncApplicationToBitable(validation.payload, result.recordId).then((r) => {
         if (!r.ok) console.error("[FEISHU SYNC FAIL]", r.error);
       }).catch((e) => console.error("[FEISHU SYNC ERR]", e instanceof Error ? e.message : e));

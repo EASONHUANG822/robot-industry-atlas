@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { validateAdminSession } from "@/server/adminAuth";
 import { updateFeedback, type FeedbackStatus } from "@/server/airtableFeedback";
+import { updateFeedbackInBitable } from "@/server/larkBitable";
 
 export async function PATCH(
   request: Request,
@@ -42,8 +43,9 @@ export async function PATCH(
     }
 
     // Fire-and-forget: sync status update to Feishu Bitable
-    const { updateFeedbackInBitable } = await import("@/server/larkBitable");
-    updateFeedbackInBitable(id, updates).catch(() => {});
+    updateFeedbackInBitable(id, updates).then((r) => {
+      if (!r.ok) console.error("[FEISHU UPDATE FAIL]", r.error);
+    }).catch((e) => console.error("[FEISHU UPDATE ERR]", e instanceof Error ? e.message : e));
 
     return NextResponse.json({ ok: true });
 }

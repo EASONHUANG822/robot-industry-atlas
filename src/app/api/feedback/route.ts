@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { createFeedback, getApprovedFeedback, validateFeedbackPayload } from "@/server/airtableFeedback";
+import { syncFeedbackToBitable } from "@/server/larkBitable";
+import { notifyNewFeedback } from "@/server/larkNotify";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -21,8 +23,6 @@ export async function POST(request: Request) {
 
     // Fire-and-forget: sync to Feishu Bitable + notify (don't block response)
     if (result.recordId) {
-      const { syncFeedbackToBitable } = await import("@/server/larkBitable");
-      const { notifyNewFeedback } = await import("@/server/larkNotify");
       syncFeedbackToBitable(validation.payload, result.recordId).then((r) => {
         if (!r.ok) console.error("[FEISHU SYNC FB FAIL]", r.error);
       }).catch((e) => console.error("[FEISHU SYNC FB ERR]", e instanceof Error ? e.message : e));
