@@ -78,7 +78,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
         ctaLabel={t("aerialView.cta")}
         ctaHref="/showroom"
       />
-{/* TODO: enable when real feedback content exists */}{false && <LandingTestimonials />}
+<LandingTestimonials />
     </main>
   );
 }

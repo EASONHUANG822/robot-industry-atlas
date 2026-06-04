@@ -101,18 +101,7 @@ export function LandingTestimonials() {
       });
   }, []);
 
-  const displayTestimonials: Testimonial[] = testimonials && testimonials.length > 0
-    ? testimonials
-    : [
-        { name: "Dr. Sarah Chen", role: "CTO, Robotics Innovation Lab", text: t("testimonials.t1") },
-        { name: "James Mitchell", role: "VP Engineering, AutoMotion Corp", text: t("testimonials.t2") },
-        { name: "Emily Wang", role: "Research Director, AI Future Institute", text: t("testimonials.t3") },
-        { name: "Michael Torres", role: "CEO, Precision Robotics Inc", text: t("testimonials.t4") },
-        { name: "Lisa Nakamura", role: "Head of Innovation, TechBridge Ventures", text: t("testimonials.t5") },
-        { name: "David Park", role: "Managing Partner, Future Factory Fund", text: t("testimonials.t6") },
-        { name: "Anna Johansson", role: "Director, Nordic Automation Alliance", text: t("testimonials.t7") },
-        { name: "Robert Kim", role: "Chief Scientist, Smart Manufacturing Lab", text: t("testimonials.t8") },
-      ];
+  const hasRealTestimonials = testimonials && testimonials.length > 0;
 
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7f9fd_0%,#ffffff_48%,#eef3fb_100%)]">
@@ -141,10 +130,12 @@ export function LandingTestimonials() {
         </ScrollReveal>
       </div>
 
-      <div className="relative z-10 pb-12 lg:pb-16">
-        <Track testimonials={displayTestimonials.slice(0, 4)} direction="left" />
-        <Track testimonials={displayTestimonials.slice(4, 8)} direction="right" />
-      </div>
+      {hasRealTestimonials && (
+        <div className="relative z-10 pb-12 lg:pb-16">
+          <Track testimonials={testimonials!.slice(0, 4)} direction="left" />
+          <Track testimonials={testimonials!.slice(4, 8)} direction="right" />
+        </div>
+      )}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-24">
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-6">
