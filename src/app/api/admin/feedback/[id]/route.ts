@@ -42,10 +42,9 @@ export async function PATCH(
       return NextResponse.json({ error: result.error }, { status: result.status });
     }
 
-    // Fire-and-forget: sync status update to Feishu Bitable
-    updateFeedbackInBitable(id, updates).then((r) => {
-      if (!r.ok) console.error("[FEISHU UPDATE FAIL]", r.error);
-    }).catch((e) => console.error("[FEISHU UPDATE ERR]", e instanceof Error ? e.message : e));
+    // Sync status update to Feishu Bitable (awaited so Vercel serverless doesn't freeze it)
+    const bitableResult = await updateFeedbackInBitable(id, updates);
+    if (!bitableResult.ok) console.error("[FEISHU UPDATE FAIL]", bitableResult.error);
 
     return NextResponse.json({ ok: true });
 }

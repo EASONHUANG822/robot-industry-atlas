@@ -21,12 +21,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: result.error }, { status: result.status });
     }
 
-    // Fire-and-forget: sync to Feishu Bitable + notify (don't block response)
+    // Sync to Feishu Bitable + notify (awaited so Vercel serverless doesn't freeze them)
     if (result.recordId) {
-      syncFeedbackToBitable(validation.payload, result.recordId).then((r) => {
-        if (!r.ok) console.error("[FEISHU SYNC FB FAIL]", r.error);
-      }).catch((e) => console.error("[FEISHU SYNC FB ERR]", e instanceof Error ? e.message : e));
-      notifyNewFeedback(validation.payload, result.recordId).catch((e) => console.error("[FEISHU NOTIFY FB ERR]", e instanceof Error ? e.message : e));
+      const [syncResult] = await Promise.allSettled([
+        syncFeedbackToBitable(validation.payload, result.recordId),
+        notifyNewFeedback(validation.payload, result.recordId),
+      ]);
+      if (syncResult.status === "fulfilled" && !syncResult.value.ok) {
+        console.error("[FEISHU SYNC FB FAIL]", syncResult.value.error);
+      }
     }
 
     return NextResponse.json({ ok: true, recordId: result.recordId });
