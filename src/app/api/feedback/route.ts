@@ -23,8 +23,8 @@ export async function POST(request: Request) {
     if (result.recordId) {
       const { syncFeedbackToBitable } = await import("@/server/larkBitable");
       const { notifyNewFeedback } = await import("@/server/larkNotify");
-      syncFeedbackToBitable(validation.payload, result.recordId).catch(() => {});
-      notifyNewFeedback(validation.payload, result.recordId).catch(() => {});
+      syncFeedbackToBitable(validation.payload, result.recordId).catch((e) => console.error("[FEISHU SYNC FB]", e instanceof Error ? e.message : e));
+      notifyNewFeedback(validation.payload, result.recordId).catch((e) => console.error("[FEISHU NOTIFY FB]", e instanceof Error ? e.message : e));
     }
 
     return NextResponse.json({ ok: true, recordId: result.recordId });
