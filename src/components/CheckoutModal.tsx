@@ -59,6 +59,7 @@ type CheckoutModalProps = {
   labels: CheckoutLabels;
   locale?: AppLocale;
   price: number;
+  hidePrice?: boolean;
 };
 
 /* ---- Time Slots ---- */
@@ -122,6 +123,7 @@ export function CheckoutModal({
   labels,
   locale,
   price,
+  hidePrice = false,
 }: CheckoutModalProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -148,7 +150,7 @@ export function CheckoutModal({
   const [ticketCounts, setTicketCounts] = useState<Record<string, number>>(() => {
     const initial: Record<string, number> = {};
     defaultTiers.forEach((tier) => {
-      initial[tier.id] = tier.id === "adult" ? 5 : 0;
+      initial[tier.id] = tier.id === "adult" ? 1 : 0;
     });
     return initial;
   });
@@ -156,7 +158,7 @@ export function CheckoutModal({
   const handleOpen = useCallback(() => {
     const initial: Record<string, number> = {};
     defaultTiers.forEach((tier) => {
-      initial[tier.id] = tier.id === "adult" ? 5 : 0;
+      initial[tier.id] = tier.id === "adult" ? 1 : 0;
     });
     setTicketCounts(initial);
     setSelectedDate(today);
@@ -537,7 +539,7 @@ export function CheckoutModal({
                                 <button
                                   type="button"
                                   title={`Decrease ${tier.name} count`}
-                                  disabled={(ticketCounts[tier.id] || 0) <= 5}
+                                  disabled={(ticketCounts[tier.id] || 0) <= 1}
                                   onClick={() => updateCount(tier.id, -1)}
                                   className="group touch-manipulation px-2 py-1 focus:outline-0 disabled:cursor-not-allowed"
                                 >
@@ -576,7 +578,7 @@ export function CheckoutModal({
                     </div>
 
                     {/* Booking Extras */}
-                    {bookingFee > 0 && (
+                    {!hidePrice && bookingFee > 0 && (
                       <div className="mx-2 mb-2 flex flex-col gap-y-6 rounded-md border border-line bg-slate-50 py-4 pr-2 pl-4">
                         <div className="flex items-start justify-between gap-4">
                           <div>
@@ -624,8 +626,12 @@ export function CheckoutModal({
                           >
                             <span className="text-lg leading-6 font-bold">{today.slice(8, 10)}</span>
                             <span className="text-sm leading-5 text-secondary">{labels.today}</span>
-                            <span className="mx-auto mt-0.5 block h-px w-4 rounded-full bg-line" />
-                            <span className="mt-1 text-xs text-secondary">¥{price}</span>
+                            {!hidePrice && (
+                              <>
+                                <span className="mx-auto mt-0.5 block h-px w-4 rounded-full bg-line" />
+                                <span className="mt-1 text-xs text-secondary">¥{price}</span>
+                              </>
+                            )}
                           </button>
 
                           <button
@@ -640,8 +646,12 @@ export function CheckoutModal({
                           >
                             <span className="text-lg leading-6 font-bold">{tomorrow.slice(8, 10)}</span>
                             <span className="text-sm leading-5 text-secondary">{labels.tomorrow}</span>
-                            <span className="mx-auto mt-0.5 block h-px w-4 rounded-full bg-line" />
-                            <span className="mt-1 text-xs text-secondary">¥{price}</span>
+                            {!hidePrice && (
+                              <>
+                                <span className="mx-auto mt-0.5 block h-px w-4 rounded-full bg-line" />
+                                <span className="mt-1 text-xs text-secondary">¥{price}</span>
+                              </>
+                            )}
                           </button>
 
                           <button
@@ -729,7 +739,7 @@ export function CheckoutModal({
                                           className="inline-flex aspect-square w-full flex-col items-center justify-center rounded-lg text-slate-300"
                                         >
                                           <span className="text-lg leading-6 font-bold">{dayNumber}</span>
-                                          <span className="invisible mt-px text-[11px]">¥{price}</span>
+                                          {!hidePrice && <span className="invisible mt-px text-[11px]">¥{price}</span>}
                                         </button>
                                       );
                                     }
@@ -747,7 +757,7 @@ export function CheckoutModal({
                                         ].join(" ")}
                                       >
                                         <span className="text-lg leading-6 font-bold">{dayNumber}</span>
-                                        <span className="mt-px text-[11px] text-secondary">¥{price}</span>
+                                        {!hidePrice && <span className="mt-px text-[11px] text-secondary">¥{price}</span>}
                                       </button>
                                     );
                                   })}
@@ -814,9 +824,11 @@ export function CheckoutModal({
                                             </span>
                                           </div>
                                           <span className="flex w-auto items-center justify-end">
-                                            <div className="relative w-12 text-right md:w-14">
-                                              <span className="text-sm leading-normal text-ink">¥{price}</span>
-                                            </div>
+                                            {!hidePrice && (
+                                              <div className="relative w-12 text-right md:w-14">
+                                                <span className="text-sm leading-normal text-ink">¥{price}</span>
+                                              </div>
+                                            )}
                                           </span>
                                         </span>
                                       </span>
@@ -833,21 +845,35 @@ export function CheckoutModal({
 
                   {/* Footer: Total + Continue */}
                   <div className="mt-auto flex flex-col gap-3 border-t border-line px-6 pt-6">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-secondary">{labels.total}</span>
-                      <span className="text-lg font-extrabold text-accent">¥{totalPrice}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs text-secondary">
-                      <span>
-                        {totalTickets} {labels.perPerson} × ¥{price}
-                      </span>
-                      {bookingFee > 0 && (
-                        <span>+ ¥{bookingFee} {labels.bookingFee.toLowerCase()}</span>
-                      )}
-                    </div>
+                    {!hidePrice && (
+                      <>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-secondary">{labels.total}</span>
+                          <span className="text-lg font-extrabold text-accent">¥{totalPrice}</span>
+                        </div>
+                        <div className="flex items-center justify-between text-xs text-secondary">
+                          <span>
+                            {totalTickets} {labels.perPerson} × ¥{price}
+                          </span>
+                          {bookingFee > 0 && (
+                            <span>+ ¥{bookingFee} {labels.bookingFee.toLowerCase()}</span>
+                          )}
+                        </div>
+                      </>
+                    )}
+                    {hidePrice && (
+                      <div className="rounded-lg bg-accent/[0.04] p-3 text-center">
+                        <p className="text-xs text-secondary">
+                          <a href="mailto:info@robotuo.com" className="font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
+                          {" "}/{" "}
+                          <span className="text-xs text-muted">WeChat: </span>
+                          <span className="font-bold text-accent">robotuo2026</span>
+                        </p>
+                      </div>
+                    )}
                     <button
                       type="button"
-                      disabled={!selectedDate || totalTickets < 5}
+                      disabled={!selectedDate || totalTickets < 1}
                       onClick={handleCheckout}
                       className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-accent px-6 py-3 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none disabled:hover:translate-y-0"
                     >

@@ -29,6 +29,10 @@
       "priceNote": "约 1 小时现场体验，按实际到访人数核对。",
       "cta": "预约体验名额",
       "supportCta": "先提交参观申请",
+      "contactTitle": "联系我们预约",
+      "contactDescription": "试运营期间，请通过以下方式联系我们预约体验，我们将尽快与您确认时间和安排。",
+      "contactEmailLabel": "邮箱",
+      "contactWeChatLabel": "微信",
       "stats": {
         "globalLocations": {
           "value": "34",
@@ -48,7 +52,7 @@
         },
         "printedGift": {
           "title": "3D 打印小礼品",
-          "text": "完成体验后可领取一份 3D 打印纪念小礼品，作为试运营体验的现场留念。试运营阶段只接受5人以上团。"
+          "text": "完成体验后可领取一份 3D 打印纪念小礼品，作为试运营体验的现场留念。"
         },
         "refreshments": {
           "title": "茶歇交流",
@@ -120,12 +124,16 @@
   "PaymentPage": {
     "eyebrow": "试运营体验预约",
     "title": "预约深圳机器人谷试运营现场体验",
-    "description": "试运营体验为 100 元/人，适用于展厅现场参观。费用包含展厅机器人操作、3D 打印小礼品和茶歇，付款用于确认体验名额。试运营阶段只接受5人以上团。",
+    "description": "试运营体验适用于展厅现场参观。费用包含展厅机器人操作、3D 打印小礼品和茶歇，请联系我们确认预约名额。",
     "priceLabel": "体验费用",
     "priceUnit": "元/人",
     "priceNote": "按实际到访人数计费，暂不在页面内计算总价。",
     "applyCta": "先提交参观申请",
     "homeCta": "返回首页",
+    "contactTitle": "联系我们预约",
+    "contactDescription": "试运营期间，请通过以下方式联系我们预约体验，我们将尽快与您确认时间和安排。",
+    "contactEmailLabel": "邮箱",
+    "contactWeChatLabel": "微信",
     "checkoutModal": {
       "title": "选择门票",
       "close": "关闭",
@@ -230,7 +238,7 @@
       "visitorCount": "参观人数",
       "message": "留言"
     },
-    "trialNotice": "试运营阶段只接受5人以上团",
+    "trialNotice": "试运营期间如有疑问，请联系我们的微信：robotuo2026",
     "submit": "提交申请",
     "submitting": "提交中...",
     "successTitle": "提交成功",

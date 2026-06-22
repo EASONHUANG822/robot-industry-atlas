@@ -96,10 +96,22 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
           <div className="mt-10 grid gap-5 sm:grid-cols-[1.15fr_0.85fr] sm:items-center">
             <div className="flex flex-col gap-4 rounded-xl border border-white/70 bg-white/[0.78] p-6 shadow-[0_18px_52px_rgba(45,74,138,0.10)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted">{t("priceLabel")}</p>
-                <div className="mt-3 flex flex-wrap items-end gap-x-3 gap-y-1">
-                  <span className="font-mono text-6xl font-black leading-none text-accent">{TRIAL_PAYMENT_PRICE_CNY}</span>
-                  <span className="pb-1 text-xl font-bold text-secondary">{t("priceUnit")}</span>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted">{t("contactTitle")}</p>
+                <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="size-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    <a href="mailto:info@robotuo.com" className="text-sm font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg className="size-4 shrink-0 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <span className="text-xs text-muted">{t("contactWeChatLabel")}：</span>
+                    <span className="text-sm font-bold text-accent">robotuo2026</span>
+                  </div>
                 </div>
               </div>
               <CheckoutModal
@@ -109,9 +121,9 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                 productDescription={t("checkoutModal.productDescription")}
                 productImages={productCarouselImages}
                 price={TRIAL_PAYMENT_PRICE_CNY}
-                bookingFee={5}
                 labels={checkoutLabels}
                 locale={locale}
+                hidePrice
               />
             </div>
           </div>
@@ -218,9 +230,9 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                   productDescription={t("checkoutModal.productDescription")}
                   productImages={productCarouselImages}
                   price={TRIAL_PAYMENT_PRICE_CNY}
-                  bookingFee={5}
                   labels={checkoutLabels}
                   locale={locale}
+                  hidePrice
                 />
               </div>
             </ScrollReveal>
@@ -312,9 +324,9 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                 productDescription={t("checkoutModal.productDescription")}
                 productImages={productCarouselImages}
                 price={TRIAL_PAYMENT_PRICE_CNY}
-                bookingFee={5}
                 labels={checkoutLabels}
                 locale={locale}
+                hidePrice
               />
             </div>
           </ScrollReveal>

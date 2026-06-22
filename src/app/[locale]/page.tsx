@@ -4,7 +4,7 @@ import { LandingDetailSection } from "@/components/landing/LandingDetailSection"
 import { LandingExperienceBooking } from "@/components/landing/LandingExperienceBooking";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { LandingTestimonials } from "@/components/landing/LandingTestimonials";
-import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
+import { PAYMENT_BENEFIT_KEYS } from "@/config/email";
 import type { AppLocale } from "@/i18n/routing";
 
 type LandingPageProps = {
@@ -32,11 +32,10 @@ export default async function LandingPage({ params }: LandingPageProps) {
         eyebrow={t("experienceBooking.eyebrow")}
         title={t("experienceBooking.title")}
         description={t("experienceBooking.description")}
-        priceLabel={t("experienceBooking.priceLabel")}
-        price={TRIAL_PAYMENT_PRICE_CNY}
-        priceUnit={t("experienceBooking.priceUnit")}
-        priceNote={t("experienceBooking.priceNote")}
-        ctaLabel={t("experienceBooking.cta")}
+        contactTitle={t("experienceBooking.contactTitle")}
+        contactDescription={t("experienceBooking.contactDescription")}
+        contactEmailLabel={t("experienceBooking.contactEmailLabel")}
+        contactWeChatLabel={t("experienceBooking.contactWeChatLabel")}
         stats={[
           {
             value: t("experienceBooking.stats.globalLocations.value"),

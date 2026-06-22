@@ -29,6 +29,10 @@
       "priceNote": "Approximately two hours on site, verified by actual visitor count.",
       "cta": "Book an Experience Slot",
       "supportCta": "Submit Visit Application First",
+      "contactTitle": "Contact Us to Book",
+      "contactDescription": "During trial operation, please contact us via the following channels to book your experience. We will confirm the time and arrangements with you promptly.",
+      "contactEmailLabel": "Email",
+      "contactWeChatLabel": "WeChat",
       "stats": {
         "globalLocations": {
           "value": "34",
@@ -48,7 +52,7 @@
         },
         "printedGift": {
           "title": "3D-printed souvenir",
-          "text": "Receive a small 3D-printed souvenir after the experience as a tangible memory of the visit. During trial operation, groups of 5 or more only."
+          "text": "Receive a small 3D-printed souvenir after the experience as a tangible memory of the visit."
         },
         "refreshments": {
           "title": "Refreshment exchange",
@@ -120,12 +124,16 @@
   "PaymentPage": {
     "eyebrow": "Trial Experience Booking",
     "title": "Book the Shenzhen Robot Valley trial showroom experience",
-    "description": "The trial experience is RMB 100 per person for the on-site showroom visit. It includes showroom robot operation, a 3D-printed gift, and refreshments; payment confirms the experience slot. During trial operation, groups of 5 or more only.",
+    "description": "The trial experience is for the on-site showroom visit. It includes showroom robot operation, a 3D-printed gift, and refreshments. Contact us to confirm your booking.",
     "priceLabel": "Experience Fee",
     "priceUnit": "RMB/person",
     "priceNote": "Charged by actual visitor count. This page does not calculate a total amount.",
     "applyCta": "Submit Visit Application First",
     "homeCta": "Back to Home",
+    "contactTitle": "Contact Us to Book",
+    "contactDescription": "During trial operation, please contact us via the following channels to book your experience. We will confirm the time and arrangements with you promptly.",
+    "contactEmailLabel": "Email",
+    "contactWeChatLabel": "WeChat",
     "checkoutModal": {
       "title": "Tickets",
       "close": "Close",
@@ -230,7 +238,7 @@
       "visitorCount": "Number of Visitors",
       "message": "Message"
     },
-    "trialNotice": "During trial operation, groups of 5 or more only.",
+    "trialNotice": "For inquiries during trial operation, contact us on WeChat: robotuo2026",
     "submit": "Submit Application",
     "submitting": "Submitting...",
     "successTitle": "Application submitted",

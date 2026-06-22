@@ -1,5 +1,3 @@
-import { Link } from "@/i18n/navigation";
-
 type ExperienceStat = {
   value: string;
   label: string;
@@ -15,24 +13,22 @@ type LandingExperienceBookingProps = {
   eyebrow: string;
   title: string;
   description: string;
-  priceLabel: string;
-  price: number;
-  priceUnit: string;
-  priceNote: string;
-  ctaLabel: string;
+  contactTitle: string;
+  contactDescription: string;
+  contactEmailLabel: string;
+  contactWeChatLabel: string;
   stats: ExperienceStat[];
   benefits: ExperienceBenefit[];
 };
 
 export function LandingExperienceBooking({
   benefits,
-  ctaLabel,
+  contactDescription,
+  contactEmailLabel,
+  contactTitle,
+  contactWeChatLabel,
   description,
   eyebrow,
-  price,
-  priceLabel,
-  priceNote,
-  priceUnit,
   stats,
   title,
 }: LandingExperienceBookingProps) {
@@ -135,23 +131,36 @@ export function LandingExperienceBooking({
           </div>
         </div>
 
-        <div className="mt-6 grid gap-6 rounded-lg border border-white/70 bg-white/[0.78] p-4 shadow-[0_24px_72px_rgba(45,74,138,0.12)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(45,74,138,0.18)] sm:p-5 lg:grid-cols-[0.72fr_1fr] lg:items-center">
+        <div className="mt-6 grid gap-6 rounded-lg border border-white/70 bg-white/[0.78] p-6 shadow-[0_24px_72px_rgba(45,74,138,0.12)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(45,74,138,0.18)] sm:p-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted">{priceLabel}</p>
-            <div className="mt-3 flex flex-wrap items-end gap-x-3 gap-y-1">
-              <span className="font-mono text-6xl font-black leading-none text-accent">{price}</span>
-              <span className="pb-1 text-lg font-bold text-secondary">{priceUnit}</span>
-            </div>
-            <p className="mt-3 text-sm leading-6 text-secondary">{priceNote}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted">{contactTitle}</p>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-secondary">{contactDescription}</p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-            <Link
-              href="/payment"
-              className="inline-flex min-h-16 items-center justify-center rounded-xl bg-accent px-10 py-5 text-lg font-bold text-white shadow-[0_8px_32px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-mid-dark hover:shadow-[0_12px_40px_rgba(55,89,187,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-0"
-            >
-              {ctaLabel}
-            </Link>
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
+            <div className="flex items-center gap-3">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+                <svg className="size-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">{contactEmailLabel}</p>
+                <a href="mailto:info@robotuo.com" className="text-base font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-green-50">
+                <svg className="size-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">{contactWeChatLabel}</p>
+                <span className="text-base font-bold text-accent">robotuo2026</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
