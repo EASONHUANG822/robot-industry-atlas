@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { useState, useCallback, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
-import { CreatorBadge } from "@/components/CreatorBadge";
 
 type FooterColumn = {
   title: string;
@@ -168,12 +167,9 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6">
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-slate-500">
-              &copy; 2026 {t("brand")}
-            </p>
-            <CreatorBadge />
-          </div>
+          <p className="text-xs text-slate-500">
+            &copy; 2026 {t("brand")}
+          </p>
         </div>
       </div>
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
