@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useRouter } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 import { ApplicationForm } from "@/components/ApplicationForm";
+import { WeChatContact } from "@/components/WeChatContact";
 
 /* ---- Types ---- */
 
@@ -863,12 +864,16 @@ export function CheckoutModal({
                     )}
                     {hidePrice && (
                       <div className="rounded-lg bg-accent/[0.04] p-3 text-center">
-                        <p className="text-xs text-secondary">
+                        <div className="flex items-center justify-center gap-4 text-xs text-secondary">
                           <a href="mailto:info@robotuo.com" className="font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
-                          {" "}/{" "}
-                          <span className="text-xs text-muted">WeChat: </span>
-                          <span className="font-bold text-accent">robotuo2026</span>
-                        </p>
+                          <span className="text-muted">/</span>
+                          <WeChatContact
+                            label="WeChat"
+                            wechatId="robotuo2026"
+                            qrCodeSrc="/images/wechat_code.jpg"
+                            size="sm"
+                          />
+                        </div>
                       </div>
                     )}
                     <button

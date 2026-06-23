@@ -606,5 +606,13 @@
         "messageTooLong": "反馈内容不能超过1000个字符。"
       }
     }
+  },
+  "PrivacyPage": {
+    "title": "隐私政策",
+    "underConstruction": "此页面正在建设中。如有疑问，请联系 info@robotuo.com。"
+  },
+  "TermsPage": {
+    "title": "使用条款",
+    "underConstruction": "此页面正在建设中。如有疑问，请联系 info@robotuo.com。"
   }
 }

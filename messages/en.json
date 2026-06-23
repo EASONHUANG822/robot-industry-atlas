@@ -606,5 +606,13 @@
         "messageTooLong": "Message must be 1000 characters or fewer."
       }
     }
+  },
+  "PrivacyPage": {
+    "title": "Privacy Policy",
+    "underConstruction": "This page is under construction. For inquiries, please contact info@robotuo.com."
+  },
+  "TermsPage": {
+    "title": "Terms of Use",
+    "underConstruction": "This page is under construction. For inquiries, please contact info@robotuo.com."
   }
 }

@@ -1,3 +1,5 @@
+import { WeChatContact } from "@/components/WeChatContact";
+
 type ExperienceStat = {
   value: string;
   label: string;
@@ -150,17 +152,11 @@ export function LandingExperienceBooking({
                 <a href="mailto:info@robotuo.com" className="text-base font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-green-50">
-                <svg className="size-5 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">{contactWeChatLabel}</p>
-                <span className="text-base font-bold text-accent">robotuo2026</span>
-              </div>
-            </div>
+            <WeChatContact
+              label={contactWeChatLabel}
+              wechatId="robotuo2026"
+              qrCodeSrc="/images/wechat_code.jpg"
+            />
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { CheckoutModal } from "@/components/CheckoutModal";
 import { ImageCarousel } from "@/components/ImageCarousel";
+import { WeChatContact } from "@/components/WeChatContact";
 import type { CheckoutLabels } from "@/components/CheckoutModal";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -105,13 +106,13 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                     </svg>
                     <a href="mailto:info@robotuo.com" className="text-sm font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <svg className="size-4 shrink-0 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <span className="text-xs text-muted">{t("contactWeChatLabel")}：</span>
-                    <span className="text-sm font-bold text-accent">robotuo2026</span>
-                  </div>
+                  <WeChatContact
+                    label={t("contactWeChatLabel")}
+                    wechatId="robotuo2026"
+                    qrCodeSrc="/images/wechat_code.jpg"
+                    qrCodeAlt={t("contactWeChatLabel") + " QR Code"}
+                    size="sm"
+                  />
                 </div>
               </div>
               <CheckoutModal
