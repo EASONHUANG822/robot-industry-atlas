@@ -39,6 +39,7 @@ export function WeChatContact({
     }
   }, [open]);
 
+  const boxSize = size === "sm" ? "size-8" : "size-10";
   const iconSize = size === "sm" ? "size-4" : "size-5";
   const textSize = size === "sm" ? "text-sm" : "text-base";
 
@@ -47,12 +48,17 @@ export function WeChatContact({
       <button
         type="button"
         onClick={qrCodeSrc ? handleOpen : undefined}
-        className={`inline-flex items-center gap-1.5 transition-opacity ${qrCodeSrc ? "cursor-pointer hover:opacity-80" : "cursor-default"}`}
+        className={`inline-flex items-center gap-3 transition-opacity ${qrCodeSrc ? "cursor-pointer hover:opacity-80" : "cursor-default"}`}
       >
-        <svg className={`${iconSize} shrink-0`} viewBox="0 0 24 24" fill="currentColor">
-          <path d="M8.5 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM12 2C6.48 2 2 5.92 2 10.68c0 2.66 1.4 5.04 3.6 6.6l-1.05 3.15a.3.3 0 0 0 .42.36l3.67-1.84c.97.27 2.01.41 3.11.4l.25-.01c5.52 0 10-3.92 10-8.68S17.52 2 12 2Z" className="text-[#07c160]" />
-        </svg>
-        <span className={`${textSize} font-bold text-accent`}>{wechatId}</span>
+        <div className={`${boxSize} shrink-0 flex items-center justify-center rounded-lg bg-green-50`}>
+          <svg className={`${iconSize} shrink-0`} viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.5 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM12 2C6.48 2 2 5.92 2 10.68c0 2.66 1.4 5.04 3.6 6.6l-1.05 3.15a.3.3 0 0 0 .42.36l3.67-1.84c.97.27 2.01.41 3.11.4l.25-.01c5.52 0 10-3.92 10-8.68S17.52 2 12 2Z" className="text-[#07c160]" />
+          </svg>
+        </div>
+        <div className="text-left">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">{label}</p>
+          <span className={`${textSize} font-bold text-accent`}>{wechatId}</span>
+        </div>
       </button>
 
       {open && qrCodeSrc && createPortal(

@@ -138,6 +138,7 @@ export function CheckoutModal({
   const fallbackToday = getTodayString();
   const [today] = useState(fallbackToday);
   const tomorrow = useMemo(() => addDays(today, 1), [today]);
+  const minBookableDate = useMemo(() => addDays(today, 2), [today]);
   const [visibleMonth, setVisibleMonth] = useState(fallbackToday.slice(0, 7));
 
   const calendarRef = useRef<HTMLDivElement>(null);
@@ -162,7 +163,7 @@ export function CheckoutModal({
       initial[tier.id] = tier.id === "adult" ? 1 : 0;
     });
     setTicketCounts(initial);
-    setSelectedDate(today);
+    setSelectedDate(minBookableDate);
     setSelectedSlot("");
     setCurrentSlide(0);
     setCalendarOpen(false);
@@ -171,7 +172,7 @@ export function CheckoutModal({
     setVisibleMonth(today.slice(0, 7));
     setStep("tickets");
     setOpen(true);
-  }, [today, defaultTiers]);
+  }, [today, minBookableDate, defaultTiers]);
 
   // Close on Escape
   useEffect(() => {
@@ -614,47 +615,7 @@ export function CheckoutModal({
                       </h2>
 
                       <div className="relative" ref={calendarRef}>
-                        <div role="menubar" tabIndex={0} className="grid grid-cols-3 gap-x-3.5 px-6" aria-label={labels.selectDate}>
-                          <button
-                            type="button"
-                            onClick={() => selectDate(today)}
-                            className={[
-                              "inline-flex w-full flex-col items-center justify-center rounded-lg px-1 py-2.5 ring-1 transition-colors",
-                              selectedDate === today
-                                ? "ring-accent ring-2"
-                                : "ring-line hover:ring-accent",
-                            ].join(" ")}
-                          >
-                            <span className="text-lg leading-6 font-bold">{today.slice(8, 10)}</span>
-                            <span className="text-sm leading-5 text-secondary">{labels.today}</span>
-                            {!hidePrice && (
-                              <>
-                                <span className="mx-auto mt-0.5 block h-px w-4 rounded-full bg-line" />
-                                <span className="mt-1 text-xs text-secondary">¥{price}</span>
-                              </>
-                            )}
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => selectDate(tomorrow)}
-                            className={[
-                              "inline-flex w-full flex-col items-center justify-center rounded-lg px-1 py-2.5 ring-1 transition-colors",
-                              selectedDate === tomorrow
-                                ? "ring-accent ring-2"
-                                : "ring-line hover:ring-accent",
-                            ].join(" ")}
-                          >
-                            <span className="text-lg leading-6 font-bold">{tomorrow.slice(8, 10)}</span>
-                            <span className="text-sm leading-5 text-secondary">{labels.tomorrow}</span>
-                            {!hidePrice && (
-                              <>
-                                <span className="mx-auto mt-0.5 block h-px w-4 rounded-full bg-line" />
-                                <span className="mt-1 text-xs text-secondary">¥{price}</span>
-                              </>
-                            )}
-                          </button>
-
+                        <div role="menubar" tabIndex={0} className="px-6" aria-label={labels.selectDate}>
                           <button
                             type="button"
                             onClick={() => setCalendarOpen((v) => !v)}
@@ -674,7 +635,7 @@ export function CheckoutModal({
                                 <path d="M2.20898 6.3158L15.7879 6.31579" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                               </svg>
                             </span>
-                            <span className="text-sm leading-5 text-secondary">{labels.otherDates}</span>
+                            <span className="text-sm leading-5 text-secondary">{labels.selectDate}</span>
                           </button>
                         </div>
 
@@ -728,7 +689,7 @@ export function CheckoutModal({
                                       return <div key={`empty-${index}`} aria-hidden="true" />;
                                     }
                                     const dayNumber = parseInt(day.slice(8, 10), 10);
-                                    const isPast = day < today;
+                                    const isPast = day < minBookableDate;
                                     const isSelected = selectedDate === day;
 
                                     if (isPast) {

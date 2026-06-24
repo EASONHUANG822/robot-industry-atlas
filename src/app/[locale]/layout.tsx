@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -54,6 +55,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           {children}
           <Footer />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
