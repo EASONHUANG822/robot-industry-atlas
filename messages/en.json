@@ -238,7 +238,7 @@
       "visitorCount": "Number of Visitors",
       "message": "Message"
     },
-    "trialNotice": "For inquiries during trial operation, contact us on WeChat: robotuo2026",
+    "trialNotice": "For inquiries during trial operation, contact us on WeChat: robotuo2026, or email <email>info@robotuo.com</email>",
     "submit": "Submit Application",
     "submitting": "Submitting...",
     "successTitle": "Application submitted",
@@ -275,7 +275,8 @@
       "pickDate": "Pick a date",
       "noSlots": "No available slots",
       "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+      "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      "feeNotice": "Trial operation may involve fees. Please contact us to confirm booking details."
     }
   },
   "CompanyDetails": {

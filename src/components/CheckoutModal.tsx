@@ -826,7 +826,18 @@ export function CheckoutModal({
                     {hidePrice && (
                       <div className="rounded-lg bg-accent/[0.04] p-3 text-center">
                         <div className="flex items-center justify-center gap-4 text-xs text-secondary">
-                          <a href="mailto:info@robotuo.com" className="font-bold text-accent transition-colors hover:text-mid-dark">info@robotuo.com</a>
+                          <a href="mailto:info@robotuo.com" className="inline-flex items-center gap-3 transition-opacity cursor-pointer hover:opacity-80">
+                            <div className="size-8 shrink-0 flex items-center justify-center rounded-lg bg-accent/10">
+                              <svg className="size-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                              </svg>
+                            </div>
+                            <div className="text-left">
+                              <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">EMAIL</p>
+                              <span className="text-sm font-bold text-accent">info@robotuo.com</span>
+                            </div>
+                          </a>
                           <span className="text-muted">/</span>
                           <WeChatContact
                             label="WeChat"

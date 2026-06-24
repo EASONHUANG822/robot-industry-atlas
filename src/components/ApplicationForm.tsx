@@ -152,6 +152,7 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
                   t("bookingCalendar.months.10"),
                   t("bookingCalendar.months.11"),
                 ],
+                feeNotice: t("bookingCalendar.feeNotice"),
               }}
             />
           </DateField>
@@ -173,7 +174,9 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
 
       {paymentMode ? (
         <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
-          <p className="text-sm font-medium text-amber-800">{t("trialNotice")}</p>
+          <p className="text-sm font-medium text-amber-800">{t.rich("trialNotice", {
+            email: (chunks) => <a href={`mailto:${chunks}`} className="underline hover:text-amber-950">{chunks}</a>,
+          })}</p>
         </div>
       ) : null}
 

@@ -25,6 +25,7 @@ type BookingCalendarProps = {
     tomorrow: string;
     pickDate: string;
     noSlots: string;
+    feeNotice: string;
     weekdays: string[];
     months: string[];
   };
@@ -418,6 +419,11 @@ export function BookingCalendar({ disabled = false, price, labels }: BookingCale
         )}
         {availabilityState === "ready" && !selectedDate && labels.noDateSelected}
       </div>
+
+      {/* Fee / contact notice */}
+      <p className="rounded-lg bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800 ring-1 ring-amber-200">
+        {labels.feeNotice}
+      </p>
     </div>
   );
 }
