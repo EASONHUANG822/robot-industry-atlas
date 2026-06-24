@@ -36,6 +36,7 @@ export function getLarkConfig() {
   if (!bitableAppToken) missing.push("LARK_BITABLE_APP_TOKEN");
   if (!tableIdApplications) missing.push("LARK_BITABLE_TABLE_ID_APPLICATIONS");
   if (!tableIdFeedback) missing.push("LARK_BITABLE_TABLE_ID_FEEDBACK");
+  // LARK_BITABLE_TABLE_ID_BLOCKED_DATES is optional — only required if using date blocking
 
   if (missing.length > 0) {
     return {

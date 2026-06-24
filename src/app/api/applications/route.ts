@@ -31,32 +31,51 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: availability.error }, { status: availability.status });
     }
 
-    const result = await createAirtableApplication(validation.payload);
-    if (!result.ok) {
-      return NextResponse.json({ error: result.error }, { status: result.status });
+    // Split comma-separated dates into individual entries, create one record per date
+    const rawDate = validation.payload.preferredVisitDate || "";
+    const dates = rawDate.split(",").map((d) => d.trim()).filter(Boolean);
+
+    const results: string[] = [];
+    const errors: string[] = [];
+
+    const { preferredVisitDate: _, ...sharedFields } = validation.payload;
+
+    for (const date of dates.length > 0 ? dates : [""]) {
+      const singlePayload = date ? { ...sharedFields, preferredVisitDate: date } : { ...sharedFields };
+      const result = await createAirtableApplication(singlePayload);
+      if (!result.ok) {
+        errors.push(`${date}: ${result.error}`);
+        continue;
+      }
+      if (result.recordId) {
+        results.push(result.recordId);
+        // Sync to Feishu + notify for each record (fire-and-forget)
+        Promise.allSettled([
+          syncApplicationToBitable(singlePayload, result.recordId),
+          notifyNewApplication(singlePayload, result.recordId),
+        ]).then(([syncResult, notifyResult]) => {
+          if (syncResult.status === "fulfilled" && !syncResult.value.ok) {
+            console.error("[FEISHU SYNC FAIL]", syncResult.value.error);
+          }
+          if (notifyResult.status === "rejected") {
+            console.error("[FEISHU NOTIFY ERR]", notifyResult.reason instanceof Error ? notifyResult.reason.message : notifyResult.reason);
+          }
+        });
+      }
     }
 
-    // Sync to Feishu Bitable + notify (awaited so Vercel serverless doesn't freeze them)
-    if (result.recordId) {
-      const [syncResult, notifyResult] = await Promise.allSettled([
-        syncApplicationToBitable(validation.payload, result.recordId),
-        notifyNewApplication(validation.payload, result.recordId),
-      ]);
-      if (syncResult.status === "fulfilled") {
-        if (syncResult.value.ok) {
-          console.log("[FEISHU SYNC OK] application synced to Bitable");
-        } else {
-          console.error("[FEISHU SYNC FAIL]", syncResult.value.error);
-        }
-      } else {
-        console.error("[FEISHU SYNC ERR]", syncResult.reason instanceof Error ? syncResult.reason.message : syncResult.reason);
-      }
-      if (notifyResult.status === "rejected") {
-        console.error("[FEISHU NOTIFY ERR]", notifyResult.reason instanceof Error ? notifyResult.reason.message : notifyResult.reason);
-      }
+    if (errors.length > 0 && results.length === 0) {
+      return NextResponse.json(
+        { error: `Failed to create applications: ${errors.join("; ")}` },
+        { status: 502 },
+      );
     }
 
-    return NextResponse.json({ ok: true, recordId: result.recordId });
+    return NextResponse.json({
+      ok: true,
+      recordIds: results,
+      dateCount: results.length,
+    });
   } catch {
     return NextResponse.json(
       { error: "Application submission failed. Please try again later." },

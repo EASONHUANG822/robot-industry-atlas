@@ -19,11 +19,12 @@ type ApplicationFormProps = {
   paymentMode?: boolean;
   locale?: AppLocale;
   preSelectedDate?: string;
+  preSelectedDates?: string[];
   preSelectedTime?: string;
   preSelectedVisitorCount?: number;
 };
 
-export function ApplicationForm({ successHref = "/payment?success=1", onSuccess, paymentMode, locale, preSelectedDate, preSelectedTime, preSelectedVisitorCount }: ApplicationFormProps) {
+export function ApplicationForm({ successHref = "/payment?success=1", onSuccess, paymentMode, locale, preSelectedDate, preSelectedDates, preSelectedTime, preSelectedVisitorCount }: ApplicationFormProps) {
   const router = useRouter();
   const t = useTranslations("ApplicationForm");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -103,7 +104,23 @@ export function ApplicationForm({ successHref = "/payment?success=1", onSuccess,
         <Field label={t("fields.phone")} name="phone">
           <input id="phone" type="tel" name="phone" autoComplete="tel" disabled={isSubmitting} className={inputClassName} />
         </Field>
-        {preSelectedDate ? (
+        {preSelectedDates && preSelectedDates.length > 1 ? (
+          <div className="sm:col-span-2">
+            <Field label={t("fields.preferredVisitDate")} name="preferredVisitDate">
+              <div className="flex flex-wrap gap-2">
+                {preSelectedDates.map((d) => (
+                  <span key={d} className="inline-flex items-center rounded-lg border border-accent/20 bg-accent/[0.04] px-3 py-2 text-sm font-semibold text-accent">
+                    {d}
+                    {preSelectedTime && (
+                      <span className="ml-1.5 text-xs font-normal text-muted">{preSelectedTime}</span>
+                    )}
+                  </span>
+                ))}
+              </div>
+            </Field>
+            <input type="hidden" name="preferredVisitDate" value={preSelectedDates.join(", ")} />
+          </div>
+        ) : preSelectedDate ? (
           <ReadOnlyDateField
             label={t("fields.preferredVisitDate")}
             date={preSelectedDate}
@@ -271,7 +288,10 @@ function Field({
 
 function buildPayload(formData: FormData): ApplicationPayload {
   const rawDate = getFormValue(formData, "preferredVisitDate");
-  const dateOnly = rawDate ? rawDate.slice(0, 10) : "";
+  // Preserve comma-separated multi-date strings; only slice single dates
+  const dateOnly = rawDate
+    ? (rawDate.includes(",") ? rawDate : rawDate.slice(0, 10))
+    : "";
 
   return {
     name: getFormValue(formData, "name"),

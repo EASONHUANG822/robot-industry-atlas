@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { AdminDateManager } from "@/components/admin/AdminDateManager";
 
 type FeedbackItem = {
   id: string;
@@ -13,11 +14,13 @@ type FeedbackItem = {
 };
 
 type Tab = "All" | "Pending" | "Approved" | "Rejected";
+type Page = "feedback" | "dates";
 
 export function AdminDashboard({ onLogout }: { onLogout: () => void }) {
+  const [page, setPage] = useState<Page>("dates");
   const [feedback, setFeedback] = useState<FeedbackItem[]>([]);
   const [activeTab, setActiveTab] = useState<Tab>("All");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState("");
 
@@ -42,9 +45,11 @@ export function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   }, [onLogout]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- data-fetching triggered by tab change
-    fetchFeedback(activeTab);
-  }, [activeTab, fetchFeedback]);
+    if (page === "feedback") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- data-fetching triggered by tab change
+      fetchFeedback(activeTab);
+    }
+  }, [page, activeTab, fetchFeedback]);
 
   async function handleAction(id: string, updates: Record<string, unknown>) {
     try {
@@ -109,109 +114,137 @@ export function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     <div className="min-h-screen bg-page">
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-accent">Feedback Moderation</h1>
+          <h1 className="text-2xl font-bold text-accent">Admin Panel</h1>
           <button onClick={handleLogout} className="rounded-lg border border-line bg-white px-4 py-2 text-sm font-medium text-muted transition hover:text-accent">
             Sign Out
           </button>
         </div>
 
+        {/* Page switcher */}
         <div className="mt-6 flex gap-2 border-b border-line pb-3">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`rounded-md px-3 py-1.5 text-sm font-semibold transition ${
-                activeTab === tab
-                  ? "bg-accent text-white"
-                  : "text-muted hover:text-accent"
-              }`}
-            >
-              {tab} ({counts[tab]})
-            </button>
-          ))}
+          <button
+            onClick={() => setPage("dates")}
+            className={`rounded-md px-4 py-1.5 text-sm font-semibold transition ${
+              page === "dates" ? "bg-accent text-white" : "text-muted hover:text-accent"
+            }`}
+          >
+            Date Management
+          </button>
+          <button
+            onClick={() => setPage("feedback")}
+            className={`rounded-md px-4 py-1.5 text-sm font-semibold transition ${
+              page === "feedback" ? "bg-accent text-white" : "text-muted hover:text-accent"
+            }`}
+          >
+            Feedback
+          </button>
         </div>
 
-        <div className="mt-6 space-y-4">
-          {loading ? (
-            <p className="py-12 text-center text-sm text-muted">Loading...</p>
-          ) : feedback.length === 0 ? (
-            <p className="py-12 text-center text-sm text-muted">No feedback found.</p>
-          ) : (
-            feedback.map((item) => (
-              <div key={item.id} className={`rounded-xl border bg-white p-5 shadow-sm ${item.featured ? "border-violet-300 ring-1 ring-violet-200" : "border-line"}`}>
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="font-semibold text-accent text-sm">{item.name}</span>
-                      <span className="text-xs text-muted">{item.role}</span>
-                      {statusBadge(item.status)}
-                      {item.featured && (
-                        <span className="inline-block rounded-full bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-700">
-                          &#x2605; Featured
-                        </span>
-                      )}
-                    </div>
-                    {editingId === item.id ? (
-                      <div>
-                        <textarea
-                          className="mt-2 w-full rounded-lg border border-line px-3 py-2 text-sm text-accent focus:outline-none focus:ring-2 focus:ring-mid-light"
-                          rows={3}
-                          value={editText}
-                          onChange={(e) => setEditText(e.target.value)}
-                        />
-                        <div className="mt-2 flex gap-2">
-                          <button onClick={() => saveEdit(item.id)} className="rounded bg-accent px-3 py-1 text-xs font-semibold text-white">Save</button>
-                          <button onClick={cancelEdit} className="rounded border border-line px-3 py-1 text-xs font-medium text-muted">Cancel</button>
+        {page === "dates" ? (
+          <div className="mt-6">
+            <AdminDateManager />
+          </div>
+        ) : (
+          <>
+            <div className="mt-6 flex gap-2 border-b border-line pb-3">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`rounded-md px-3 py-1.5 text-sm font-semibold transition ${
+                    activeTab === tab
+                      ? "bg-accent text-white"
+                      : "text-muted hover:text-accent"
+                  }`}
+                >
+                  {tab} ({counts[tab]})
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-6 space-y-4">
+              {loading ? (
+                <p className="py-12 text-center text-sm text-muted">Loading...</p>
+              ) : feedback.length === 0 ? (
+                <p className="py-12 text-center text-sm text-muted">No feedback found.</p>
+              ) : (
+                feedback.map((item) => (
+                  <div key={item.id} className={`rounded-xl border bg-white p-5 shadow-sm ${item.featured ? "border-violet-300 ring-1 ring-violet-200" : "border-line"}`}>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="font-semibold text-accent text-sm">{item.name}</span>
+                          <span className="text-xs text-muted">{item.role}</span>
+                          {statusBadge(item.status)}
+                          {item.featured && (
+                            <span className="inline-block rounded-full bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-700">
+                              &#x2605; Featured
+                            </span>
+                          )}
                         </div>
+                        {editingId === item.id ? (
+                          <div>
+                            <textarea
+                              className="mt-2 w-full rounded-lg border border-line px-3 py-2 text-sm text-accent focus:outline-none focus:ring-2 focus:ring-mid-light"
+                              rows={3}
+                              value={editText}
+                              onChange={(e) => setEditText(e.target.value)}
+                            />
+                            <div className="mt-2 flex gap-2">
+                              <button onClick={() => saveEdit(item.id)} className="rounded bg-accent px-3 py-1 text-xs font-semibold text-white">Save</button>
+                              <button onClick={cancelEdit} className="rounded border border-line px-3 py-1 text-xs font-medium text-muted">Cancel</button>
+                            </div>
+                          </div>
+                        ) : (
+                          <p className="mt-1 text-sm leading-6 text-secondary">{item.message}</p>
+                        )}
+                        <p className="mt-2 text-xs text-muted">{item.submittedAt ? new Date(item.submittedAt).toLocaleString() : ""}</p>
                       </div>
-                    ) : (
-                      <p className="mt-1 text-sm leading-6 text-secondary">{item.message}</p>
-                    )}
-                    <p className="mt-2 text-xs text-muted">{item.submittedAt ? new Date(item.submittedAt).toLocaleString() : ""}</p>
+                      <div className="flex shrink-0 flex-col gap-2">
+                        {item.status === "Pending" && (
+                          <>
+                            <button onClick={() => handleAction(item.id, { status: "Approved" })} className="rounded bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700">
+                              Approve
+                            </button>
+                            <button onClick={() => startEdit(item)} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
+                              Edit
+                            </button>
+                            <button onClick={() => handleAction(item.id, { status: "Rejected" })} className="rounded border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
+                              Reject
+                            </button>
+                          </>
+                        )}
+                        {item.status === "Approved" && (
+                          <>
+                            <button onClick={() => handleAction(item.id, { featured: !item.featured })} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
+                              {item.featured ? "Unfeature" : "Feature"}
+                            </button>
+                            <button onClick={() => startEdit(item)} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
+                              Edit
+                            </button>
+                            <button onClick={() => handleAction(item.id, { status: "Rejected" })} className="rounded border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
+                              Delete
+                            </button>
+                          </>
+                        )}
+                        {item.status === "Rejected" && (
+                          <>
+                            <button onClick={() => handleAction(item.id, { status: "Pending" })} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
+                              Restore
+                            </button>
+                            <button onClick={() => handleAction(item.id, { status: "Rejected" })} className="rounded border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
+                              Delete
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex shrink-0 flex-col gap-2">
-                    {item.status === "Pending" && (
-                      <>
-                        <button onClick={() => handleAction(item.id, { status: "Approved" })} className="rounded bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700">
-                          Approve
-                        </button>
-                        <button onClick={() => startEdit(item)} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
-                          Edit
-                        </button>
-                        <button onClick={() => handleAction(item.id, { status: "Rejected" })} className="rounded border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
-                          Reject
-                        </button>
-                      </>
-                    )}
-                    {item.status === "Approved" && (
-                      <>
-                        <button onClick={() => handleAction(item.id, { featured: !item.featured })} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
-                          {item.featured ? "Unfeature" : "Feature"}
-                        </button>
-                        <button onClick={() => startEdit(item)} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
-                          Edit
-                        </button>
-                        <button onClick={() => handleAction(item.id, { status: "Rejected" })} className="rounded border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
-                          Delete
-                        </button>
-                      </>
-                    )}
-                    {item.status === "Rejected" && (
-                      <>
-                        <button onClick={() => handleAction(item.id, { status: "Pending" })} className="rounded border border-line bg-white px-3 py-1.5 text-xs font-medium text-muted hover:text-accent">
-                          Restore
-                        </button>
-                        <button onClick={() => handleAction(item.id, { status: "Rejected" })} className="rounded border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50">
-                          Delete
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
+                ))
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ export async function GET() {
 
     return NextResponse.json({
       unavailableDates: result.unavailableDates,
+      blockedDates: result.blockedDates,
       today: getTodayVisitDateString(),
     });
   } catch {

@@ -150,12 +150,36 @@
       "perPerson": "person(s)",
       "productName": "Shenzhen Robot Valley Trial Experience",
       "productDescription": "Includes showroom robot operation, 3D-printed souvenir and refreshments. Approximately 1 hour on site.",
-      "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "weekdays": [
+        "Su",
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr",
+        "Sa"
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
       "formTitle": "Visitor Information",
       "formBack": "Back",
       "formDescription": "Please fill in the information below. We will contact you by email after submission.",
-      "visitorCount": "Visitors"
+      "visitorCount": "Visitors",
+      "referenceNotice": "Calendar is for reference only — final date must be confirmed with staff via WeChat or email",
+      "feeNotice": "Experience fees may apply. Please confirm with staff.",
+      "contactNotice": "Booking is subject to staff confirmation. Please check WeChat or email after submission."
     },
     "benefits": {
       "robotOperation": {
@@ -274,8 +298,29 @@
       "tomorrow": "Tomorrow",
       "pickDate": "Pick a date",
       "noSlots": "No available slots",
-      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "weekdays": [
+        "Su",
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr",
+        "Sa"
+      ],
       "feeNotice": "Trial operation may involve fees. Please contact us to confirm booking details."
     }
   },
@@ -314,9 +359,21 @@
     "apply": "Book Experience",
     "visit": "View Visit Flow",
     "stats": {
-      "area": { "value": "1500", "unit": "sqm", "label": "Visitable Area" },
-      "enterprises": { "value": "39", "unit": "enterprises", "label": "Exhibiting Companies" },
-      "corridor": { "value": "10", "unit": "km", "label": "Industry Corridor" }
+      "area": {
+        "value": "1500",
+        "unit": "sqm",
+        "label": "Visitable Area"
+      },
+      "enterprises": {
+        "value": "39",
+        "unit": "enterprises",
+        "label": "Exhibiting Companies"
+      },
+      "corridor": {
+        "value": "10",
+        "unit": "km",
+        "label": "Industry Corridor"
+      }
     },
     "areas": {
       "eyebrow": "Three Themed Exhibition Areas",

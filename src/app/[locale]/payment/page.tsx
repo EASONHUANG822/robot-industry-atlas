@@ -38,6 +38,9 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
     formBack: t("checkoutModal.formBack"),
     formDescription: t("checkoutModal.formDescription"),
     visitorCount: t("checkoutModal.visitorCount"),
+    referenceNotice: t("checkoutModal.referenceNotice"),
+    feeNotice: t("checkoutModal.feeNotice"),
+    contactNotice: t("checkoutModal.contactNotice"),
   };
 
   const benefits = PAYMENT_BENEFIT_KEYS.map((benefitKey) => ({

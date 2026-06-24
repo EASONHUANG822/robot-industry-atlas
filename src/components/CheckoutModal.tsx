@@ -20,12 +20,6 @@ type GalleryImage = {
   alt: string;
 };
 
-type TimeSlot = {
-  iso: string;
-  label: string;
-  price: number;
-};
-
 export type CheckoutLabels = {
   title: string;
   close: string;
@@ -46,6 +40,9 @@ export type CheckoutLabels = {
   formBack: string;
   formDescription: string;
   visitorCount: string;
+  referenceNotice: string;
+  feeNotice: string;
+  contactNotice: string;
 };
 
 type CheckoutModalProps = {
@@ -62,15 +59,6 @@ type CheckoutModalProps = {
   price: number;
   hidePrice?: boolean;
 };
-
-/* ---- Time Slots ---- */
-
-const TIME_SLOTS: TimeSlot[] = [
-  { iso: "09:00", label: "9:00 AM", price: 0 },
-  { iso: "10:30", label: "10:30 AM", price: 0 },
-  { iso: "14:00", label: "2:00 PM", price: 0 },
-  { iso: "15:30", label: "3:30 PM", price: 0 },
-];
 
 /* ---- Calendar Helpers ---- */
 
@@ -89,6 +77,13 @@ function addDays(dateStr: string, days: number) {
   const [y, m, d] = dateStr.split("-").map(Number);
   const date = new Date(y, m - 1, d + days);
   return isoDateFormatter.format(date);
+}
+
+function formatDateLabel(dateStr: string, months: string[], weekdays: string[]) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  const weekday = weekdays[date.getDay()];
+  return `${months[m - 1]} ${d}日 ${weekday}`;
 }
 
 function buildCalendarDays(month: string) {
@@ -129,12 +124,11 @@ export function CheckoutModal({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<"tickets" | "form">("tickets");
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedSlot, setSelectedSlot] = useState("");
+  const [selectedDates, setSelectedDates] = useState<string[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [calendarOpen, setCalendarOpen] = useState(false);
-  const [timePickerOpen, setTimePickerOpen] = useState(false);
   const [productSlide, setProductSlide] = useState(0);
+  const MAX_DATES = 5;
   const fallbackToday = getTodayString();
   const [today] = useState(fallbackToday);
   const tomorrow = useMemo(() => addDays(today, 1), [today]);
@@ -142,7 +136,6 @@ export function CheckoutModal({
   const [visibleMonth, setVisibleMonth] = useState(fallbackToday.slice(0, 7));
 
   const calendarRef = useRef<HTMLDivElement>(null);
-  const timePickerRef = useRef<HTMLDivElement>(null);
 
   const defaultTiers: TicketTier[] = useMemo(
     () => tiers || [{ id: "adult", name: "", price }],
@@ -163,11 +156,9 @@ export function CheckoutModal({
       initial[tier.id] = tier.id === "adult" ? 1 : 0;
     });
     setTicketCounts(initial);
-    setSelectedDate(minBookableDate);
-    setSelectedSlot("");
+    setSelectedDates([minBookableDate]);
     setCurrentSlide(0);
     setCalendarOpen(false);
-    setTimePickerOpen(false);
     setProductSlide(0);
     setVisibleMonth(today.slice(0, 7));
     setStep("tickets");
@@ -198,15 +189,12 @@ export function CheckoutModal({
       if (calendarRef.current && !calendarRef.current.contains(e.target as Node)) {
         setCalendarOpen(false);
       }
-      if (timePickerRef.current && !timePickerRef.current.contains(e.target as Node)) {
-        setTimePickerOpen(false);
-      }
     }
-    if (calendarOpen || timePickerOpen) {
+    if (calendarOpen) {
       document.addEventListener("mousedown", handleClick);
       return () => document.removeEventListener("mousedown", handleClick);
     }
-  }, [calendarOpen, timePickerOpen]);
+  }, [calendarOpen]);
 
   const updateCount = useCallback((tierId: string, delta: number) => {
     setTicketCounts((prev) => {
@@ -239,21 +227,20 @@ export function CheckoutModal({
 
   const canGoPrevious = visibleMonth > today.slice(0, 7);
 
-  const selectDate = useCallback((date: string) => {
-    setSelectedDate(date);
-    setSelectedSlot("");
-    setCalendarOpen(false);
+  const toggleDate = useCallback((date: string) => {
+    setSelectedDates((prev) => {
+      if (prev.includes(date)) {
+        return prev.filter((d) => d !== date);
+      }
+      if (prev.length >= MAX_DATES) return prev; // max reached, ignore
+      return [...prev, date].sort();
+    });
   }, []);
 
-  const selectedSlotLabel = useMemo(() => {
-    const slot = TIME_SLOTS.find((s) => s.iso === selectedSlot);
-    return slot ? slot.label : labels.noSlots;
-  }, [selectedSlot, labels.noSlots]);
-
   const handleCheckout = useCallback(() => {
-    if (!selectedDate || totalTickets === 0) return;
+    if (selectedDates.length === 0 || totalTickets === 0) return;
     setStep("form");
-  }, [selectedDate, totalTickets]);
+  }, [selectedDates, totalTickets]);
 
   const handleFormSuccess = useCallback(() => {
     setOpen(false);
@@ -606,9 +593,16 @@ export function CheckoutModal({
                 </section>
 
                 {/* Right Column: Date + Time Selection */}
-                <section className="relative flex h-full flex-col gap-12 border-l border-line py-6">
+                <section className="relative flex h-full flex-col gap-6 border-l border-line py-6">
+                  {/* Reference-only notice */}
+                  <div className="px-6">
+                    <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+                      <p className="text-xs font-semibold text-amber-800">{labels.referenceNotice}</p>
+                    </div>
+                  </div>
+
                   {/* Date Selection */}
-                  <div className="flex flex-col gap-12">
+                  <div className="flex flex-col gap-6">
                     <div className="flex flex-col gap-3.5">
                       <h2 className="px-6 text-sm font-normal text-secondary">
                         {labels.selectDate}
@@ -690,7 +684,8 @@ export function CheckoutModal({
                                     }
                                     const dayNumber = parseInt(day.slice(8, 10), 10);
                                     const isPast = day < minBookableDate;
-                                    const isSelected = selectedDate === day;
+                                    const isSelected = selectedDates.includes(day);
+                                    const isFull = !isSelected && selectedDates.length >= MAX_DATES;
 
                                     if (isPast) {
                                       return (
@@ -710,16 +705,23 @@ export function CheckoutModal({
                                       <button
                                         key={day}
                                         type="button"
-                                        onClick={() => selectDate(day)}
+                                        onClick={() => toggleDate(day)}
+                                        disabled={isFull}
                                         className={[
                                           "inline-flex aspect-square w-full flex-col items-center justify-center rounded-lg transition-colors",
                                           isSelected
                                             ? "bg-accent text-white"
-                                            : "hover:ring-1 hover:ring-accent",
+                                            : isFull
+                                              ? "cursor-not-allowed text-slate-300"
+                                              : "hover:ring-1 hover:ring-accent",
                                         ].join(" ")}
                                       >
                                         <span className="text-lg leading-6 font-bold">{dayNumber}</span>
-                                        {!hidePrice && <span className="mt-px text-[11px] text-secondary">¥{price}</span>}
+                                        {!hidePrice && (
+                                          <span className={`mt-px text-[11px] ${isSelected ? "text-white/70" : "text-secondary"}`}>
+                                            ¥{price}
+                                          </span>
+                                        )}
                                       </button>
                                     );
                                   })}
@@ -731,82 +733,62 @@ export function CheckoutModal({
                       </div>
                     </div>
 
-                    {/* Time Slot Selection */}
-                    <section className="flex flex-col gap-3.5 px-6">
-                      <h2 className="text-sm font-normal text-secondary">{labels.selectTime}</h2>
-
-                      <div className="grow" ref={timePickerRef}>
-                        <fieldset className="relative w-full">
-                          <legend className="sr-only">{labels.selectTime}</legend>
-
-                          <button
-                            type="button"
-                            onClick={() => setTimePickerOpen((v) => !v)}
-                            className="group relative flex h-12 w-full rounded-lg border border-line py-0 pr-6 transition-colors hover:border-accent"
-                          >
-                            <div className="flex h-full grow items-center">
-                              <div className="ml-4 text-sm text-secondary">
-                                {selectedSlot ? selectedSlotLabel : labels.noSlots}
-                              </div>
-                            </div>
-                            <div className="pointer-events-none absolute top-1/2 right-3 z-10 -translate-y-1/2 rotate-90 cursor-pointer py-2 text-secondary">
-                              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" className="w-4">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M7.18564 7.05047L1.65625 1L7.18564 7.05047V7.05047Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M7.18473 7.05029L1.66602 12.9998" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            </div>
-                          </button>
-
-                          {timePickerOpen && (
-                            <div className="absolute z-10 mt-2.5 w-full overflow-hidden rounded-lg border border-line bg-white ring-[6px] ring-slate-100">
-                              <div className="max-h-80 w-full overflow-y-auto">
-                                {TIME_SLOTS.map((slot) => {
-                                  const isSelected = selectedSlot === slot.iso;
-                                  return (
-                                    <label
-                                      key={slot.iso}
-                                      className={`group relative block w-full cursor-pointer pr-4 text-secondary hover:bg-slate-50 ${isSelected ? "bg-slate-50" : ""}`}
-                                    >
-                                      <input
-                                        type="radio"
-                                        name="availability"
-                                        className="sr-only"
-                                        value={slot.iso}
-                                        checked={isSelected}
-                                        onChange={() => {
-                                          setSelectedSlot(slot.iso);
-                                          setTimePickerOpen(false);
-                                        }}
-                                      />
-                                      <span className="flex grow flex-col px-3.5 py-2.5">
-                                        <span className="flex items-center justify-between">
-                                          <div className="flex grow gap-2">
-                                            <span className="text-right font-medium whitespace-nowrap text-ink">
-                                              {slot.label}
-                                            </span>
-                                          </div>
-                                          <span className="flex w-auto items-center justify-end">
-                                            {!hidePrice && (
-                                              <div className="relative w-12 text-right md:w-14">
-                                                <span className="text-sm leading-normal text-ink">¥{price}</span>
-                                              </div>
-                                            )}
-                                          </span>
-                                        </span>
-                                      </span>
-                                    </label>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
-                        </fieldset>
+                    {/* Selected dates summary */}
+                    {selectedDates.length > 0 && (
+                      <div className="px-6">
+                        <div className="flex flex-wrap gap-2">
+                          {selectedDates.map((d) => (
+                            <span
+                              key={d}
+                              className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent"
+                            >
+                              {formatDateLabel(d, labels.months, labels.weekdays)}
+                              <button
+                                type="button"
+                                onClick={() => toggleDate(d)}
+                                className="ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-accent/60 hover:bg-accent/20 hover:text-accent"
+                              >
+                                ×
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+                        <p className="mt-2 text-xs text-muted">
+                          {labels.referenceNotice}
+                        </p>
                       </div>
-                    </section>
+                    )}
+
                   </div>
 
-                  {/* Footer: Total + Continue */}
+                  {/* Footer: Contact + Fee notice + Continue */}
                   <div className="mt-auto flex flex-col gap-3 border-t border-line px-6 pt-6">
+                    {/* Fee notice */}
+                    <div className="rounded-lg bg-accent/[0.04] px-4 py-3 text-center">
+                      <p className="text-xs font-medium text-secondary">{labels.feeNotice}</p>
+                    </div>
+
+                    {/* Contact info — always visible */}
+                    <div className="flex items-center justify-center gap-4 text-xs text-secondary">
+                      <a href="mailto:info@robotuo.com" className="inline-flex items-center gap-2 transition-opacity cursor-pointer hover:opacity-80">
+                        <div className="size-7 shrink-0 flex items-center justify-center rounded-lg bg-accent/10">
+                          <svg className="size-3.5 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                          </svg>
+                        </div>
+                        <span className="text-sm font-bold text-accent">info@robotuo.com</span>
+                      </a>
+                      <span className="text-muted">/</span>
+                      <WeChatContact
+                        label="WeChat"
+                        wechatId="robotuo2026"
+                        qrCodeSrc="/images/wechat_code.jpg"
+                        size="sm"
+                      />
+                    </div>
+                    <p className="text-center text-xs text-muted">{labels.contactNotice}</p>
+
                     {!hidePrice && (
                       <>
                         <div className="flex items-center justify-between">
@@ -823,34 +805,9 @@ export function CheckoutModal({
                         </div>
                       </>
                     )}
-                    {hidePrice && (
-                      <div className="rounded-lg bg-accent/[0.04] p-3 text-center">
-                        <div className="flex items-center justify-center gap-4 text-xs text-secondary">
-                          <a href="mailto:info@robotuo.com" className="inline-flex items-center gap-3 transition-opacity cursor-pointer hover:opacity-80">
-                            <div className="size-8 shrink-0 flex items-center justify-center rounded-lg bg-accent/10">
-                              <svg className="size-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                              </svg>
-                            </div>
-                            <div className="text-left">
-                              <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">EMAIL</p>
-                              <span className="text-sm font-bold text-accent">info@robotuo.com</span>
-                            </div>
-                          </a>
-                          <span className="text-muted">/</span>
-                          <WeChatContact
-                            label="WeChat"
-                            wechatId="robotuo2026"
-                            qrCodeSrc="/images/wechat_code.jpg"
-                            size="sm"
-                          />
-                        </div>
-                      </div>
-                    )}
                     <button
                       type="button"
-                      disabled={!selectedDate || totalTickets < 1}
+                      disabled={selectedDates.length === 0 || totalTickets < 1}
                       onClick={handleCheckout}
                       className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-accent px-6 py-3 text-base font-bold text-white shadow-[0_6px_28px_rgba(55,89,187,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-dark hover:shadow-[0_8px_36px_rgba(55,89,187,0.45)] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none disabled:hover:translate-y-0"
                     >
@@ -872,8 +829,8 @@ export function CheckoutModal({
                       paymentMode
                       locale={locale}
                       onSuccess={handleFormSuccess}
-                      preSelectedDate={selectedDate}
-                      preSelectedTime={selectedSlot || undefined}
+                      preSelectedDate={selectedDates[0] || ""}
+                      preSelectedDates={selectedDates}
                       preSelectedVisitorCount={totalTickets}
                     />
                   </div>

@@ -5,6 +5,7 @@ import {
   type ApplicationFieldKey,
   type ApplicationPayload,
 } from "@/config/applicationForm";
+import { getBlockedDates } from "@/server/larkBlockedDates";
 
 type AirtableCreateResponse = {
   records?: Array<{
@@ -194,14 +195,74 @@ export async function getUnavailableVisitDates() {
     }
   } while (offset);
 
-  const unavailableDates = [...dateCounts.entries()]
+  const countedUnavailable = [...dateCounts.entries()]
     .filter(([, count]) => count >= MAX_DONE_APPLICATIONS_PER_VISIT_DATE)
-    .map(([date]) => date)
-    .sort();
+    .map(([date]) => date);
+
+  // Merge with manually blocked dates from BlockedDates table
+  const blockedResult = await getBlockedDates();
+  const manuallyBlocked = blockedResult.ok ? blockedResult.blockedDates : [];
+
+  const unavailableDates = [...new Set([...countedUnavailable, ...manuallyBlocked])].sort();
 
   return {
     ok: true as const,
     unavailableDates,
+    blockedDates: manuallyBlocked,
+  };
+}
+
+export async function getVisitDateCounts() {
+  const configResult = getAirtableConfig();
+  if (!configResult.ok) {
+    return configResult;
+  }
+
+  const dateCounts = new Map<string, number>();
+  let offset: string | undefined;
+
+  do {
+    const url = new URL(buildAirtableTableUrl(configResult.baseId, configResult.tableName));
+    url.searchParams.set(
+      "filterByFormula",
+      `AND({${AIRTABLE_SYSTEM_FIELD_MAP.status}} = "${AIRTABLE_DONE_STATUS}", {${AIRTABLE_FIELD_MAP.preferredVisitDate}})`,
+    );
+    url.searchParams.set("pageSize", "100");
+    url.searchParams.append("fields[]", AIRTABLE_FIELD_MAP.preferredVisitDate);
+    if (offset) url.searchParams.set("offset", offset);
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${configResult.token}` },
+      cache: "no-store",
+    });
+    const responseBody = (await safeReadAirtableResponse(response)) as AirtableListResponse | string | undefined;
+
+    if (!response.ok) {
+      return {
+        ok: false as const,
+        status: normalizeAirtableErrorStatus(response.status),
+        error: getAirtableErrorMessage(response.status, responseBody),
+      };
+    }
+
+    if (typeof responseBody === "object") {
+      for (const record of responseBody?.records || []) {
+        const dateValue = normalizeVisitDateValue(record.fields?.[AIRTABLE_FIELD_MAP.preferredVisitDate]);
+        if (dateValue) {
+          dateCounts.set(dateValue, (dateCounts.get(dateValue) || 0) + 1);
+        }
+      }
+      offset = responseBody?.offset;
+    } else {
+      offset = undefined;
+    }
+  } while (offset);
+
+  return {
+    ok: true as const,
+    dateCounts: Object.fromEntries(dateCounts),
+    maxPerDate: MAX_DONE_APPLICATIONS_PER_VISIT_DATE,
   };
 }
 
@@ -210,20 +271,26 @@ export async function validatePreferredVisitDateAvailability(preferredVisitDate:
     return { ok: true as const };
   }
 
-  if (!isIsoDateString(preferredVisitDate)) {
-    return {
-      ok: false as const,
-      status: 400,
-      error: "Preferred visit date must use YYYY-MM-DD format.",
-    };
-  }
+  // Support comma-separated multi-date selection (up to 5)
+  const dates = preferredVisitDate.split(",").map((d) => d.trim()).filter(Boolean);
+  const today = getTodayVisitDateString();
 
-  if (preferredVisitDate < getTodayVisitDateString()) {
-    return {
-      ok: false as const,
-      status: 400,
-      error: "Preferred visit date cannot be earlier than today.",
-    };
+  for (const date of dates) {
+    if (!isIsoDateString(date)) {
+      return {
+        ok: false as const,
+        status: 400,
+        error: "Preferred visit date must use YYYY-MM-DD format.",
+      };
+    }
+
+    if (date < today) {
+      return {
+        ok: false as const,
+        status: 400,
+        error: "Preferred visit date cannot be earlier than today.",
+      };
+    }
   }
 
   const unavailableResult = await getUnavailableVisitDates();
@@ -231,12 +298,24 @@ export async function validatePreferredVisitDateAvailability(preferredVisitDate:
     return unavailableResult;
   }
 
-  if (unavailableResult.unavailableDates.includes(preferredVisitDate)) {
-    return {
-      ok: false as const,
-      status: 409,
-      error: "The selected visit date is fully booked. Please choose another date.",
-    };
+  // With multiple dates, only reject if ALL selected dates are unavailable
+  if (dates.length > 1) {
+    const allUnavailable = dates.every((d) => unavailableResult.unavailableDates.includes(d));
+    if (allUnavailable) {
+      return {
+        ok: false as const,
+        status: 409,
+        error: "All selected dates are fully booked. Please choose different dates.",
+      };
+    }
+  } else {
+    if (unavailableResult.unavailableDates.includes(dates[0])) {
+      return {
+        ok: false as const,
+        status: 409,
+        error: "The selected visit date is fully booked. Please choose another date.",
+      };
+    }
   }
 
   return { ok: true as const };
