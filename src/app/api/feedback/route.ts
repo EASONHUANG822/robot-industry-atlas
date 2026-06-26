@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     if (result.recordId) {
       const [syncResult, notifyResult] = await Promise.allSettled([
         syncFeedbackToBitable(validation.payload, result.recordId),
-        notifyNewFeedback(validation.payload, result.recordId),
+        notifyNewFeedback(validation.payload),
       ]);
       if (syncResult.status === "fulfilled") {
         if (syncResult.value.ok) {

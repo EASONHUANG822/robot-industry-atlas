@@ -1,17 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type DateStatusResponse = {
   dateCounts?: Record<string, number>;
   maxPerDate?: number;
   blockedDates?: string[];
   today?: string;
-  error?: string;
-};
-
-type BlockedDatesResponse = {
-  blockedDates?: string[];
   error?: string;
 };
 
@@ -63,32 +58,49 @@ export function AdminDateManager() {
   const [error, setError] = useState("");
   const [toggling, setToggling] = useState<string | null>(null);
 
-  const fetchStatus = useCallback(async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const res = await fetch("/api/admin/date-status");
-      if (res.status === 401) return;
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({ error: "Unknown" })) as { error?: string };
-        setError(body?.error || `Failed to load date status (${res.status}).`);
-        return;
-      }
-      const data: DateStatusResponse = await res.json();
-      setToday(data.today || fallbackToday);
-      setDateCounts(data.dateCounts || {});
-      setBlockedDates(new Set(data.blockedDates || []));
-      setMaxPerDate(data.maxPerDate || 4);
-    } catch {
-      setError("Network error.");
-    } finally {
-      setLoading(false);
-    }
-  }, [fallbackToday]);
-
   useEffect(() => {
-    fetchStatus();
-  }, [fetchStatus]);
+    let ignore = false;
+
+    async function load() {
+      try {
+        const res = await fetch("/api/admin/date-status");
+        if (ignore) return;
+
+        if (res.status === 401) {
+          setLoading(false);
+          return;
+        }
+
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({ error: "Unknown" })) as { error?: string };
+          if (!ignore) {
+            setError(body?.error || `Failed to load date status (${res.status}).`);
+            setLoading(false);
+          }
+          return;
+        }
+
+        const data: DateStatusResponse = await res.json();
+        if (ignore) return;
+
+        setError("");
+        setToday(data.today || fallbackToday);
+        setDateCounts(data.dateCounts || {});
+        setBlockedDates(new Set(data.blockedDates || []));
+        setMaxPerDate(data.maxPerDate || 4);
+        setLoading(false);
+      } catch {
+        if (!ignore) {
+          setError("Network error.");
+          setLoading(false);
+        }
+      }
+    }
+
+    load();
+
+    return () => { ignore = true; };
+  }, [fallbackToday]);
 
   async function toggleBlock(date: string) {
     if (date < today) return;

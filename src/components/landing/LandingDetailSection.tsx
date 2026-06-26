@@ -20,8 +20,6 @@ type LandingDetailSectionProps = {
   description: string;
   addressLabel: string;
   areaLabel: string;
-  globeAriaLabel: string;
-  globeHubLabel: string;
   cards: DetailCardContent[];
   showroomCtaLabel: string;
   showroomHref: string;
@@ -65,11 +63,7 @@ export function LandingDetailSection(props: LandingDetailSectionProps) {
           {/* Right column: globe shares the same sticky viewport as the left stack */}
           <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden lg:h-full lg:overflow-visible">
             <div className="w-full max-w-[560px] xl:max-w-[620px] xl:translate-x-6">
-              <OfficeGlobePanel
-                ariaLabel={props.globeAriaLabel}
-                hubLabel={props.globeHubLabel}
-                scrollContainerRef={sectionRef}
-              />
+              <OfficeGlobePanel />
             </div>
           </div>
         </div>

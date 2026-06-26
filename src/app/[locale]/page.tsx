@@ -79,8 +79,6 @@ export default async function LandingPage({ params }: LandingPageProps) {
         description={t("detail.description")}
         addressLabel={t("detail.addressLabel")}
         areaLabel={t("detail.areaLabel")}
-        globeAriaLabel={t("detail.globeAriaLabel")}
-        globeHubLabel={t("detail.globeHubLabel")}
         showroomCtaLabel={t("detail.showroomCta")}
         showroomHref="/showroom"
         cards={[

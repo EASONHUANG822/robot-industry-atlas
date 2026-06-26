@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         // Sync to Feishu + notify for each record (fire-and-forget)
         Promise.allSettled([
           syncApplicationToBitable(singlePayload, result.recordId),
-          notifyNewApplication(singlePayload, result.recordId),
+          notifyNewApplication(singlePayload),
         ]).then(([syncResult, notifyResult]) => {
           if (syncResult.status === "fulfilled" && !syncResult.value.ok) {
             console.error("[FEISHU SYNC FAIL]", syncResult.value.error);

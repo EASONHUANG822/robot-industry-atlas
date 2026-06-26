@@ -47,8 +47,7 @@ function sendWebhook(payload: Record<string, unknown>) {
 }
 
 export async function notifyNewApplication(
-  payload: ApplicationPayload,
-  _airtableRecordId: string
+  payload: ApplicationPayload
 ) {
   const name = payload.name ?? "—";
   const org = payload.organization ?? "—";
@@ -84,7 +83,7 @@ export async function notifyNewApplication(
   });
 }
 
-export async function notifyNewFeedback(payload: FeedbackPayload, _airtableRecordId: string) {
+export async function notifyNewFeedback(payload: FeedbackPayload) {
   const name = payload.name ?? "—";
   const role = payload.role ?? "—";
   const msg = payload.message ?? "—";
