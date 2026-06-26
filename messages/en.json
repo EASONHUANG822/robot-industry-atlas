@@ -23,14 +23,14 @@
     "experienceBooking": {
       "eyebrow": "Experience Booking",
       "title": "Book an approximately two-hour Robot Valley showroom experience",
-      "description": "Follow the showroom route through real robotics scenes, complete an on-site briefing, operate robots, receive a 3D-printed souvenir, and continue the conversation over refreshments.",
-      "priceLabel": "Trial Experience Fee",
+      "description": "Follow the showroom route through real robotics scenes, complete an on-site briefing, operate robots, and continue the conversation.",
+      "priceLabel": "Experience Fee",
       "priceUnit": "RMB/person",
       "priceNote": "Approximately two hours on site, verified by actual visitor count.",
       "cta": "Book an Experience Slot",
       "supportCta": "Submit Visit Application First",
       "contactTitle": "Contact Us to Book",
-      "contactDescription": "During trial operation, please contact us via the following channels to book your experience. We will confirm the time and arrangements with you promptly.",
+      "contactDescription": "Please contact us via the following channels to book your experience. We will confirm the time and arrangements with you promptly.",
       "contactEmailLabel": "Email",
       "contactWeChatLabel": "WeChat",
       "stats": {
@@ -42,7 +42,7 @@
         "enterpriseVisits": {
           "value": "50+",
           "label": "enterprise visits/month",
-          "text": "During trial operation, the showroom receives companies, parks, research teams, and industry partners for on-site exchange."
+          "text": "The showroom receives companies, parks, research teams, and industry partners for on-site exchange."
         }
       },
       "benefits": {
@@ -51,12 +51,12 @@
           "text": "Try robot operation and interactive demonstrations on site, turning technical claims into visible movement and feedback."
         },
         "printedGift": {
-          "title": "3D-printed souvenir",
-          "text": "Receive a small 3D-printed souvenir after the experience as a tangible memory of the visit."
+          "title": "Souvenir",
+          "text": "Receive a small souvenir after the experience as a tangible memory of the visit."
         },
         "refreshments": {
-          "title": "Refreshment exchange",
-          "text": "Basic refreshments are included so teams can continue discussing needs, visit routes, and follow-up opportunities."
+          "title": "Discussion Time",
+          "text": "Time is included so teams can continue discussing needs, visit routes, and follow-up opportunities."
         }
       }
     },
@@ -109,7 +109,7 @@
       "t1": "An extraordinary facility that showcases the full spectrum of robotics innovation. Our team left with actionable insights for our own R&D roadmap.",
       "t2": "The robot operation experience was eye-opening. Seeing these systems up close gave our engineering team a new perspective on what's possible in industrial automation.",
       "t3": "Shenzhen Robot Valley is more than a showroom — it's a living lab. The density of talent and technology here is unmatched in the region.",
-      "t4": "We brought our entire leadership team and everyone walked away impressed. The 3D-printed souvenir was a nice touch too.",
+      "t4": "We brought our entire leadership team and everyone walked away impressed.",
       "t5": "As an investor, I need to see real capabilities, not slides. Robot Valley delivered — tangible demos, real robots, clear value.",
       "t6": "The integration of AI, hardware, and manufacturing under one roof makes this a must-visit for anyone serious about the future of robotics.",
       "t7": "We traveled from Europe specifically to visit Robot Valley and it exceeded our expectations. The ecosystem density is remarkable.",
@@ -122,16 +122,16 @@
     }
   },
   "PaymentPage": {
-    "eyebrow": "Trial Experience Booking",
-    "title": "Book the Shenzhen Robot Valley trial showroom experience",
-    "description": "The trial experience is for the on-site showroom visit. It includes showroom robot operation, a 3D-printed gift, and refreshments. Contact us to confirm your booking.",
+    "eyebrow": "Experience Booking",
+    "title": "Book the Shenzhen Robot Valley showroom experience",
+    "description": "The experience is for the on-site showroom visit. It includes showroom robot operation. Contact us to confirm your booking.",
     "priceLabel": "Experience Fee",
     "priceUnit": "RMB/person",
     "priceNote": "Charged by actual visitor count. This page does not calculate a total amount.",
     "applyCta": "Submit Visit Application First",
     "homeCta": "Back to Home",
     "contactTitle": "Contact Us to Book",
-    "contactDescription": "During trial operation, please contact us via the following channels to book your experience. We will confirm the time and arrangements with you promptly.",
+    "contactDescription": "Please contact us via the following channels to book your experience. We will confirm the time and arrangements with you promptly.",
     "contactEmailLabel": "Email",
     "contactWeChatLabel": "WeChat",
     "checkoutModal": {
@@ -148,8 +148,8 @@
       "continueToPayment": "Continue",
       "total": "Total",
       "perPerson": "person(s)",
-      "productName": "Shenzhen Robot Valley Trial Experience",
-      "productDescription": "Includes showroom robot operation, 3D-printed souvenir and refreshments. Approximately 1 hour on site.",
+      "productName": "Shenzhen Robot Valley Showroom Experience",
+      "productDescription": "Includes showroom robot operation. Approximately 1 hour on site.",
       "weekdays": [
         "Su",
         "Mo",
@@ -187,12 +187,12 @@
         "text": "Includes hands-on robot operation and interactive demonstrations in the showroom."
       },
       "printedGift": {
-        "title": "3D-printed Gift",
-        "text": "Visitors can receive a small 3D-printed souvenir after the visit experience."
+        "title": "Souvenir",
+        "text": "Visitors can receive a small souvenir after the visit experience."
       },
       "refreshments": {
-        "title": "Refreshments",
-        "text": "Basic refreshments are included for a short discussion after the visit."
+        "title": "Discussion Time",
+        "text": "Time is included for a short discussion after the visit."
       }
     },
     "formTitle": "Registration Information",
@@ -221,7 +221,7 @@
     "showroom": {
       "eyebrow": "Showroom Preview",
       "title": "Step inside the Shenzhen Robot Valley showroom",
-      "description": "Located in Nanshan Smart Park, the showroom features cutting-edge robotic products and interactive experience stations. Visitors can operate robots hands-on, explore AI technology applications, and experience innovative manufacturing processes such as 3D printing.",
+      "description": "Located in Nanshan Smart Park, the showroom features cutting-edge robotic products and interactive experience stations. Visitors can operate robots hands-on and explore AI technology applications.",
       "carousel": {
         "previousSlide": "Previous slide",
         "nextSlide": "Next slide",
@@ -234,7 +234,7 @@
       "items": [
         {
           "q": "What is included in the experience fee?",
-          "a": "The RMB 100 per person fee includes hands-on robot operation, a 3D-printed souvenir, and basic refreshments."
+          "a": "The RMB 100 per person fee includes hands-on robot operation."
         },
         {
           "q": "Can I bring children?",
@@ -262,7 +262,7 @@
       "visitorCount": "Number of Visitors",
       "message": "Message"
     },
-    "trialNotice": "For inquiries during trial operation, contact us on WeChat: robotuo2026, or email <email>info@robotuo.com</email>",
+    "trialNotice": "For inquiries, contact us on WeChat: robotuo2026, or email <email>info@robotuo.com</email>",
     "submit": "Submit Application",
     "submitting": "Submitting...",
     "successTitle": "Application submitted",
@@ -321,7 +321,7 @@
         "Fr",
         "Sa"
       ],
-      "feeNotice": "Trial operation may involve fees. Please contact us to confirm booking details."
+      "feeNotice": "Fees may apply. Please contact us to confirm booking details."
     }
   },
   "CompanyDetails": {

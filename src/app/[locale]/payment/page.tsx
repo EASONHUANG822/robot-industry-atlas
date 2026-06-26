@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { PAYMENT_BENEFIT_KEYS, TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
+import { TRIAL_PAYMENT_PRICE_CNY } from "@/config/email";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { CheckoutModal } from "@/components/CheckoutModal";
 import { ImageCarousel } from "@/components/ImageCarousel";
@@ -61,11 +61,6 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
     feeNotice: t("checkoutModal.feeNotice"),
     contactNotice: t("checkoutModal.contactNotice"),
   };
-
-  const benefits = PAYMENT_BENEFIT_KEYS.map((benefitKey) => ({
-    title: t(`benefits.${benefitKey}.title`),
-    text: t(`benefits.${benefitKey}.text`),
-  }));
 
   const showroomCarouselImages = [
     { src: "/images/robot-valley-hero.png", alt: t("showroom.title") },
@@ -149,24 +144,6 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
                 hidePrice
               />
             </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {benefits.map((benefit, i) => (
-              <ScrollReveal key={benefit.title} staggerIndex={i}>
-                <article className="group flex h-full flex-col rounded-xl border border-line bg-white/[0.86] p-5 shadow-[0_12px_36px_rgba(45,74,138,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_20px_48px_rgba(45,74,138,0.13)]">
-                  <div className="flex items-start gap-3">
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/8">
-                      <span className="font-mono text-xs font-bold text-accent">{String(i + 1).padStart(2, "0")}</span>
-                    </div>
-                    <div>
-                      <h2 className="text-sm font-bold leading-tight text-accent">{benefit.title}</h2>
-                      <p className="mt-1.5 text-sm leading-6 text-secondary">{benefit.text}</p>
-                    </div>
-                  </div>
-                </article>
-              </ScrollReveal>
-            ))}
           </div>
         </div>
       </section>
