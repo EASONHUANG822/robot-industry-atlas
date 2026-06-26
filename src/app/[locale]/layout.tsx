@@ -36,6 +36,11 @@ export async function generateMetadata({ params }: LocaleLayoutProps) {
     metadataBase: new URL("https://www.szrobotvalley.com"),
     title: t("title"),
     description: t("description"),
+    icons: {
+      icon: "/icon.png",
+      apple: "/apple-icon.png",
+      shortcut: "/favicon.ico",
+    },
     robots: { index: true, follow: true },
     openGraph: {
       title: t("title"),
