@@ -33,8 +33,17 @@ export async function generateMetadata({ params }: LocaleLayoutProps) {
   const t = await getTranslations({ locale: resolvedLocale, namespace: "Metadata" });
 
   return {
+    metadataBase: new URL("https://www.szrobotvalley.com"),
     title: t("title"),
     description: t("description"),
+    robots: { index: true, follow: true },
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      siteName: resolvedLocale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley",
+      locale: resolvedLocale === "zh" ? "zh_CN" : "en_US",
+      type: "website",
+    },
   };
 }
 

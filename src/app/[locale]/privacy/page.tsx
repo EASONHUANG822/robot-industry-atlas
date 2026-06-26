@@ -3,6 +3,25 @@ import type { AppLocale } from "@/i18n/routing";
 
 type Props = { params: Promise<{ locale: AppLocale }> };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "PrivacyPage" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  return {
+    title: `${t("title")} | ${brandName}`,
+    description: t("underConstruction"),
+    alternates: { canonical: `/${locale}/privacy` },
+    openGraph: {
+      title: `${t("title")} | ${brandName}`,
+      description: t("underConstruction"),
+      siteName: brandName,
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      type: "website",
+    },
+  };
+}
+
 export default async function PrivacyPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

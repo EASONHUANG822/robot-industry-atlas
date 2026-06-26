@@ -26,9 +26,24 @@ export async function generateMetadata({ params }: CompanyPageProps) {
   const company = getCompanyById(id);
   const localizedCompany = company ? localizeCompany(company, locale) : undefined;
   const t = await getTranslations({ locale, namespace: "CompanyPage" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  const title = localizedCompany ? `${localizedCompany.name} | ${t("titleSuffix")}` : t("notFoundTitle");
+  const description = localizedCompany
+    ? `${localizedCompany.name} - ${localizedCompany.category || ""}`
+    : "";
 
   return {
-    title: localizedCompany ? `${localizedCompany.name} | ${t("titleSuffix")}` : t("notFoundTitle"),
+    title,
+    description,
+    alternates: { canonical: `/${locale}/company/${id}` },
+    openGraph: {
+      title,
+      description,
+      siteName: brandName,
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      type: "website",
+    },
   };
 }
 

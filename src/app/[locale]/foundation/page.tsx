@@ -4,6 +4,25 @@ import type { AppLocale } from "@/i18n/routing";
 
 type Props = { params: Promise<{ locale: AppLocale }> };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "FoundationPage" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  return {
+    title: `${t("title")} | ${brandName}`,
+    description: t("description"),
+    alternates: { canonical: `/${locale}/foundation` },
+    openGraph: {
+      title: `${t("title")} | ${brandName}`,
+      description: t("description"),
+      siteName: brandName,
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      type: "website",
+    },
+  };
+}
+
 export default async function FoundationPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

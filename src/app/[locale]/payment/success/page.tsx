@@ -8,6 +8,17 @@ type PaymentSuccessPageProps = {
   }>;
 };
 
+export async function generateMetadata({ params }: PaymentSuccessPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "PaymentPage" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  return {
+    title: `${t("successTitle")} | ${brandName}`,
+    robots: { index: false },
+  };
+}
+
 export default async function PaymentSuccessPage({ params }: PaymentSuccessPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);

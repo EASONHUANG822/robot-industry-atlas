@@ -13,6 +13,25 @@ type LandingPageProps = {
   }>;
 };
 
+export async function generateMetadata({ params }: LandingPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Landing" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  return {
+    title: `${t("title")} | ${brandName}`,
+    description: t("description"),
+    alternates: { canonical: `/${locale}` },
+    openGraph: {
+      title: `${t("title")} | ${brandName}`,
+      description: t("description"),
+      siteName: brandName,
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      type: "website",
+    },
+  };
+}
+
 export default async function LandingPage({ params }: LandingPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);

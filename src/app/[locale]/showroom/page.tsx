@@ -10,6 +10,25 @@ type ShowroomPageProps = {
   }>;
 };
 
+export async function generateMetadata({ params }: ShowroomPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "ShowroomPage" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  return {
+    title: `${t("title")} | ${brandName}`,
+    description: t("description"),
+    alternates: { canonical: `/${locale}/showroom` },
+    openGraph: {
+      title: `${t("title")} | ${brandName}`,
+      description: t("description"),
+      siteName: brandName,
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      type: "website",
+    },
+  };
+}
+
 export default async function ShowroomPage({ params }: ShowroomPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);

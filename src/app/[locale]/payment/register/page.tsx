@@ -9,6 +9,19 @@ type RegisterPageProps = {
   }>;
 };
 
+export async function generateMetadata({ params }: RegisterPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "PaymentPage" });
+  const brandName = locale === "zh" ? "深圳机器人谷" : "Shenzhen Robot Valley";
+
+  return {
+    title: `${t("formTitle")} | ${brandName}`,
+    description: t("formDescription"),
+    alternates: { canonical: `/${locale}/payment/register` },
+    robots: { index: false },
+  };
+}
+
 export default async function RegisterPage({ params }: RegisterPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
