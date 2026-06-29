@@ -49,18 +49,23 @@ export async function POST(request: Request) {
       }
       if (result.recordId) {
         results.push(result.recordId);
-        // Sync to Feishu + notify for each record (fire-and-forget)
-        Promise.allSettled([
+        // Sync to Feishu + notify for each record (awaited so Vercel serverless doesn't freeze them)
+        const [syncResult, notifyResult] = await Promise.allSettled([
           syncApplicationToBitable(singlePayload, result.recordId),
           notifyNewApplication(singlePayload),
-        ]).then(([syncResult, notifyResult]) => {
-          if (syncResult.status === "fulfilled" && !syncResult.value.ok) {
+        ]);
+        if (syncResult.status === "fulfilled") {
+          if (syncResult.value.ok) {
+            console.log("[FEISHU SYNC OK] application synced to Bitable");
+          } else {
             console.error("[FEISHU SYNC FAIL]", syncResult.value.error);
           }
-          if (notifyResult.status === "rejected") {
-            console.error("[FEISHU NOTIFY ERR]", notifyResult.reason instanceof Error ? notifyResult.reason.message : notifyResult.reason);
-          }
-        });
+        } else {
+          console.error("[FEISHU SYNC ERR]", syncResult.reason instanceof Error ? syncResult.reason.message : syncResult.reason);
+        }
+        if (notifyResult.status === "rejected") {
+          console.error("[FEISHU NOTIFY ERR]", notifyResult.reason instanceof Error ? notifyResult.reason.message : notifyResult.reason);
+        }
       }
     }
 
